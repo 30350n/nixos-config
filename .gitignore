@@ -1,0 +1,4 @@
+.venv/
+
+device.nix
+hostId.nix
