@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 help="\
-Usage: $(basename $BASH_SOURCE) [OPTIONS]
+Usage: $(basename "$BASH_SOURCE") [OPTIONS]
 
 Options:
   -u, --update Update the flake before rebuilding.
@@ -41,7 +41,7 @@ while [[ $OPTIND -le $# ]]; do
                     update=true
                     ;;
                 help)
-                    echo -e $help
+                    echo "$help"
                     exit 0
                     ;;
                 *)
@@ -54,7 +54,7 @@ while [[ $OPTIND -le $# ]]; do
                     update=true
                     ;;
                 h)
-                    echo -e $help
+                    echo "$help"
                     exit 0
                     ;;
                 *)
