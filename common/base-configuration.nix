@@ -68,6 +68,10 @@
     users.mutableUsers = false;
     users.users.root.hashedPasswordFile = "/persist/passwords/root";
 
+    security.sudo.extraConfig = ''
+        Defaults env_keep += "EDITOR"
+    '';
+
     nixpkgs.overlays = [import ./packages];
     # List packages installed in system profile. To search, run:
     # \$ nix search wget

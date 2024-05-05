@@ -2,7 +2,7 @@ import shutil, sys
 from getpass import getpass
 from hashlib import md5
 from pathlib import Path
-from subprocess import DEVNULL, CalledProcessError, check_call, check_output
+from subprocess import DEVNULL, check_call, check_output
 
 from cutie import prompt_yes_or_no, select
 from error_helper import *
