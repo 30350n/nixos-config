@@ -92,9 +92,9 @@ info configuration changes:
 jj diff --no-pager
 
 info "Building NixOS configuration ..."
-nixos-rebuild switch --flake path:. &> rebuild.log || {
+nixos-rebuild switch --flake path:. |& tee rebuild.log |& nom || {
     error "Building NixOS failed with:"
-    grep --color error < rebuild.log
+    grep --color error < rebuild.log || error "unknown error"
     hint "(check /etc/nixos/rebuild.log for the full build log)"
     popd &> /dev/null
     exit 1
