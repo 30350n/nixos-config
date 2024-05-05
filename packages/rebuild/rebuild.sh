@@ -30,16 +30,17 @@ if [[ $(jj status) == "The working copy is clean"* ]]; then
 fi
 
 info "Autoformatting NixOS configuration ..."
-pre-commit run --all-files
+pre-commit run --all-files &> /dev/null || true
+pre-commit run --all-files | grep -v "Passed"
 
 info configuration changes:
-jj diff
+jj diff --no-pager
 
 info "Building NixOS configuration ..."
-if [[ ! $(nixos-rebuild switch &> rebuild.log) ]]; then
+if [[ ! $(nixos-rebuild switch --flake path:. &> rebuild.log) ]]; then
     error "Building NixOS failed with:"
-    cat rebuild.log | grep --color error
-    hint "(check /etc/nixos/rebuild.log for the full build log)"#
+    grep --color error < rebuild.log
+    hint "(check /etc/nixos/rebuild.log for the full build log)"
     popd
     exit 1
 fi

@@ -72,14 +72,13 @@
         Defaults env_keep += "EDITOR"
     '';
 
-    nixpkgs.overlays = [(final: prev: import ./packages {pkgs = final;})];
+    nixpkgs.overlays = [(final: prev: import ../packages {pkgs = final;})];
     # List packages installed in system profile. To search, run:
     # \$ nix search wget
     environment.systemPackages = with pkgs; [
         git
         jujutsu
-        pre-commit
-        alejandra4
+        rebuild
     ];
 
     # Some programs need SUID wrappers, can be configured further or are
