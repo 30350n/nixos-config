@@ -15,6 +15,11 @@ error () {
 
 set -euo pipefail
 
+unexpected_error() {
+    error "Unexpected error on line $1 (code $2)"
+}
+trap 'unexpected_error $LINENO $?' ERR
+
 pushd /etc/nixos &> /dev/null
 
 if [[ $(id -u) != 0 ]]; then
