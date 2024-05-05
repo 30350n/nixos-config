@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+help="\
+Usage: $(basename $BASH_SOURCE) [OPTIONS]
+
+Options:
+  -u, --update Update the flake before rebuilding.
+  -h, --help   Show this message and exit.
+"
+
 info () {
     echo -e "\033[94m$1\033[0m"
 }
@@ -8,6 +16,9 @@ hint () {
 }
 success () {
     echo -e "\033[92m$1\033[0m"
+}
+warning () {
+    echo -e "\033[93m$1\033[0m"
 }
 error () {
     echo -e "\033[91m$1\033[0m"
@@ -19,6 +30,32 @@ unexpected_error() {
     error "Unexpected error on line $1 (code $2)"
 }
 trap 'unexpected_error $LINENO $?' ERR
+
+update=false
+
+while [[ $OPTIND -le "$#" ]]; do
+    if getopts ":-:" OPTCHAR; then
+        if [[ "$OPTCHAR" == "-" ]]; then
+            case "$OPTARG" in
+                update)
+                    update=true;;
+                help)
+                    echo -e $help && exit 0;;
+                *)
+                    warning "warning: invalid argument '--$OPTARG'";;
+            esac
+        else
+            case "$OPTARG" in
+                u)
+                    update=true;;
+                h)
+                    echo -e $help && exit 0;;
+                *)
+                    warning "warning: invalid argument '-$OPTARG'";;
+            esac
+        fi
+    fi
+done
 
 pushd /etc/nixos &> /dev/null
 
@@ -32,6 +69,11 @@ if [[ $(jj status) == "The working copy is clean"* ]]; then
     info "NixOS configuration is unchanged."
     popd &> /dev/null
     exit 0
+fi
+
+if $update; then
+    info "Updating NixOS configuration ..."
+    nix flake update
 fi
 
 info "Autoformatting NixOS configuration ..."
