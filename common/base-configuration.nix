@@ -9,18 +9,10 @@
     ...
 }: {
     imports = [
-        ./silent-boot.nix
+        ./boot.nix
         ./impermanence.nix
         ./unfree-packages.nix
     ];
-
-    # Use the systemd-boot EFI boot loader.
-    boot.loader = {
-        systemd-boot.enable = true;
-        systemd-boot.configurationLimit = 7;
-        efi.canTouchEfiVariables = true;
-        timeout = 1;
-    };
 
     # networking.hostName = "nixos"; # Define your hostname.
     # Pick only one of the below networking options.
