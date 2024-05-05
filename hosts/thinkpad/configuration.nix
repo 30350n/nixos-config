@@ -1,7 +1,7 @@
 {
     imports = [
         ../../common/base-configuration.nix
-        ../../common/users/bobbe.nix
+        ../../users/bobbe
 
         ./hardware-configuration.nix
         (import ./disko.nix {device = import ./device.nix;})

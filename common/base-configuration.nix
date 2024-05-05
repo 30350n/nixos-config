@@ -11,6 +11,7 @@
     imports = [
         ./silent-boot.nix
         ./impermanence.nix
+        ./unfree-packages.nix
     ];
 
     # Use the systemd-boot EFI boot loader.
@@ -90,6 +91,8 @@
         git
         unstable.jujutsu
         rebuild
+
+        firefox
     ];
 
     # Some programs need SUID wrappers, can be configured further or are
