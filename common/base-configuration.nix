@@ -68,12 +68,14 @@
     users.mutableUsers = false;
     users.users.root.hashedPasswordFile = "/persist/passwords/root";
 
+    nixpkgs.overlays = [import ./packages];
     # List packages installed in system profile. To search, run:
     # \$ nix search wget
     environment.systemPackages = with pkgs; [
         git
         jujutsu
         pre-commit
+        alejandra4
     ];
 
     # Some programs need SUID wrappers, can be configured further or are
