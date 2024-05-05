@@ -15,17 +15,17 @@ error () {
 
 set -euo pipefail
 
-pushd /etc/nixos
+pushd /etc/nixos &> /dev/null
 
 if [[ $(id -u) != 0 ]]; then
     error "Insufficient permissions (run this script as root)"
-    popd
+    popd &> /dev/null
     exit 1
 fi
 
 if [[ $(jj status) == "The working copy is clean"* ]]; then
     info "NixOS configuration is unchanged."
-    popd
+    popd &> /dev/null
     exit 0
 fi
 
@@ -41,17 +41,17 @@ nixos-rebuild switch --flake path:. &> rebuild.log || {
     error "Building NixOS failed with:"
     grep --color error < rebuild.log
     hint "(check /etc/nixos/rebuild.log for the full build log)"
-    popd
+    popd &> /dev/null
     exit 1
 }
 
 generation_prefix="Generation "
 commit_message=$(
     jj show --summary | grep -e "^    " -e "^\$" | tail -n +2 | head -n -1 | cut -c 5- |
-    grep -v "^$generation_prefix" | grep -v "^(no description set)\$"
+    grep -v "^$generation_prefix" | grep -v "^(no description set)\$" || true
 )
 generation=$(nixos-rebuild list-generations | grep current | awk '{print $1,$3,$4,$5}')
 echo -e "$commit_message\n\n$generation_prefix$generation" | jj describe --stdin
 
 success "Successfully built NixOS configuration!"
-popd
+popd &> /dev/null
