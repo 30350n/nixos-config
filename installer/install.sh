@@ -10,4 +10,6 @@ shell_commands="
     python -c '$(curl -fsSL $raw_repo_url/installer/install.py)' $repo_url
 "
 
-sudo nix-shell --quiet --packages python3 python3Packages.gitpython --run "$shell_commands"
+packages="python3 python3Packages.gitpython jujutsu"
+
+sudo nix-shell --quiet --packages $packages --run "$shell_commands"

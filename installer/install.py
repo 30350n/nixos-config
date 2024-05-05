@@ -2,7 +2,7 @@ import shutil, sys
 from getpass import getpass
 from hashlib import md5
 from pathlib import Path
-from subprocess import CalledProcessError, check_call, check_output
+from subprocess import DEVNULL, CalledProcessError, check_call, check_output
 
 from cutie import prompt_yes_or_no, select
 from error_helper import *
@@ -21,9 +21,7 @@ def install(config_url):
     info(f"Installing NixOS configuration from {config_url} ...")
 
     info(f"Cloning configuration into {TEMP_CONFIG_PATH} ...")
-    shutil.rmtree(TEMP_CONFIG_PATH, ignore_errors=True)
-    TEMP_CONFIG_PATH.mkdir(parents=True, exist_ok=True)
-    Repo.clone_from(config_url, TEMP_CONFIG_PATH)
+    clone_configuration(config_url)
 
     prompt("select the host configuration you want to install")
     hosts = [host_dir.name for host_dir in TEMP_CONFIG_HOSTS_PATH.glob("*/")]
@@ -56,6 +54,17 @@ def install(config_url):
     setup_user_passwords()
 
     success("Successfully installed NixOS!", prefix="")
+
+def clone_configuration(url):
+    shutil.rmtree(TEMP_CONFIG_PATH, ignore_errors=True)
+    TEMP_CONFIG_PATH.mkdir(parents=True, exist_ok=True)
+    Repo.clone_from(url, TEMP_CONFIG_PATH)
+    jj_commands = (
+        "jj init --git-repo=.",
+        "jj branch track master@origin",
+    )
+    for command in jj_commands:
+        check_call(command.split(), cwd=TEMP_CONFIG_PATH, stdout=DEVNULL, stderr=DEVNULL)
 
 def get_block_devices():
     return check_output("lsblk -I 8,259 -ndo NAME".split()).decode().strip().split()
