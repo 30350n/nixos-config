@@ -68,9 +68,9 @@ done
 pushd /etc/nixos &> /dev/null
 
 if [[ $(id -u) != 0 ]]; then
-    error "Insufficient permissions (run this script as root)"
     popd &> /dev/null
-    exit 1
+    sudo rebuild || exit $?
+    exit 0
 fi
 
 if [[ $(jj status) == "The working copy is clean"* ]]; then

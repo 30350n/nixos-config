@@ -82,6 +82,7 @@
     environment.systemPackages = with pkgs; [
         git
         unstable.jujutsu
+        custom.configure
         custom.rebuild
 
         firefox
