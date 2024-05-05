@@ -21,16 +21,25 @@
     outputs = {
         self,
         nixpkgs,
+        nixpkgs-unstable,
         disko,
         impermanence,
         ...
     } @ inputs: let
         system = "x86_64-linux";
         pkgs = nixpkgs.legacyPackages.${system};
+        nixpkgs-overlays = {
+            nixpkgs.overlays = [
+                (import ./packages)
+                (final: prev: {unstable = import nixpkgs-unstable {system = system;};})
+            ];
+        };
     in {
         nixosConfigurations = {
             thinkpad = nixpkgs.lib.nixosSystem {
                 modules = [
+                    nixpkgs-overlays
+
                     disko.nixosModules.disko
                     impermanence.nixosModules.impermanence
                     ./hosts/thinkpad/configuration.nix

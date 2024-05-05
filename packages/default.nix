@@ -1,5 +1,7 @@
-{pkgs ? import <nixpkgs> {}, ...}: {
-    alejandra4 = pkgs.callPackage ./alejandra4.nix {};
-    rebuild = pkgs.callPackage ./rebuild {};
-    segoe-ui = pkgs.callPackage ./segoe-ui.nix {};
+final_pkgs: prev_pkgs: {
+    custom = rec {
+        alejandra4 = final_pkgs.callPackage ./alejandra4.nix {};
+        rebuild = final_pkgs.callPackage ./rebuild {alejandra4 = alejandra4;};
+        segoe-ui = final_pkgs.callPackage ./segoe-ui.nix {};
+    };
 }
