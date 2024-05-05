@@ -41,8 +41,12 @@ def install(config_url):
     format_disk(host, disk_by_id)
     print()
 
-    (TEMP_CONFIG_HOSTS_PATH / host / "device.nix").write_text(f"\"{disk_by_id}\"\n")
-    (TEMP_CONFIG_HOSTS_PATH / host / "hostId.nix").write_text(f"\"{get_host_id(disk)}\"\n")
+    device_file = TEMP_CONFIG_HOSTS_PATH / host / "device.nix"
+    device_file.write_text(f"\"{disk_by_id}\"\n")
+    host_id_file = (TEMP_CONFIG_HOSTS_PATH / host / "hostId.nix")
+    host_id_file.write_text(f"\"{get_host_id(disk)}\"\n")
+    check_call(f"chattr +i {device_file} {host_id_file}".split())
+
     (TARGET_CONFIG_PATH).mkdir(parents=True, exist_ok=True)
     for path in TEMP_CONFIG_PATH.glob("*"):
         shutil.move(path, TARGET_CONFIG_PATH)
