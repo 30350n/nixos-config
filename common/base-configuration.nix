@@ -72,7 +72,7 @@
         Defaults env_keep += "EDITOR"
     '';
 
-    nixpkgs.overlays = [import ./packages];
+    nixpkgs.overlays = [(final: prev: import ./packages {pkgs = final;})];
     # List packages installed in system profile. To search, run:
     # \$ nix search wget
     environment.systemPackages = with pkgs; [
