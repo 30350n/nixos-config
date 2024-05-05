@@ -31,7 +31,7 @@ fi
 
 info "Autoformatting NixOS configuration ..."
 pre-commit run --all-files &> /dev/null || true
-pre-commit run --all-files | grep -v "Passed"
+pre-commit run --all-files | (grep -v "Passed" || true)
 
 info configuration changes:
 jj diff --no-pager
