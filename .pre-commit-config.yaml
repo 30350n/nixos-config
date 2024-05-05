@@ -14,6 +14,7 @@ repos:
     rev: v3.8.0-1
     hooks:
       - id: shfmt
+        args: [--write, --simplify, --indent=4, --case-indent, --space-redirects]
   - repo: https://github.com/hhatto/autopep8
     rev: v2.0.4
     hooks:

@@ -8,19 +8,19 @@ Options:
   -h, --help   Show this message and exit.
 "
 
-info () {
+info() {
     echo -e "\033[94m$1\033[0m"
 }
-hint () {
+hint() {
     echo -e "\033[2;3m$1\033[0m"
 }
-success () {
+success() {
     echo -e "\033[92m$1\033[0m"
 }
-warning () {
+warning() {
     echo -e "\033[93m$1\033[0m"
 }
-error () {
+error() {
     echo -e "\033[91m$1\033[0m"
 }
 
@@ -33,25 +33,33 @@ trap 'unexpected_error $LINENO $?' ERR
 
 update=false
 
-while [[ $OPTIND -le "$#" ]]; do
+while [[ $OPTIND -le $# ]]; do
     if getopts ":-:" OPTCHAR; then
-        if [[ "$OPTCHAR" == "-" ]]; then
+        if [[ $OPTCHAR == "-" ]]; then
             case "$OPTARG" in
                 update)
-                    update=true;;
+                    update=true
+                    ;;
                 help)
-                    echo -e $help && exit 0;;
+                    echo -e $help
+                    exit 0
+                    ;;
                 *)
-                    warning "warning: invalid argument '--$OPTARG'";;
+                    warning "warning: invalid argument '--$OPTARG'"
+                    ;;
             esac
         else
             case "$OPTARG" in
                 u)
-                    update=true;;
+                    update=true
+                    ;;
                 h)
-                    echo -e $help && exit 0;;
+                    echo -e $help
+                    exit 0
+                    ;;
                 *)
-                    warning "warning: invalid argument '-$OPTARG'";;
+                    warning "warning: invalid argument '-$OPTARG'"
+                    ;;
             esac
         fi
     fi
@@ -94,8 +102,8 @@ nixos-rebuild switch --flake path:. &> rebuild.log || {
 
 generation_prefix="Generation "
 commit_message=$(
-    jj show --summary | grep -e "^    " -e "^\$" | tail -n +2 | head -n -1 | cut -c 5- |
-    grep -v "^$generation_prefix" | grep -v "^(no description set)\$" || true
+    jj show --summary | grep -e "^    " -e '^$' | tail -n +2 | head -n -1 | cut -c 5- |
+        grep -v "^$generation_prefix" | grep -v '^(no description set)$' || true
 )
 generation=$(nixos-rebuild list-generations | grep current | awk '{print $1,$3,$4,$5}' || true)
 echo -e "$commit_message\n\n$generation_prefix$generation" | jj describe --stdin &> /dev/null
