@@ -1,8 +1,13 @@
-final_pkgs: prev_pkgs: {
+finalPkgs: prevPkgs: {
     custom = rec {
-        alejandra4 = final_pkgs.callPackage ./alejandra4.nix {};
-        configure = final_pkgs.callPackage ./configure.nix {};
-        rebuild = final_pkgs.callPackage ./rebuild {alejandra4 = alejandra4;};
-        segoe-ui = final_pkgs.callPackage ./segoe-ui.nix {};
+        alejandra4 = finalPkgs.callPackage ./alejandra4.nix {};
+        nix-output-monitor-silent = import ./nix-output-monitor-silent {pkgs = prevPkgs;};
+        configure = finalPkgs.callPackage ./configure.nix {};
+        rebuild = finalPkgs.callPackage ./rebuild {
+            alejandra = alejandra4;
+            nix-output-monitor = nix-output-monitor-silent;
+        };
+
+        segoe-ui = finalPkgs.callPackage ./segoe-ui.nix {};
     };
 }

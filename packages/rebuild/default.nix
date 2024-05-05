@@ -2,12 +2,12 @@
     writeShellApplication,
     jujutsu,
     pre-commit,
-    alejandra4,
+    alejandra,
     jq,
     nix-output-monitor,
 }:
 writeShellApplication {
     name = "rebuild";
-    runtimeInputs = [jujutsu pre-commit alejandra4 jq nix-output-monitor];
+    runtimeInputs = [jujutsu pre-commit alejandra jq nix-output-monitor];
     text = builtins.readFile ./rebuild.sh;
 }
