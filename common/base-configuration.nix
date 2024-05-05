@@ -5,6 +5,7 @@
     config,
     lib,
     pkgs,
+    inputs,
     ...
 }: {
     imports = [
@@ -75,12 +76,19 @@
         Defaults lecture = never
     '';
 
-    nixpkgs.overlays = [(final: prev: import ../packages {pkgs = final;})];
+    nixpkgs.overlays = [
+        (final: prev: import ../packages {pkgs = final;})
+        (final: prev: {
+            unstable = import inputs.nixpkgs-unstable {
+                system = final.system;
+            };
+        })
+    ];
     # List packages installed in system profile. To search, run:
     # \$ nix search wget
     environment.systemPackages = with pkgs; [
         git
-        jujutsu
+        unstable.jujutsu
         rebuild
     ];
 
