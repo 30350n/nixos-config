@@ -37,13 +37,13 @@ info configuration changes:
 jj diff --no-pager
 
 info "Building NixOS configuration ..."
-if [[ ! $(nixos-rebuild switch --flake path:. &> rebuild.log) ]]; then
+nixos-rebuild switch --flake path:. &> rebuild.log || {
     error "Building NixOS failed with:"
     grep --color error < rebuild.log
     hint "(check /etc/nixos/rebuild.log for the full build log)"
     popd
     exit 1
-fi
+}
 
 generation_prefix="Generation "
 commit_message=$(
