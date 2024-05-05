@@ -10,6 +10,10 @@ repos:
     rev: 3.0.0
     hooks:
       - id: alejandra-system
+  - repo: https://github.com/scop/pre-commit-shfmt
+    rev: v3.8.0-1
+    hooks:
+      - id: shfmt
   - repo: https://github.com/hhatto/autopep8
     rev: v2.0.4
     hooks:
