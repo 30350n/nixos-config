@@ -17,6 +17,7 @@
     # Use the systemd-boot EFI boot loader.
     boot.loader = {
         systemd-boot.enable = true;
+        systemd-boot.configurationLimit = 7;
         efi.canTouchEfiVariables = true;
         timeout = 1;
     };
@@ -52,10 +53,14 @@
     # Enable sound.
     # hardware.pulseaudio.enable = true;
     # OR
-    # services.pipewire = {
-    #     enable = true;
-    #     pulse.enable = true;
-    # };
+    security.rtkit.enable = true;
+    services.pipewire = {
+        enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+        pulse.enable = true;
+        jack.enable = true;
+    };
 
     # Enable touchpad support (enabled default in most desktopManager).
     # services.libinput.enable = true;
@@ -86,6 +91,7 @@
         custom.rebuild
 
         firefox
+        alacritty
     ];
 
     # Some programs need SUID wrappers, can be configured further or are
