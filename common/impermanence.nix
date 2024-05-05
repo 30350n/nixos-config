@@ -12,6 +12,8 @@
             "/var/lib/nixos"
             "/var/lib/systemd/coredump"
             "/var/log"
+            "/root/.ssh"
+            "/root/.cache/pre-commit"
         ];
         files = [
             "/etc/machine-id"
