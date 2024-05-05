@@ -55,7 +55,7 @@ commit_message=$(
     jj show --summary | grep -e "^    " -e "^\$" | tail -n +2 | head -n -1 | cut -c 5- |
     grep -v "^$generation_prefix" | grep -v "^(no description set)\$" || true
 )
-generation=$(nixos-rebuild list-generations | grep current | awk '{print $1,$3,$4,$5}')
+generation=$(nixos-rebuild list-generations | grep current | awk '{print $1,$3,$4,$5}' || true)
 echo -e "$commit_message\n\n$generation_prefix$generation" | jj describe --stdin &> /dev/null
 
 success "Successfully built NixOS configuration!"
