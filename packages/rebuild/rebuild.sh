@@ -51,7 +51,8 @@ commit_message=$(
     grep -v "^$generation_prefix" | grep -v "^(no description set)\$" || true
 )
 generation=$(nixos-rebuild list-generations | grep current | awk '{print $1,$3,$4,$5}')
-echo -e "$commit_message\n\n$generation_prefix$generation" | jj describe --stdin
+echo -e "$commit_message\n\n$generation_prefix$generation" | jj describe --stdin &> /dev/null
 
 success "Successfully built NixOS configuration!"
+hint "($generation_prefix$generation)"
 popd &> /dev/null
