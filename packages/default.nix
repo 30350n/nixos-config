@@ -9,5 +9,6 @@ finalPkgs: prevPkgs: {
         };
 
         segoe-ui = finalPkgs.callPackage ./segoe-ui.nix {};
+        wallpapers = finalPkgs.callPackage ./wallpapers {};
     };
 }
