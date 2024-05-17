@@ -8,6 +8,7 @@ finalPkgs: prevPkgs: {
             nix-output-monitor = nix-output-monitor-silent;
         };
 
+        ibm-plex = finalPkgs.callPackage ./ibm-plex {pkgs = prevPkgs;};
         segoe-ui = finalPkgs.callPackage ./segoe-ui.nix {};
         wallpapers = finalPkgs.callPackage ./wallpapers {};
     };
