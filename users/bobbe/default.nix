@@ -9,5 +9,8 @@
         );
     };
 
-    programs.steam.enable = true;
+    #programs.steam = {
+    #    enable = true;
+    #    package = pkgs.unfree.steam;
+    #};
 }

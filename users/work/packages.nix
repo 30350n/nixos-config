@@ -8,7 +8,7 @@ with pkgs; [
     unstable.kicad
     unstable.inkscape
 
-    gitkraken
+    unfree.gitkraken
 
     (vscode-with-extensions.override {
         vscode = vscodium;

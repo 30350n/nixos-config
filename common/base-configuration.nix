@@ -11,7 +11,6 @@
     imports = [
         ./boot.nix
         ./impermanence.nix
-        ./unfree-packages.nix
     ];
 
     # networking.hostName = "nixos"; # Define your hostname.

@@ -13,9 +13,7 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        impermanence = {
-            url = "github:nix-community/impermanence";
-        };
+        impermanence.url = "github:nix-community/impermanence";
     };
 
     outputs = {
@@ -27,24 +25,28 @@
         ...
     } @ inputs: let
         system = "x86_64-linux";
-        pkgs = nixpkgs.legacyPackages.${system};
-        nixpkgs-overlays = {
-            nixpkgs.overlays = [
-                (import ./packages)
-                (final: prev: {unstable = import nixpkgs-unstable {system = system;};})
-            ];
-        };
+        defaultModules = [
+            {
+                nixpkgs.overlays = [
+                    (import ./packages)
+                    (final: prev: {unstable = import nixpkgs-unstable {system = system;};})
+                ];
+            }
+            (import ./modules/nixos/unfree.nix)
+            disko.nixosModules.disko
+            impermanence.nixosModules.impermanence
+        ];
     in {
         nixosConfigurations = {
-            thinkpad = nixpkgs.lib.nixosSystem {
-                modules = [
-                    nixpkgs-overlays
-
-                    disko.nixosModules.disko
-                    impermanence.nixosModules.impermanence
-                    ./hosts/thinkpad/configuration.nix
-                ];
-                specialArgs = {inherit inputs;};
+            thinkpad = nixpkgs.lib.nixosSystem rec {
+                specialArgs = {
+                    inherit inputs;
+                };
+                modules =
+                    defaultModules
+                    ++ [
+                        ./hosts/thinkpad/configuration.nix
+                    ];
             };
         };
     };

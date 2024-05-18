@@ -1,9 +1,9 @@
 {pkgs}:
 with pkgs; [
-    discord
+    unfree.discord
 
-    minecraft
+    unfree.minecraft
 
     audacity
-    reaper
+    unfree.reaper
 ]
