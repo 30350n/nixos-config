@@ -84,28 +84,19 @@
             set tide_rustc_bg_color normal
 
             set _make_sparse_prompt false
+            function _sparse_prompt --on-event=fish_prompt
+                if test "$_make_sparse_prompt" = true
+                    echo
+                else
+                    set _make_sparse_prompt true
+                end
+            end
+
+            function clear --wraps=clear
+                set _make_sparse_prompt false
+                command clear $argv
+            end
         '';
-
-        functions = {
-            __sparse_prompt = {
-                onEvent = "fish_prompt";
-                body = ''
-                    if test "$_make_sparse_prompt" = true
-                        echo
-                    else
-                        set _make_sparse_prompt true
-                    end
-                '';
-            };
-
-            clear = {
-                wraps = "clear";
-                body = ''
-                    set _make_sparse_prompt false
-                    command clear $argv
-                '';
-            };
-        };
     };
 
     home.packages = with pkgs; [
