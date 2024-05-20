@@ -50,7 +50,8 @@
             set tide_docker_bg_color normal
 
             set tide_git_icon " " # nf-dev-git_branch
-            set tide_git_color_location normal
+            # set tide_git_color_branch bryellow
+            # set tide_git_color_location bryellow
             set tide_git_color_operation brred
             set tide_git_color_upstream brblue
             set tide_git_color_stash blue
