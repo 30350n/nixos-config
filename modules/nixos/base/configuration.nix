@@ -15,6 +15,8 @@
         '';
     };
 
+    programs.command-not-found.enable = false;
+
     networking.networkmanager.enable = true;
 
     time.timeZone = "Europe/Berlin";
@@ -25,7 +27,6 @@
     services.xserver.xkb = {
         layout = "de";
         variant = "nodeadkeys";
-        options = "eurosign:e";
     };
     console.useXkbConfig = true;
 
