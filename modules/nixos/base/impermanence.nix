@@ -14,6 +14,7 @@
             "/var/log"
             "/root/.ssh"
             "/root/.cache/pre-commit"
+            "/root/.config/VSCodium"
         ];
         files = [
             "/etc/machine-id"
