@@ -7,6 +7,7 @@ with pkgs; [
     unstable.freecad
     unstable.kicad
     unstable.inkscape
+    custom.openpnp
 
     unfree.gitkraken
 
