@@ -59,9 +59,10 @@
         custom.configure
         custom.rebuild
 
-        unstable.python312Full
-        firefox
         alacritty
+        custom.extra-desktop-items
+        firefox
+        unstable.python312Full
     ];
 
     # List services that you want to enable:
