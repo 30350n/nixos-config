@@ -40,5 +40,7 @@
                 set whitespace "→·"
             '';
         };
+
+        nix-ld.enable = true;
     };
 }
