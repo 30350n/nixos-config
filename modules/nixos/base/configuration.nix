@@ -1,6 +1,7 @@
 {pkgs, ...}: {
     imports = [
         ./boot.nix
+        ./fish.nix
         ./impermanence.nix
     ];
 
