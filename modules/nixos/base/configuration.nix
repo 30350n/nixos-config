@@ -5,6 +5,16 @@
         ./impermanence.nix
     ];
 
+    programs.nano = {
+        enable = true;
+        nanorc = ''
+            set autoindent
+            set linenumbers
+            set tabsize 4
+            set whitespace "→·"
+        '';
+    };
+
     networking.networkmanager.enable = true;
 
     time.timeZone = "Europe/Berlin";
