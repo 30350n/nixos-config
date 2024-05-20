@@ -26,6 +26,7 @@
             "explorer.confirmDragAndDrop" = false;
 
             "files.exclude" = {
+                ".direnv/" = true;
                 ".history/" = true;
             };
 
@@ -78,6 +79,7 @@
                 jnoortheen.nix-ide
                 ms-python.python
                 xyz.local-history
+                mkhl.direnv
             ]
             ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
                 {

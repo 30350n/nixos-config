@@ -9,7 +9,9 @@ with pkgs; [
     unstable.inkscape
     custom.openpnp
 
+    direnv
     unfree.gitkraken
+    custom.mkshell
 
     (vscode-with-extensions.override {
         vscode = vscodium;

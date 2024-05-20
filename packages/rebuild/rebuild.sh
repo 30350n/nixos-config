@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 help="\
 Usage: $(basename "${BASH_SOURCE[0]}") [OPTIONS]
 
@@ -23,8 +21,6 @@ warning() {
 error() {
     echo -e "\033[91m$1\033[0m"
 }
-
-set -euo pipefail
 
 unexpected_error() {
     error "Unexpected error on line $1 (code $2)"

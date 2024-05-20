@@ -1,7 +1,10 @@
 {
     programs.git = {
         enable = true;
-        ignores = [".history/"];
+        ignores = [
+            ".direnv/"
+            ".history/"
+        ];
         userEmail = "maxschlecht@web.de";
         userName = "Bobbe";
     };

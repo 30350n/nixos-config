@@ -19,6 +19,11 @@
 
             set fish_greeting
 
+            # provide interactive bash in nix-shell
+            if not echo (realpath (which bash)) | grep -q "bash-interactive"
+                fish_add_path --prepend --path ${pkgs.bashInteractive}/bin
+            end
+
             set tide_left_prompt_items pwd git newline character
             set tide_right_prompt_items cmd_duration status direnv docker nix_shell python rustc
 
@@ -38,8 +43,8 @@
             set tide_cmd_duration_decimals 2
             set tide_cmd_duration_threshold 1000
 
-            set tide_direnv_icon  # nf-cod-folder_active
-            set tide_direnv_color brcyan
+            set tide_direnv_icon " " # nf-cod-folder_active
+            set tide_direnv_color brpurple
             set tide_direnv_color_denied brred
             set tide_direnv_bg_color normal
             set tide_direnv_bg_color_denied normal
