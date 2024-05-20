@@ -1,34 +1,18 @@
-{pkgs, ...}: {
+{
     imports = [
         ./boot.nix
         ./fish.nix
         ./impermanence.nix
+        ./locale.nix
+        ./packages.nix
     ];
 
-    programs.nano = {
-        enable = true;
-        nanorc = ''
-            set autoindent
-            set linenumbers
-            set tabsize 4
-            set whitespace "→·"
-        '';
-    };
-
-    programs.command-not-found.enable = false;
-
     networking.networkmanager.enable = true;
-
-    time.timeZone = "Europe/Berlin";
-
-    # Select internationalisation properties.
-    # i18n.defaultLocale = "en_US.UTF-8";
-
-    services.xserver.xkb = {
-        layout = "de";
-        variant = "nodeadkeys";
-    };
-    console.useXkbConfig = true;
+    # Open ports in the firewall.
+    # networking.firewall.allowedTCPPorts = [ ... ];
+    # networking.firewall.allowedUDPPorts = [ ... ];
+    # Or disable the firewall altogether.
+    # networking.firewall.enable = false;
 
     # Enable CUPS to print documents.
     # services.printing.enable = true;
@@ -49,32 +33,9 @@
     users.users.root.hashedPasswordFile = "/persist/passwords/root";
 
     security.sudo.extraConfig = ''
-        Defaults env_keep += "EDITOR"
         Defaults lecture = never
+        Defaults env_keep += "EDITOR"
     '';
-
-    environment.systemPackages = with pkgs; [
-        git
-        unstable.jujutsu
-        custom.configure
-        custom.rebuild
-
-        alacritty
-        custom.extra-desktop-items
-        firefox
-        unstable.python312Full
-    ];
-
-    # List services that you want to enable:
-
-    # Enable the OpenSSH daemon.
-    # services.openssh.enable = true;
-
-    # Open ports in the firewall.
-    # networking.firewall.allowedTCPPorts = [ ... ];
-    # networking.firewall.allowedUDPPorts = [ ... ];
-    # Or disable the firewall altogether.
-    # networking.firewall.enable = false;
 
     nix.settings.experimental-features = ["nix-command" "flakes"];
 
