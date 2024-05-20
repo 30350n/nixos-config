@@ -1,4 +1,4 @@
-{
+{hostName, ...}: {
     imports = [
         ../../common/base-configuration.nix
         ../../users/bobbe
@@ -8,7 +8,7 @@
     ];
 
     networking = {
-        hostName = "thinkpad";
+        inherit hostName;
         hostId = import ./hostId.nix;
     };
 }

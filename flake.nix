@@ -40,6 +40,7 @@
         nixosConfigurations = {
             thinkpad = nixpkgs.lib.nixosSystem rec {
                 specialArgs = {
+                    hostName = "thinkpad";
                     inherit inputs;
                 };
                 modules =
