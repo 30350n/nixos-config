@@ -5,7 +5,9 @@
         custom.rebuild
 
         alacritty
+        bat
         custom.extra-desktop-items
+        eza
         firefox
         unstable.python312Full
         zoxide

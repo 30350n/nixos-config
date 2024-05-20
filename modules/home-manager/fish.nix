@@ -8,7 +8,15 @@
             }
         ];
 
+        shellAliases = {
+            cat = "bat -pp";
+            ls = "eza -l";
+            la = "eza -la";
+        };
+
         shellInit = ''
+            functions --erase l ll
+
             set fish_greeting
 
             set tide_left_prompt_items pwd git newline character
