@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
     boot = {
         loader = {
             systemd-boot.enable = true;
@@ -7,9 +7,11 @@
             timeout = 0;
         };
 
-        plymouth = {
+        plymouth = with pkgs; {
             enable = true;
             theme = "breeze";
+            logo = "${nixos-icons}/share/icons/hicolor/64x64/apps/nix-snowflake-white.png";
+            font = "${custom.segoe-ui}/share/fonts/truetype/SegoeUI-VF.ttf";
         };
 
         consoleLogLevel = 0;
