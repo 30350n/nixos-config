@@ -12,11 +12,13 @@ finalPkgs: prevPkgs: {
 
         ibm-plex = finalPkgs.callPackage ./ibm-plex {pkgs = prevPkgs;};
         openpnp = finalPkgs.callPackage ./openpnp.nix {};
-        segoe-ui = finalPkgs.callPackage ./segoe-ui.nix {};
-        wallpapers = finalPkgs.callPackage ./wallpapers {};
         sddm-chili-theme = finalPkgs.callPackage ./sddm-chili-theme.nix {
             pkgs = prevPkgs;
             wallpapers = wallpapers;
         };
+        segoe-ui = finalPkgs.callPackage ./segoe-ui.nix {};
+        wallpapers = finalPkgs.callPackage ./wallpapers {};
+
+        fishPlugins.tide = finalPkgs.callPackage ./tide {pkgs = prevPkgs;};
     };
 }
