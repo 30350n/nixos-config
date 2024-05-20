@@ -15,6 +15,7 @@
             "/root/.ssh"
             "/root/.cache/pre-commit"
             "/root/.config/VSCodium"
+            "/root/.local/share/zoxide"
         ];
         files = [
             "/etc/machine-id"

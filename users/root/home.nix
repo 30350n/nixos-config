@@ -8,6 +8,7 @@
     imports = [
         ../../modules/home-manager/fish.nix
         ../../modules/home-manager/vscode.nix
+        ../../modules/home-manager/zoxide.nix
     ];
 
     programs.vscode.extensions = with pkgs.vscode-extensions;

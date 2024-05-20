@@ -6,6 +6,7 @@
         ../../modules/home-manager/alacritty.nix
         ../../modules/home-manager/fish.nix
         ../../modules/home-manager/vscode.nix
+        ../../modules/home-manager/zoxide.nix
     ];
 
     programs.tofi.settings.font = ''

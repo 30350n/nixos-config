@@ -8,6 +8,7 @@
         custom.extra-desktop-items
         firefox
         unstable.python312Full
+        zoxide
     ];
 
     programs = {
