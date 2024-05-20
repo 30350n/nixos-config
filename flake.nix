@@ -20,6 +20,7 @@
         self,
         nixpkgs,
         nixpkgs-unstable,
+        home-manager,
         disko,
         impermanence,
         ...
@@ -47,6 +48,16 @@
                     defaultModules
                     ++ [
                         ./hosts/thinkpad/configuration.nix
+                        home-manager.nixosModules.home-manager
+                        {
+                            home-manager = {
+                                users.bobbe = import ./users/bobbe/home.nix;
+                                users.root = import ./users/root/home.nix;
+                                useGlobalPkgs = true;
+                                useUserPackages = true;
+                                extraSpecialArgs = specialArgs;
+                            };
+                        }
                     ];
             };
         };
