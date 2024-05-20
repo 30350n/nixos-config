@@ -59,6 +59,7 @@
         custom.configure
         custom.rebuild
 
+        unstable.python312Full
         firefox
         alacritty
     ];
