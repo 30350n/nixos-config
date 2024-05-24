@@ -29,8 +29,8 @@
         defaultModules = [
             {
                 nixpkgs.overlays = [
-                    (import ./packages)
                     (final: prev: {unstable = import nixpkgs-unstable {system = system;};})
+                    (import ./packages)
                 ];
             }
             (import ./modules/nixos/unfree.nix)

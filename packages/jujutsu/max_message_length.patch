@@ -1,0 +1,9 @@
+--- a/cli/src/description_util.rs
++++ b/cli/src/description_util.rs
+@@ -157,3 +157,5 @@ pub fn diff_summary_to_description(bytes: &[u8]) -> String {
+     );
+-    "JJ: This commit contains the following changes:\n".to_owned()
++    "JJ: -------------------------------------------- ʌ ------------------- ʌ\n\
++     JJ: max commit message length:   soft limit (50) ┘     hard limit (72) ┘\n\n\
++     JJ: This commit contains the following changes:\n".to_owned()
+         + &textwrap::indent(text, "JJ:     ")
