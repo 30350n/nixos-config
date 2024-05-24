@@ -1,4 +1,4 @@
-{
+{nixosConfig, ...}: {
     wayland.windowManager.hyprland = {
         enable = true;
         settings = {
@@ -20,7 +20,11 @@
 
             xwayland.force_zero_scaling = true;
 
-            input = {
+            input = with nixosConfig.services.xserver; {
+                kb_model = xkb.model;
+                kb_layout = xkb.layout;
+                kb_variant = xkb.variant;
+                kb_options = xkb.options;
                 repeat_rate = 30;
                 repeat_delay = 250;
                 follow_mouse = 2;
