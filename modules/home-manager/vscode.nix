@@ -14,8 +14,6 @@
         userSettings = let
             fonts = nixosConfig.fonts.fontconfig.defaultFonts.monospace;
         in {
-            "window.titleBarStyle" = "custom";
-
             "editor.fontFamily" = ''
                 ${builtins.concatStringsSep ", " (builtins.map (s: "'${s}'") fonts)}
             '';
@@ -27,10 +25,16 @@
             "explorer.confirmDelete" = false;
             "explorer.confirmDragAndDrop" = false;
 
+            "files.exclude" = {
+                ".history/" = true;
+            };
+
             "security.workspace.trust.enabled" = false;
 
             "terminal.integrated.scrollback" = 10000;
             "terminal.integrated.defaultProfile.linux" = "fish";
+
+            "window.titleBarStyle" = "custom";
 
             "workbench.editor.empty.hint" = "hidden";
 
