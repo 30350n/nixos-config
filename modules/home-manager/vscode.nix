@@ -73,6 +73,7 @@
             [
                 jnoortheen.nix-ide
                 ms-python.python
+                xyz.local-history
             ]
             ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
                 {

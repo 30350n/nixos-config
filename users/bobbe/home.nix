@@ -5,6 +5,8 @@
         ../../modules/home-manager/hyprland
         ../../modules/home-manager/alacritty.nix
         ../../modules/home-manager/fish.nix
+        ../../modules/home-manager/git.nix
+        ../../modules/home-manager/jujustu.nix
         ../../modules/home-manager/vscode.nix
         ../../modules/home-manager/zoxide.nix
     ];
