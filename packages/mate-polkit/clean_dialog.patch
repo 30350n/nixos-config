@@ -1,5 +1,12 @@
 --- a/src/polkitmateauthenticationdialog.c
 +++ b/src/polkitmateauthenticationdialog.c
+@@ -673,5 +673,5 @@ polkit_mate_authentication_dialog_constructed (GObject *object)
+   content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
+ 
+-  gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
++  gtk_container_set_border_width (GTK_CONTAINER (dialog), 15);
+   gtk_box_set_spacing (GTK_BOX (content_area), 2); /* 2 * 5 + 2 = 12 */
+   gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
 @@ -692,5 +692,5 @@ polkit_mate_authentication_dialog_constructed (GObject *object)
    /* main message */
    label = gtk_label_new (NULL);
