@@ -1,7 +1,9 @@
 {pkgs}:
 with pkgs; [
     ungoogled-chromium
+
     thunderbird
+    unfree.zoom-us
 
     unstable.blender
     unstable.freecad
