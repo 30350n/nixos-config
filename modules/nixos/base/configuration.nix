@@ -8,6 +8,7 @@
     ];
 
     networking.networkmanager.enable = true;
+    networking.enableIPv6 = false;
     # Open ports in the firewall.
     # networking.firewall.allowedTCPPorts = [ ... ];
     # networking.firewall.allowedUDPPorts = [ ... ];
