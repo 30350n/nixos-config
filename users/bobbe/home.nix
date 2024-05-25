@@ -12,6 +12,8 @@
         ../../modules/home-manager/zoxide.nix
     ];
 
+    home.file.".face.icon" = {source = ./icon.jpg;};
+
     programs.tofi.settings.font = ''
         ${pkgs.custom.ibm-plex}/share/fonts/opentype/IBMPlexMono-Regular.otf
     '';
