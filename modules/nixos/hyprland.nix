@@ -37,7 +37,7 @@
             ExecStart = ''
                 ${pkgs.custom.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1
             '';
-            Restart = "on-failure";
+            Restart = "always";
             RestartSec = 1;
             TimeoutStopSec = 10;
         };
