@@ -1,8 +1,9 @@
 {
     networking = {
         networkmanager.enable = true;
-        enableIPv6 = false;
     };
+
+    services.avahi.enable = true;
 
     # Open ports in the firewall.
     # networking.firewall.allowedTCPPorts = [ ... ];
