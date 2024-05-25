@@ -10,9 +10,12 @@
         eza
         firefox
         gnome.file-roller
-        unstable.python312Full
         qview
         zoxide
+
+        (unstable.python312Full.withPackages (python-pkgs: [
+            python-pkgs.numpy
+        ]))
 
         (cinnamon.nemo-with-extensions.override {
             nemo = custom.cinnamon.nemo;
