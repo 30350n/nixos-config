@@ -1,4 +1,8 @@
 {pkgs, ...}: {
+    imports = [
+        ../../modules/nixos/udev.nix
+    ];
+
     users.users.bobbe = {
         isNormalUser = true;
         extraGroups = ["wheel" "networkmanager"];
