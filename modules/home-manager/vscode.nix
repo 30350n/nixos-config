@@ -34,6 +34,7 @@
 
             "terminal.integrated.scrollback" = 10000;
             "terminal.integrated.defaultProfile.linux" = "fish";
+            "terminal.integrated.shellIntegration.enabled" = false;
 
             "window.titleBarStyle" = "custom";
 
