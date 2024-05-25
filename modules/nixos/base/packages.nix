@@ -9,8 +9,19 @@
         custom.extra-desktop-items
         eza
         firefox
+        gnome.file-roller
         unstable.python312Full
+        qview
         zoxide
+
+        (cinnamon.nemo-with-extensions.override {
+            nemo = custom.cinnamon.nemo;
+            extensions = [
+                cinnamon.nemo-emblems
+                cinnamon.nemo-fileroller
+                cinnamon.folder-color-switcher
+            ];
+        })
     ];
 
     programs = {
@@ -43,4 +54,6 @@
 
         nix-ld.enable = true;
     };
+
+    services.gvfs.enable = true;
 }
