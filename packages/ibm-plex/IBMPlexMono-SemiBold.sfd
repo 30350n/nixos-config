@@ -22,7 +22,7 @@ OS2Version: 4
 OS2_WeightWidthSlopeOnly: 1
 OS2_UseTypoMetrics: 0
 CreationTime: 1703161127
-ModificationTime: 1715980639
+ModificationTime: 1716580429
 PfmFamily: 17
 TTFWeight: 600
 TTFWidth: 5
@@ -126,13 +126,13 @@ ChainSub2: coverage "'ccmp' Glyph Composition/Decomposition lookup 25 contextual
   SeqLookup: 0 "Single Substitution lookup 26"
 EndFPST
 LangName: 1033 "" "IBM Plex Mono SmBld" "Regular" "2.004;IBM ;IBMPlexMono-SemiBold" "" "Version 2.004" "" "IBM Plex+AK4A is a trademark of IBM Corp, registered in many jurisdictions worldwide." "Bold Monday" "Mike Abbink, Paul van der Laan, Pieter van Rosmalen" "" "http://www.boldmonday.com" "http://www.ibm.com" "This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: http://scripts.sil.org/OFL" "http://scripts.sil.org/OFL" "" "IBM Plex Mono" "SemiBold" "" "How razorback-jumping frogs can level six piqued gymnasts!"
-OtfFeatName: 'ss07' 1033 "Bulgarian Cyrillic forms"
-OtfFeatName: 'ss06' 1033 "alternate number sign"
-OtfFeatName: 'ss05' 1033 "alternate lowercase eszett"
-OtfFeatName: 'ss04' 1033 "plain number zero"
-OtfFeatName: 'ss03' 1033 "slashed number zero"
-OtfFeatName: 'ss02' 1033 "simple lowercase g"
 OtfFeatName: 'ss01' 1033 "simple lowercase a"
+OtfFeatName: 'ss02' 1033 "simple lowercase g"
+OtfFeatName: 'ss03' 1033 "slashed number zero"
+OtfFeatName: 'ss04' 1033 "plain number zero"
+OtfFeatName: 'ss05' 1033 "alternate lowercase eszett"
+OtfFeatName: 'ss06' 1033 "alternate number sign"
+OtfFeatName: 'ss07' 1033 "Bulgarian Cyrillic forms"
 Encoding: UnicodeBmp
 UnicodeInterp: none
 NameList: AGL For New Fonts
@@ -151,7 +151,7 @@ StemSnapH 9 [101 108]
 StemSnapV 13 [106 128 147]
 EndPrivate
 AnchorClass2: "Anchor-0" "'mark' Mark Positioning lookup 0 subtable" "Anchor-1" "'mark' Mark Positioning lookup 1 subtable" "Anchor-2" "'mark' Mark Positioning lookup 2 subtable" "Anchor-3" "'mark' Mark Positioning lookup 3 subtable"
-BeginChars: 65678 1124
+BeginChars: 65678 1125
 
 StartChar: .notdef
 Encoding: 65536 -1 0
@@ -1031,17 +1031,17 @@ AnchorPoint: "Anchor-0" 300 0 basechar 0
 LayerCount: 2
 Fore
 SplineSet
-377 0 m 1
- 223 0 l 1
- 38 516 l 1
- 172 516 l 1
- 241 297 l 1
- 299 107 l 1
- 306 107 l 1
- 364 297 l 1
- 433 516 l 1
- 562 516 l 1
- 377 0 l 1
+377 0 m 5
+ 223 0 l 5
+ 38 516 l 5
+ 172 516 l 5
+ 241 297 l 5
+ 299 107 l 5
+ 306 107 l 5
+ 364 297 l 5
+ 433 516 l 5
+ 562 516 l 5
+ 377 0 l 5
 EndSplineSet
 Validated: 1
 EndChar
@@ -38663,6 +38663,31 @@ SplineSet
  571 0 l 5
  441 0 l 5
  361 216 l 5
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: uni028C
+Encoding: 652 652 1124
+Width: 600
+Flags: W
+HStem: 0 21G<38 173.301 421.699 562> 496 20G<215.829 384.171>
+AnchorPoint: "Anchor-2" 300 516 basechar 0
+AnchorPoint: "Anchor-0" 300 0 basechar 0
+LayerCount: 2
+Fore
+SplineSet
+223 516 m 5
+ 377 516 l 5
+ 562 0 l 5
+ 428 0 l 5
+ 359 219 l 5
+ 301 409 l 5
+ 294 409 l 5
+ 236 219 l 5
+ 167 0 l 5
+ 38 0 l 5
+ 223 516 l 5
 EndSplineSet
 Validated: 1
 EndChar

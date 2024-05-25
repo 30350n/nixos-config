@@ -1,6 +1,6 @@
 {pkgs}:
 pkgs.ibm-plex.overrideAttrs (finalAttrs: prevAttrs: {
-    description = prevAttrs.meta.description + " (Mono with λ)";
+    description = prevAttrs.meta.description + " (Mono with λ and ʌ)";
     src = [prevAttrs.src ./.];
     sourceRoot = ".";
     installPhase = ''
