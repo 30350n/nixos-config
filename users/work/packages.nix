@@ -10,6 +10,7 @@ with pkgs; [
     unstable.kicad
     unstable.inkscape
     custom.openpnp
+    unstable.prusa-slicer
 
     direnv
     unfree.gitkraken

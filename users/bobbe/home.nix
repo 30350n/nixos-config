@@ -8,6 +8,7 @@
         ../../modules/home-manager/fish.nix
         ../../modules/home-manager/git.nix
         ../../modules/home-manager/jujustu.nix
+        ../../modules/home-manager/prusa-slicer.nix
         ../../modules/home-manager/vscode
         ../../modules/home-manager/zoxide.nix
     ];
