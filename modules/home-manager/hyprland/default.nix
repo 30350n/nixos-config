@@ -1,4 +1,10 @@
 {nixosConfig, ...}: {
+    imports = [
+        ./hyprpaper.nix
+        ./scratchpads.nix
+        ./tofi.nix
+    ];
+
     wayland.windowManager.hyprland = {
         enable = true;
         settings = {
@@ -71,9 +77,4 @@
             };
         };
     };
-
-    imports = [
-        ./hyprpaper.nix
-        ./tofi.nix
-    ];
 }
