@@ -56,6 +56,7 @@ cat > $shell_file << EOF
 {pkgs ? import <nixpkgs> {}}:
 pkgs.mkShell {
     nativeBuildInputs = with pkgs.buildPackages; [];
+    LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath (with pkgs; []);
 }
 EOF
 
