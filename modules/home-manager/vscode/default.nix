@@ -5,6 +5,7 @@
 }: {
     imports = [
         ./cpp.nix
+        ./flutter.nix
         ./markdown.nix
         ./nix.nix
         ./python.nix
