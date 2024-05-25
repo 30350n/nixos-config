@@ -84,7 +84,8 @@ info "Autoformatting NixOS configuration ..."
 pre-commit run --all-files &> /dev/null || true
 pre-commit run --all-files | (grep -v "Passed" || true)
 
-info configuration changes:
+echo
+info "Configuration changes:"
 jj diff --no-pager
 
 info "Building NixOS configuration ..."
