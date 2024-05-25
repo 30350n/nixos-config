@@ -3,9 +3,20 @@
     pkgs,
     ...
 }: {
+    imports = [
+        ./cpp.nix
+        ./nix.nix
+        ./python.nix
+    ];
+
     programs.vscode = {
         enable = true;
         package = pkgs.vscodium;
+
+        extensions = with pkgs.vscode-extensions; [
+            mkhl.direnv
+            xyz.local-history
+        ];
 
         enableUpdateCheck = false;
         enableExtensionUpdateCheck = false;
@@ -25,6 +36,8 @@
             "explorer.confirmDelete" = false;
             "explorer.confirmDragAndDrop" = false;
 
+            "extensions.autoUpdate" = false;
+
             "files.exclude" = {
                 ".direnv/" = true;
                 ".history/" = true;
@@ -41,22 +54,6 @@
             "window.titleBarStyle" = "custom";
 
             "workbench.editor.empty.hint" = "hidden";
-
-            "extensions.autoUpdate" = false;
-
-            "nix.enableLanguageServer" = true;
-            "nix.serverPath" = "${pkgs.unstable.nil}/bin/nil";
-            "nix.serverSettings" = {
-                "nil" = {
-                    "formatting" = {
-                        "command" = ["${pkgs.custom.alejandra4}/bin/alejandra"];
-                    };
-                };
-            };
-
-            "[nix]" = {
-                "editor.tabSize" = 4;
-            };
         };
 
         keybindings = [
@@ -76,27 +73,5 @@
                 when = "terminal.active";
             }
         ];
-
-        extensions = with pkgs.vscode-extensions;
-            [
-                jnoortheen.nix-ide
-                mkhl.direnv
-                ms-python.python
-                pkgs.unfree.vscode-extensions.ms-vscode.cpptools
-                xyz.local-history
-            ]
-            ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-                {
-                    name = "blender-development";
-                    publisher = "JacquesLucke";
-                    version = "0.0.20";
-                    sha256 = "UQzTwPZyElzwtWAjbkHIsun+VEttlph4Og6A6nFxk8w=";
-                }
-            ];
     };
-
-    home.packages = with pkgs; [
-        unstable.nil
-        custom.alejandra4
-    ];
 }
