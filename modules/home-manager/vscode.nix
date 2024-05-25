@@ -30,6 +30,8 @@
                 ".history/" = true;
             };
 
+            "keyboard.dispatch" = "keyCode";
+
             "security.workspace.trust.enabled" = false;
 
             "terminal.integrated.scrollback" = 10000;
@@ -78,9 +80,10 @@
         extensions = with pkgs.vscode-extensions;
             [
                 jnoortheen.nix-ide
-                ms-python.python
-                xyz.local-history
                 mkhl.direnv
+                ms-python.python
+                pkgs.unfree.vscode-extensions.ms-vscode.cpptools
+                xyz.local-history
             ]
             ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
                 {
