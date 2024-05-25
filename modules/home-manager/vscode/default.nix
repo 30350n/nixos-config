@@ -9,6 +9,7 @@
         ./markdown.nix
         ./nix.nix
         ./python.nix
+        ./rust.nix
     ];
 
     programs.vscode = {
@@ -18,6 +19,8 @@
         extensions = with pkgs.vscode-extensions; [
             mkhl.direnv
             xyz.local-history
+
+            tamasfe.even-better-toml
         ];
 
         enableUpdateCheck = false;
