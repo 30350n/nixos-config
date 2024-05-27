@@ -107,4 +107,6 @@
     home.packages = with pkgs; [
         custom.fishPlugins.tide
     ];
+
+    xdg.desktopEntries.fish.noDisplay = true;
 }

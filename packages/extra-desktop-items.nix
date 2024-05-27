@@ -8,12 +8,12 @@ stdenv.mkDerivation {
         desktopItems = [
             (makeDesktopItem {
                 name = "shutdown";
-                desktopName = "shutdown";
+                desktopName = "Shutdown";
                 exec = "shutdown now";
             })
             (makeDesktopItem {
                 name = "reboot";
-                desktopName = "reboot";
+                desktopName = "Reboot";
                 exec = "reboot";
             })
         ];
