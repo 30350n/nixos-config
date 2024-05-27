@@ -108,5 +108,8 @@
         custom.fishPlugins.tide
     ];
 
-    xdg.desktopEntries.fish.noDisplay = true;
+    xdg.desktopEntries.fish = {
+        name = "fish";
+        noDisplay = true;
+    };
 }

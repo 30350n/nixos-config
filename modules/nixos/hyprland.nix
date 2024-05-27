@@ -18,7 +18,7 @@
             hyprpaper
             custom.wallpapers
             custom.sddm-chili-theme
-            polkit_gnome
+            mate.mate-polkit
         ]
         ++ (
             if config.hardware.bluetooth.enable
@@ -27,14 +27,14 @@
         );
 
     security.polkit.enable = true;
-    systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    systemd.user.services.polkit-mate-authentication-agent-1 = {
         description = "Polkit Authentication Agent";
         wantedBy = ["graphical-session.target"];
         wants = ["graphical-session.target"];
         after = ["graphical-session.target"];
         serviceConfig = {
             Type = "simple";
-            ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+            ExecStart = "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1";
             Restart = "on-failure";
             RestartSec = 1;
             TimeoutStopSec = 10;
