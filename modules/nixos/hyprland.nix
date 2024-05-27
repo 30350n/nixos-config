@@ -18,7 +18,7 @@
             hyprpaper
             custom.wallpapers
             custom.sddm-chili-theme
-            mate.mate-polkit
+            custom.mate.mate-polkit
         ]
         ++ (
             if config.hardware.bluetooth.enable
@@ -34,7 +34,9 @@
         after = ["graphical-session.target"];
         serviceConfig = {
             Type = "simple";
-            ExecStart = "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1";
+            ExecStart = ''
+                ${pkgs.custom.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1
+            '';
             Restart = "on-failure";
             RestartSec = 1;
             TimeoutStopSec = 10;

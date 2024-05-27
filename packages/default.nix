@@ -14,6 +14,7 @@ finalPkgs: prevPkgs: {
         extra-desktop-items = finalPkgs.callPackage ./extra-desktop-items.nix {};
         fishPlugins.tide = finalPkgs.callPackage ./tide {pkgs = prevPkgs;};
         ibm-plex = finalPkgs.callPackage ./ibm-plex {pkgs = prevPkgs;};
+        mate.mate-polkit = finalPkgs.callPackage ./mate-polkit {pkgs = prevPkgs;};
         mkshell = finalPkgs.callPackage ./mkshell {};
         openpnp = finalPkgs.callPackage ./openpnp.nix {};
         sddm-chili-theme = finalPkgs.callPackage ./sddm-chili-theme.nix {
