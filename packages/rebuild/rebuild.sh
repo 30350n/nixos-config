@@ -69,15 +69,15 @@ if [[ $(id -u) != 0 ]]; then
     exit 0
 fi
 
+if $update; then
+    info "Updating NixOS configuration ..."
+    nix flake update
+fi
+
 if [[ $(jj status) == "The working copy is clean"* ]]; then
     info "NixOS configuration is unchanged."
     popd &> /dev/null
     exit 0
-fi
-
-if $update; then
-    info "Updating NixOS configuration ..."
-    nix flake update
 fi
 
 info "Autoformatting NixOS configuration ..."
