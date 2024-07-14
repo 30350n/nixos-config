@@ -9,6 +9,25 @@
         theme = "chili";
     };
 
+    systemd.services.sddm-user-icons = {
+        before = ["display-manager.service"];
+        wantedBy = ["display-manager.service"];
+        serviceConfig.type = "simple";
+
+        script = let
+            iconsDir = "/var/lib/AccountsService/icons";
+        in ''
+            mkdir -p ${iconsDir}
+            ${builtins.concatStringsSep "\n" (
+                map (
+                    user: "cp /home/${user.name}/.face.icon ${iconsDir}/${user.name}"
+                ) (builtins.filter (
+                    user: user.isNormalUser
+                ) (builtins.attrValues config.users.users))
+            )}
+        '';
+    };
+
     programs.hyprland.enable = true;
 
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -17,7 +36,7 @@
             tofi
             hyprpaper
             custom.wallpapers
-            custom.sddm-chili-theme
+            custom.sddm-theme
             custom.mate.mate-polkit
         ]
         ++ (

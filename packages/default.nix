@@ -18,7 +18,7 @@ finalPkgs: prevPkgs: {
         mate.mate-polkit = finalPkgs.callPackage ./mate-polkit {pkgs = prevPkgs;};
         mkshell = finalPkgs.callPackage ./mkshell {};
         openpnp = finalPkgs.callPackage ./openpnp.nix {};
-        sddm-chili-theme = finalPkgs.callPackage ./sddm-chili-theme.nix {
+        sddm-theme = finalPkgs.callPackage ./sddm-theme {
             pkgs = prevPkgs;
             wallpapers = wallpapers;
         };

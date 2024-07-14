@@ -1,0 +1,69 @@
+--- a/components/LoginForm.qml
++++ b/components/LoginForm.qml
+@@ -38,10 +38,6 @@
+     }
+ 
+     RowLayout {
+-
+-        Layout.leftMargin: loginButton.width + inputSpacing * 2
+-        Layout.minimumWidth: passwordField.width + loginButton.width + inputSpacing * 2
+-
+         TextField {
+             id: passwordField
+ 
+@@ -82,15 +78,6 @@
+                 }
+             }
+ 
+-            Keys.onReleased: {
+-                if (loginButton.opacity == 0 && length > 0) {
+-                    showLoginButton.start()
+-                }
+-                if (loginButton.opacity > 0 && length == 0) {
+-                    hideLoginButton.start()
+-                }
+-            }
+-
+             Connections {
+                 target: sddm
+                 onLoginFailed: {
+@@ -100,39 +87,6 @@
+             }
+         }
+         
+-        Image {
+-            id: loginButton
+-
+-            Layout.leftMargin: inputSpacing
+-
+-            source: "../assets/login.svgz"
+-            sourceSize: Qt.size(passwordField.height, passwordField.height)
+-            smooth: true
+-            opacity: 0
+-            visible: opacity > 0
+-
+-            MouseArea {
+-                anchors.fill: parent
+-                onClicked: startLogin();
+-            }
+-
+-            PropertyAnimation {
+-                id: showLoginButton
+-                target: loginButton
+-                properties: "opacity"
+-                to: 0.75
+-                duration: 100
+-            }
+-            
+-            PropertyAnimation {
+-                id: hideLoginButton
+-                target: loginButton
+-                properties: "opacity"
+-                to: 0
+-                duration: 80
+-            }
+-        }
+-        
+     }
+ 
+ }
