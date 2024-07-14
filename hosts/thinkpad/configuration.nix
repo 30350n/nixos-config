@@ -6,6 +6,7 @@
         ../../modules/nixos/base/configuration.nix
         ../../modules/nixos/bluetooth.nix
         ../../modules/nixos/hyprland.nix
+        ../../modules/nixos/ssh-server.nix
         ../../users/bobbe
     ];
 

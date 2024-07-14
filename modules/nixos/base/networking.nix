@@ -3,7 +3,10 @@
         networkmanager.enable = true;
     };
 
-    services.avahi.enable = true;
+    services.avahi = {
+        enable = true;
+        nssmdns4 = true;
+    };
 
     # Open ports in the firewall.
     # networking.firewall.allowedTCPPorts = [ ... ];
