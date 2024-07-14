@@ -9,7 +9,7 @@
             "nix.serverSettings" = {
                 "nil" = {
                     "formatting" = {
-                        "command" = ["${pkgs.custom.alejandra4}/bin/alejandra"];
+                        "command" = ["${pkgs.custom.alejandra4}/bin/alejandra" "-qq"];
                     };
                 };
             };

@@ -16,6 +16,8 @@ rustPlatform.buildRustPackage rec {
 
     cargoSha256 = "sha256-tF8E9mnvkTXoViVss9cNjpU4UkEsARp4RtlxKWq55hc=";
 
+    patches = [./no-error.patch];
+
     postPatch = ''
         substituteInPlace src/alejandra/src/builder.rs \
             --replace "2 * build_ctx.indentation" "4 * build_ctx.indentation"

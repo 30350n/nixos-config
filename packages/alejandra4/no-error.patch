@@ -1,0 +1,8 @@
+--- a/src/alejandra_cli/src/cli.rs
++++ b/src/alejandra_cli/src/cli.rs
+@@ -181 +181,4 @@ pub fn main() -> std::io::Result<()> {
+-        std::process::exit(1);
++        std::process::exit(match verbosity {
++            Verbosity::NoErrors => 0,
++            _ => 1,
++        });
