@@ -10,6 +10,7 @@
         eza
         firefox
         gnome.file-roller
+        krusader
         qview
         zoxide
 
