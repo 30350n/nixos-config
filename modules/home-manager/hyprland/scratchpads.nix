@@ -4,14 +4,14 @@
         rules = name:
             "[workspace ${workspace_name name} silent; float; noanim; dimaround; stayfocused; "
             + "bordercolor rgb(606060); rounding 8; opacity 0.9; size 60% 80%]";
-        scratchpad_cmd = name: cmd: "${rules name} ${cmd}; hyprctl dispatch submap reset";
+        scratchpad = name: cmd: "${rules name} ${cmd}; hyprctl dispatch submap reset";
     in {
         settings = {
             workspace = let
                 on_created_empty = name: "${workspace_name name}, on-created-empty:";
             in [
-                ((on_created_empty "terminal") + (scratchpad_cmd "terminal" "alacritty"))
-                ((on_created_empty "python") + (scratchpad_cmd "python" "alacritty -e python"))
+                ((on_created_empty "terminal") + (scratchpad "terminal" "alacritty"))
+                ((on_created_empty "python") + (scratchpad "python" "alacritty -e bpython -q"))
             ];
 
             animations.animation = [

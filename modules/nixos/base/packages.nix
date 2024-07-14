@@ -15,6 +15,7 @@
 
         (unstable.python312Full.withPackages (python-pkgs: [
             python-pkgs.numpy
+            python-pkgs.bpython
         ]))
 
         (cinnamon.nemo-with-extensions.override {
