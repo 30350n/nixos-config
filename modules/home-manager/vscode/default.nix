@@ -46,6 +46,7 @@
             "files.exclude" = {
                 ".direnv/" = true;
                 ".history/" = true;
+                ".jj/" = true;
             };
 
             "keyboard.dispatch" = "keyCode";

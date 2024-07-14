@@ -15,6 +15,10 @@
                     "source.organizeImports" = "always";
                 };
             };
+
+            "files.exclude" = {
+                ".venv/" = true;
+            };
         };
     };
 }
