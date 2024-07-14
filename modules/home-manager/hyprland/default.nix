@@ -3,6 +3,7 @@
         ./hyprpaper.nix
         ./scratchpads.nix
         ./tofi.nix
+        ./zoom.nix
     ];
 
     wayland.windowManager.hyprland = {
