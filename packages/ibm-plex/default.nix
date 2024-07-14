@@ -1,5 +1,6 @@
 {pkgs}:
 pkgs.ibm-plex.overrideAttrs (finalAttrs: prevAttrs: {
+    # TODO: use TTF
     description = prevAttrs.meta.description + " (Mono with λ and ʌ)";
     src = [prevAttrs.src ./.];
     sourceRoot = ".";

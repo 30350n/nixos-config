@@ -1,9 +1,8 @@
 {
-    lib,
     fetchzip,
     stdenvNoCC,
 }:
-stdenvNoCC.mkDerivation rec {
+stdenvNoCC.mkDerivation {
     pname = "segoe-ui";
     version = "1.0";
 
@@ -15,15 +14,13 @@ stdenvNoCC.mkDerivation rec {
         stripRoot = false;
     };
 
-    #preUnpack = "mv ";
-
     installPhase = ''
         runHook preInstall
         install -Dm644 SegoeUI-VF.ttf -t $out/share/fonts/truetype
         runHook postInstall
     '';
 
-    meta = with lib; {
+    meta = {
         description = "The Microsoft Segoe UI font family";
         homepage = "https://learn.microsoft.com/typography/font-list/segoe-ui";
     };
