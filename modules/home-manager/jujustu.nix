@@ -9,10 +9,12 @@
                 wip = ["log" "-r" "wip()"];
             };
 
+            git.fetch = ["origin" "upstream"];
+
             revsets.log = "@ | ancestors(immutable_heads().., 17) | trunk()";
 
             revset-aliases = {
-                "wip()" = "::visible_heads() ~ ::branches()";
+                "wip()" = "::visible_heads() ~ ::branches() ~ empty()";
             };
 
             user = {
