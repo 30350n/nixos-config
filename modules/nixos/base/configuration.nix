@@ -9,9 +9,6 @@
         ./packages.nix
     ];
 
-    # Enable touchpad support (enabled default in most desktopManager).
-    # services.libinput.enable = true;
-
     users.mutableUsers = false;
     users.users.root.hashedPasswordFile = "/persist/passwords/root";
 
