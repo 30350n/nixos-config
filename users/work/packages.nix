@@ -5,12 +5,12 @@ with pkgs; [
     thunderbird
     unfree.zoom-us
 
-    unstable.blender
-    unstable.freecad
-    unstable.kicad
-    unstable.inkscape
+    blender
+    freecad
+    kicad
+    inkscape
     custom.openpnp
-    unstable.prusa-slicer
+    prusa-slicer
 
     direnv
     unfree.gitkraken

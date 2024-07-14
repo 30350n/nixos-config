@@ -15,7 +15,7 @@
         qview
         zoxide
 
-        (unstable.python312Full.withPackages (python-pkgs: [
+        (python312Full.withPackages (python-pkgs: [
             python-pkgs.numpy
             python-pkgs.bpython
         ]))
