@@ -5,7 +5,7 @@
 
     users.users.bobbe = {
         isNormalUser = true;
-        extraGroups = ["wheel" "networkmanager"];
+        extraGroups = ["wheel" "networkmanager" "dialout"];
         hashedPasswordFile = "/persist/passwords/bobbe";
         packages = (
             (import ./packages.nix {pkgs = pkgs;})
