@@ -20,6 +20,6 @@
     };
 
     home.activation.clearTofiCache = lib.hm.dag.entryAfter ["writeBoundary"] ''
-        rm -f ${config.xdg.cacheHome}/tofi-drun
+        run rm -f ${config.xdg.cacheHome}/tofi-drun
     '';
 }
