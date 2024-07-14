@@ -97,19 +97,19 @@ nixos-rebuild switch --flake path:. |& tee rebuild.log |& nom || {
     exit 1
 }
 
-list_generations_fix=$(
-    nixos-rebuild list-generations --json | jq -r '.[] | [
-        .generation, 0, (.date | fromdate | strflocaltime("%Y-%m-%d %H:%M:%S")),
-        .nixosVersion, .kernelVersion
-    ] | @tsv'
+NIX_SYSTEM="/nix/var/nix/profiles/system"
+generation_number=$(readlink "$NIX_SYSTEM" | awk -F "-" '{print $2}')
+generation_date=$(
+    stat --format %W "$(readlink -f $NIX_SYSTEM)" | jq -r 'strflocaltime("%Y-%m-%d %H:%M:%S")'
 )
+generation_nixos_version=$(cat $NIX_SYSTEM/nixos-version)
 
 generation_prefix="Generation "
 commit_message=$(
     jj show --summary | grep -e "^    " -e '^$' | tail -n +2 | head -n -1 | cut -c 5- |
         grep -v "^$generation_prefix" | grep -v '^(no description set)$' || true
 )
-generation=$(echo "$list_generations_fix" | head -n 1 | awk '{print $1,$3,$4,$5}' || true)
+generation="$generation_number $generation_date $generation_nixos_version"
 echo -e "$commit_message\n\n$generation_prefix$generation" | jj describe --stdin &> /dev/null
 
 success "Successfully built NixOS configuration!"
