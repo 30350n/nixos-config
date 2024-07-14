@@ -86,12 +86,18 @@ pre-commit run --all-files | (grep -v "Passed" || true)
 
 echo
 info "Configuration changes:"
-jj diff --no-pager
+changed_files=$(jj status --color always --no-pager | head -n -2 | tail -n +2)
+if [[ $(wc -l <<< "$changed_files") -le 5 ]]; then
+    jj diff --no-pager
+else
+    echo "$changed_files"
+fi
 
+echo
 info "Building NixOS configuration ..."
 nixos-rebuild switch --flake path:. |& tee rebuild.log |& nom || {
     error "Building NixOS failed with:"
-    grep --color error < rebuild.log || error "unknown error"
+    grep --color error -A 10 < rebuild.log || error "unknown error"
     hint "(check /etc/nixos/rebuild.log for the full build log)"
     popd &> /dev/null
     exit 1
