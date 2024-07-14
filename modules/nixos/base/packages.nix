@@ -8,6 +8,7 @@
         bat
         custom.extra-desktop-items
         eza
+        htop
         firefox
         gnome.file-roller
         krusader
