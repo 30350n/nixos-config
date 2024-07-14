@@ -1,0 +1,8 @@
+--- a/dist/extension.bundle.js
++++ b/dist/extension.bundle.js
+@@ -7034 +7034 @@ function a0_0x1496(_0x54b5c1, _0x5070e5) {
+-            if (!_0x36c65d(_0x47e0e0))
++            /*if (!_0x36c65d(_0x47e0e0))
+@@ -7055 +7055 @@ function a0_0x1496(_0x54b5c1, _0x5070e5) {
+-              );
++              );*/
