@@ -16,6 +16,8 @@
                 gaps_out = 4;
 
                 border_size = 1;
+                "col.active_border" = "rgba(A0A0A0E0)";
+                "col.inactive_border" = "rgba(404040E0)";
                 resize_on_border = true;
             };
 
@@ -62,6 +64,7 @@
                 animation = [
                     "windows, 1, 3, default, slide"
                     "fade, 1, 5, default"
+                    "border, 1, 5, default"
                     "workspaces, 1, 3, default"
                 ];
             };
