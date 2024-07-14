@@ -1,0 +1,27 @@
+--- a/Main.qml
++++ b/Main.qml
+@@ -135,21 +135,21 @@
+ 
+                 actionItems: [
+                     ActionButton {
+-                        iconSource: "assets/suspend.svgz"
++                        iconSource: "assets/suspend.svg"
+                         text: config.translationSuspend ? config.translationSuspend : "Suspend"
+                         onClicked: sddm.suspend()
+                         enabled: sddm.canSuspend
+                         iconSize: root.generalFontSize * 3
+                     },
+                     ActionButton {
+-                        iconSource: "assets/reboot.svgz"
++                        iconSource: "assets/reboot.svg"
+                         text: config.translationReboot ? config.translationReboot : textConstants.reboot
+                         onClicked: sddm.reboot()
+                         enabled: sddm.canReboot
+                         iconSize: root.generalFontSize * 3
+                     },
+                     ActionButton {
+-                        iconSource: "assets/shutdown.svgz"
++                        iconSource: "assets/shutdown.svg"
+                         text: config.translationPowerOff ? config.translationPowerOff : textConstants.shutdown
+                         onClicked: sddm.powerOff()
+                         enabled: sddm.canPowerOff
