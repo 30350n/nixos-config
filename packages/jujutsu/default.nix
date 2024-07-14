@@ -1,7 +1,9 @@
 {pkgs}:
 pkgs.unstable.jujutsu.overrideAttrs (
     prevAttrs: {
-        patches = (prevAttrs.patches or []) ++ [./max_message_length.patch];
+        patches = [
+            ./max-message-length.patch
+        ];
         doCheck = false;
     }
 )
