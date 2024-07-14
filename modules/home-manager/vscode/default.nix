@@ -58,8 +58,13 @@
             "terminal.integrated.shellIntegration.enabled" = false;
 
             "window.titleBarStyle" = "custom";
+            "window.zoomLevel" = 1;
 
             "workbench.editor.empty.hint" = "hidden";
+
+            "evenBetterToml.formatter.columnWidth" = 96;
+            "evenBetterToml.formatter.arrayAutoCollapse" = true;
+            "evenBetterToml.formatter.arrayTrailingComma" = true;
         };
 
         keybindings = [
