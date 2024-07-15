@@ -61,6 +61,7 @@
             "window.zoomLevel" = 1;
 
             "workbench.editor.empty.hint" = "hidden";
+            "workbench.startupEditor" = "none";
 
             "evenBetterToml.formatter.columnWidth" = 96;
             "evenBetterToml.formatter.arrayAutoCollapse" = true;
