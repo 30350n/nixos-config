@@ -71,7 +71,6 @@
 
             master = {
                 orientation = "left";
-                new_is_master = false;
                 no_gaps_when_only = 1;
             };
 
