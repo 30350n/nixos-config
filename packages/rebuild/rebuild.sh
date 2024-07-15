@@ -86,7 +86,7 @@ pre-commit run --all-files | (grep -v "Passed" || true)
 
 echo
 info "Configuration changes:"
-changed_files=$(jj status --color always --no-pager | head -n -2 | tail -n +2)
+changed_files=$(jj diff --summary --color always)
 if [[ $(wc -l <<< "$changed_files") -le 5 ]]; then
     jj diff --no-pager
 else
