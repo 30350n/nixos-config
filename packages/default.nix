@@ -23,6 +23,7 @@ finalPkgs: prevPkgs: {
             wallpapers = wallpapers;
         };
         segoe-ui = finalPkgs.callPackage ./segoe-ui.nix {};
+        vscodium = finalPkgs.callPackage ./vscodium.nix {pkgs = prevPkgs;};
         wallpapers = finalPkgs.callPackage ./wallpapers {};
     };
 }
