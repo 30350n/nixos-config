@@ -8,7 +8,6 @@
         ];
 
         userSettings = {
-            "rust-analyzer.showUnlinkedFileNotification" = false;
             "rust-analyzer.inlayHints.closingBraceHints.enable" = false;
             "rust-analyzer.inlayHints.chainingHints.enable" = false;
             "rust-analyzer.inlayHints.typeHints.enable" = false;
