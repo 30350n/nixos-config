@@ -8,11 +8,11 @@
         bat
         custom.extra-desktop-items
         eza
+        kdePackages.gwenview
         htop
         firefox
         gnome.file-roller
         krusader
-        qview
         zoxide
 
         (python312Full.withPackages (python-pkgs: [
