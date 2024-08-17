@@ -29,11 +29,23 @@
         defaultModules = [
             {
                 nixpkgs.overlays = [
-                    (final: prev: {unstable = import nixpkgs-unstable {system = system;};})
+                    (final: prev: {
+                        unfree = import nixpkgs {
+                            system = system;
+                            config.allowUnfree = true;
+                        };
+                        unstable =
+                            import nixpkgs-unstable {system = system;}
+                            // {
+                                unfree = import nixpkgs-unstable {
+                                    system = system;
+                                    config.allowUnfree = true;
+                                };
+                            };
+                    })
                     (import ./packages)
                 ];
             }
-            (import ./modules/nixos/unfree.nix)
             disko.nixosModules.disko
             impermanence.nixosModules.impermanence
         ];
