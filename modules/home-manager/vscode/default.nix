@@ -19,6 +19,7 @@
 
         extensions = with pkgs.vscode-extensions; [
             mkhl.direnv
+            tomoki1207.pdf
             xyz.local-history
 
             tamasfe.even-better-toml
@@ -54,8 +55,9 @@
 
             "security.workspace.trust.enabled" = false;
 
-            "terminal.integrated.scrollback" = 10000;
+            "terminal.integrated.allowChords" = false;
             "terminal.integrated.defaultProfile.linux" = "fish";
+            "terminal.integrated.scrollback" = 10000;
             "terminal.integrated.shellIntegration.enabled" = false;
 
             "window.titleBarStyle" = "custom";
