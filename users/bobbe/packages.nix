@@ -4,7 +4,7 @@ with pkgs; [
 
     unfree.discord
 
-    unfree.minecraft
+    unfree.modrinth-app
 
     audacity
     unfree.reaper
