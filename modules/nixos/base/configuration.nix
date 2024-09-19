@@ -7,6 +7,7 @@
         ./networking.nix
         ./locale.nix
         ./packages.nix
+        ./xdg.nix
     ];
 
     users.mutableUsers = false;
