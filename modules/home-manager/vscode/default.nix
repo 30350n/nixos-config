@@ -21,6 +21,7 @@
             mkhl.direnv
             tomoki1207.pdf
             xyz.local-history
+            (import ./marketplace-extensions/explorer-exclude.nix {inherit pkgs;})
 
             tamasfe.even-better-toml
         ];
@@ -47,9 +48,9 @@
             "extensions.autoUpdate" = false;
 
             "files.exclude" = {
-                ".direnv/" = true;
                 ".history/" = true;
-                ".jj/" = true;
+                "**/.direnv/" = true;
+                "**/.jj/" = true;
             };
             "files.insertFinalNewline" = true;
             "files.trimFinalNewlines" = true;
@@ -72,6 +73,8 @@
             "evenBetterToml.formatter.columnWidth" = 100;
             "evenBetterToml.formatter.arrayAutoCollapse" = true;
             "evenBetterToml.formatter.arrayTrailingComma" = true;
+
+            "explorerExclude.showPicker" = false;
         };
 
         keybindings = [

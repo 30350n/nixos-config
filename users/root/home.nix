@@ -17,6 +17,7 @@
         lib.mkForce [
             jnoortheen.nix-ide
             xyz.local-history
+            (import ../../modules/home-manager/vscode/marketplace-extensions/explorer-exclude.nix {inherit pkgs;})
         ];
 
     home.stateVersion = "23.11";

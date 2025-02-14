@@ -13,7 +13,7 @@
             "platformio-ide.useBuiltinPython" = false;
 
             "files.exclude" = {
-                ".platformio/" = true;
+                "**/.platformio/" = true;
             };
         };
     };
