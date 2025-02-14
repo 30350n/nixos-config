@@ -36,7 +36,7 @@
                 ${builtins.concatStringsSep ", " (builtins.map (s: "'${s}'") fonts)}
             '';
             "editor.fontSize" = 13;
-            "editor.rulers" = [96];
+            "editor.rulers" = [100];
             "editor.minimap.enabled" = false;
             "editor.formatOnSave" = true;
 
@@ -66,7 +66,7 @@
             "workbench.editor.empty.hint" = "hidden";
             "workbench.startupEditor" = "none";
 
-            "evenBetterToml.formatter.columnWidth" = 96;
+            "evenBetterToml.formatter.columnWidth" = 100;
             "evenBetterToml.formatter.arrayAutoCollapse" = true;
             "evenBetterToml.formatter.arrayTrailingComma" = true;
         };
