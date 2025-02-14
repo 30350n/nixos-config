@@ -6,6 +6,7 @@
     imports = [
         ./cpp.nix
         ./flutter.nix
+        ./git.nix
         ./latex.nix
         ./markdown.nix
         ./nix.nix
