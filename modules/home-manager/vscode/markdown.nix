@@ -11,6 +11,10 @@
                 "MD033" = false; # no-inline-html
                 "MD041" = false; # first-line-heading/first-line-h1
             };
+
+            "[markdown]" = {
+                "editor.wordWrap" = "bounded";
+            };
         };
     };
 }

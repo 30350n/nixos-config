@@ -4,5 +4,11 @@
             james-yu.latex-workshop
             (import ./marketplace-extensions/latex-utilities.nix {inherit pkgs;})
         ];
+
+        userSettings = {
+            "[latex]" = {
+                "editor.wordWrap" = "bounded";
+            };
+        };
     };
 }

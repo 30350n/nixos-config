@@ -37,6 +37,7 @@
             '';
             "editor.fontSize" = 13;
             "editor.rulers" = [100];
+            "editor.wordWrapColumn" = 100;
             "editor.minimap.enabled" = false;
             "editor.formatOnSave" = true;
 
@@ -50,6 +51,8 @@
                 ".history/" = true;
                 ".jj/" = true;
             };
+            "files.insertFinalNewline" = true;
+            "files.trimFinalNewlines" = true;
 
             "keyboard.dispatch" = "keyCode";
 
