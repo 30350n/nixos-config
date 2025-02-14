@@ -11,21 +11,21 @@
         kdePackages.gwenview
         htop
         firefox
-        gnome.file-roller
+        file-roller
         krusader
         zoxide
 
-        (python312Full.withPackages (python-pkgs: [
-            python-pkgs.numpy
-            python-pkgs.bpython
+        (python3.withPackages (pythonPackages: [
+            pythonPackages.numpy
+            pythonPackages.bpython
         ]))
 
-        (cinnamon.nemo-with-extensions.override {
-            nemo = custom.cinnamon.nemo;
+        (nemo-with-extensions.override {
+            nemo = custom.nemo;
             extensions = [
-                cinnamon.nemo-emblems
-                cinnamon.nemo-fileroller
-                cinnamon.folder-color-switcher
+                nemo-emblems
+                nemo-fileroller
+                folder-color-switcher
             ];
         })
     ];

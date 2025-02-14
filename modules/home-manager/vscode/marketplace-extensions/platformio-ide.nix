@@ -2,6 +2,6 @@
 pkgs.vscode-utils.extensionFromVscodeMarketplace {
     name = "platformio-ide";
     publisher = "platformio";
-    version = "3.3.3";
-    sha256 = "d8kwQVoG/MOujmvMaX6Y0wl85L2PNdv2EnqTZKo8pGk=";
+    version = "3.3.4";
+    sha256 = "qfNz4IYjCmCMFLtAkbGTW5xnsVT8iDnFWjrgkmr2Slk=";
 }

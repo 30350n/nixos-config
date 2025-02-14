@@ -2,11 +2,14 @@
 pkgs.ibm-plex.overrideAttrs (finalAttrs: prevAttrs: {
     # TODO: use TTF
     description = prevAttrs.meta.description + " (Mono with λ and ʌ)";
-    src = [prevAttrs.src ./.];
-    sourceRoot = ".";
-    installPhase = ''
-        install -Dm644 source/*/*.otf -t $out/share/fonts/opentype
-        install -Dm644 source/IBM-Plex-Sans-JP/unhinted/* -t $out/share/fonts/opentype
-        install -Dm644 ibm-plex/*.otf -t $out/share/fonts/opentype
-    '';
+    postInstall = let
+        extra_fonts = pkgs.lib.fileset.toSource rec {
+            root = ./.;
+            fileset = pkgs.lib.fileset.fileFilter (file: file.hasExt "otf") root;
+        };
+    in
+        (prevAttrs.postInstall or "")
+        + ''
+            install -Dm644 ${extra_fonts}/*.otf -t $out/share/fonts/opentype
+        '';
 })

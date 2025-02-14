@@ -8,7 +8,7 @@ finalPkgs: prevPkgs: {
             nix-output-monitor = nix-output-monitor-silent;
         };
 
-        cinnamon.nemo = finalPkgs.callPackage ./nemo {pkgs = prevPkgs;};
+        nemo = finalPkgs.callPackage ./nemo {pkgs = prevPkgs;};
         configure-codium = finalPkgs.callPackage ./configure-codium.nix {};
         extra-desktop-items = finalPkgs.callPackage ./extra-desktop-items.nix {};
         fishPlugins.tide = finalPkgs.callPackage ./tide {pkgs = prevPkgs;};
