@@ -1,7 +1,8 @@
 {pkgs, ...}: {
     programs.vscode = {
-        extensions = [
+        extensions = with pkgs.vscode-extensions; [
             pkgs.unfree.vscode-extensions.ms-vscode.cpptools
+            twxs.cmake
             (import ./marketplace-extensions/platformio-ide.nix {inherit pkgs;})
             (import ./marketplace-extensions/qml.nix {inherit pkgs;})
         ];
