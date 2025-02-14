@@ -15,7 +15,7 @@
 
     programs.vscode = {
         enable = true;
-        package = pkgs.custom.vscodium;
+        package = pkgs.vscodium;
 
         extensions = with pkgs.vscode-extensions; [
             mkhl.direnv

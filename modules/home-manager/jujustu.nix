@@ -1,7 +1,6 @@
-{pkgs, ...}: {
+{
     programs.jujutsu = {
         enable = true;
-        package = pkgs.custom.jujutsu;
         settings = {
             aliases = {
                 all = ["log" "-r" "all()"];

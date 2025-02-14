@@ -1,6 +1,6 @@
 {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
-        custom.jujutsu
+        jujutsu
         custom.configure
         custom.rebuild
 
