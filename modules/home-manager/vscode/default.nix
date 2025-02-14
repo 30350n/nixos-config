@@ -41,6 +41,7 @@
             "editor.wordWrapColumn" = 100;
             "editor.minimap.enabled" = false;
             "editor.formatOnSave" = true;
+            "editor.inlayHints.enabled" = "offUnlessPressed";
 
             "explorer.confirmDelete" = false;
             "explorer.confirmDragAndDrop" = false;
@@ -68,6 +69,8 @@
 
             "workbench.editor.empty.hint" = "hidden";
             "workbench.startupEditor" = "none";
+
+            "direnv.restart.automatic" = true;
 
             "evenBetterToml.formatter.columnWidth" = 100;
             "evenBetterToml.formatter.arrayAutoCollapse" = true;
