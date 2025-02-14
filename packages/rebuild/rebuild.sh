@@ -74,12 +74,6 @@ if $update; then
     nix flake update
 fi
 
-if [[ $(jj status) == "The working copy is clean"* ]]; then
-    info "NixOS configuration is unchanged."
-    popd &> /dev/null
-    exit 0
-fi
-
 info "Autoformatting NixOS configuration ..."
 pre-commit run --all-files &> /dev/null || true
 pre-commit run --all-files | (grep -v "Passed" || true)
