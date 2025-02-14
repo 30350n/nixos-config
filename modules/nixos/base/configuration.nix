@@ -1,4 +1,4 @@
-{
+{inputs, ...}: {
     imports = [
         ./audio.nix
         ./boot.nix
@@ -18,6 +18,10 @@
         Defaults env_keep += "EDITOR"
     '';
 
+    nix.nixPath = [
+        "nixpkgs=${inputs.nixpkgs.outPath}"
+        "unstable=${inputs.nixpkgs-unstable.outPath}"
+    ];
     nix.settings.experimental-features = ["nix-command" "flakes"];
 
     system.stateVersion = "23.11";
