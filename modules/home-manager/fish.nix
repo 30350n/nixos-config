@@ -12,6 +12,7 @@
             cat = "bat -pp";
             ls = "eza -l";
             la = "eza -la";
+            laa = "eza -laa";
         };
 
         shellInit = ''
