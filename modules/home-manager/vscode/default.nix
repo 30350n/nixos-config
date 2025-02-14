@@ -21,7 +21,6 @@
         extensions = with pkgs.vscode-extensions; [
             mkhl.direnv
             tomoki1207.pdf
-            xyz.local-history
             (import ./marketplace-extensions/explorer-exclude.nix {inherit pkgs;})
 
             tamasfe.even-better-toml
@@ -49,7 +48,6 @@
             "extensions.autoUpdate" = false;
 
             "files.exclude" = {
-                ".history/" = true;
                 "**/.direnv/" = true;
                 "**/.jj/" = true;
             };
