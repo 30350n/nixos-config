@@ -1,8 +1,8 @@
 {pkgs, ...}: {
     programs.vscode.profiles.default = {
-        extensions = with pkgs.vscode-extensions; [
+        extensions = with pkgs.unstable.vscode-extensions; [
             davidanson.vscode-markdownlint
-            pkgs.vscode-extensions.bierner.github-markdown-preview
+            bierner.github-markdown-preview
         ];
 
         userSettings = {

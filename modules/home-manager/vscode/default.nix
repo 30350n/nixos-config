@@ -24,7 +24,7 @@
             enableUpdateCheck = false;
             enableExtensionUpdateCheck = false;
 
-            extensions = with pkgs.vscode-extensions; [
+            extensions = with pkgs.unstable.vscode-extensions; [
                 mkhl.direnv
                 tomoki1207.pdf
                 (import ./marketplace-extensions/explorer-exclude.nix {inherit pkgs;})

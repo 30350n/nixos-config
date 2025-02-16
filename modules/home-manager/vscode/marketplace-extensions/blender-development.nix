@@ -2,6 +2,6 @@
 pkgs.vscode-utils.extensionFromVscodeMarketplace {
     name = "blender-development";
     publisher = "JacquesLucke";
-    version = "0.0.20";
-    sha256 = "UQzTwPZyElzwtWAjbkHIsun+VEttlph4Og6A6nFxk8w=";
+    version = "0.0.25";
+    sha256 = "Aqc4cbBQSx2qGAMUGdyAZqrKQ+d967NI9LYrUNCq7/U=";
 }

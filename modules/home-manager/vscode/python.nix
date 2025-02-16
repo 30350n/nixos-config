@@ -1,6 +1,6 @@
 {pkgs, ...}: {
     programs.vscode.profiles.default = {
-        extensions = with pkgs.vscode-extensions; [
+        extensions = with pkgs.unstable.vscode-extensions; [
             ms-python.python
             charliermarsh.ruff
             ms-toolsai.jupyter

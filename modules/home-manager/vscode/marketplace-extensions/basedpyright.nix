@@ -2,6 +2,6 @@
 pkgs.vscode-utils.extensionFromVscodeMarketplace {
     name = "basedpyright";
     publisher = "detachhead";
-    version = "1.27.0";
-    sha256 = "UhLmSX+8QZiCvVJiPpldlL2gDN8V0S+Mgh2pWnVitOI=";
+    version = "1.29.4";
+    sha256 = "SnaelPZsj8YBEM0vLTFW6B0ZD2xXQSKCN8zy8S9ZI1c=";
 }
