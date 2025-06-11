@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-    programs.vscode = {
+    programs.vscode.profiles.default = {
         extensions = with pkgs.vscode-extensions; [
             eamodio.gitlens
         ];

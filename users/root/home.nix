@@ -13,7 +13,7 @@
         ../../modules/home-manager/zoxide.nix
     ];
 
-    programs.vscode.extensions = with pkgs.vscode-extensions;
+    programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions;
         lib.mkForce [
             jnoortheen.nix-ide
             eamodio.gitlens

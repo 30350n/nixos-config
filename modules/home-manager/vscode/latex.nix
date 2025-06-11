@@ -1,8 +1,8 @@
 {pkgs, ...}: {
-    programs.vscode = {
+    programs.vscode.profiles.default = {
         extensions = with pkgs.vscode-extensions; [
             james-yu.latex-workshop
-            (import ./marketplace-extensions/latex-utilities.nix {inherit pkgs;})
+            tecosaur.latex-utilities
         ];
 
         userSettings = {

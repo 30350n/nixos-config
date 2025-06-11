@@ -17,7 +17,7 @@
         packages = with pkgs; [
             custom.segoe-ui
             custom.ibm-plex
-            (nerdfonts.override {fonts = ["IBMPlexMono"];})
+            nerd-fonts.blex-mono
         ];
         fontconfig.defaultFonts = {
             serif = ["IBM Plex Serif"];
