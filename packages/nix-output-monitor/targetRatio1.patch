@@ -1,0 +1,7 @@
+--- a/lib/NOM/Print.hs
++++ b/lib/NOM/Print.hs
+@@ -104,3 +104,3 @@ showCond = memptyIfFalse
+ targetRatio, defaultTreeMax :: Int
+-targetRatio = 3 -- We divide by this, don‘t set this to zero.
++targetRatio = 1 -- We divide by this, don‘t set this to zero.
+ defaultTreeMax = 20

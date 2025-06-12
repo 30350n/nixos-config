@@ -1,0 +1,7 @@
+--- a/lib/NOM/IO.hs
++++ b/lib/NOM/IO.hs
+@@ -96,3 +96,3 @@ writeStateToScreen pad printed_lines_var nom_state_var nix_output_buffer_var ref
+ 
+-  let nix_output = ByteString.lines $ ByteString.concat $ reverse nix_output_raw
++  let nix_output = []
+       nix_output_length = length nix_output

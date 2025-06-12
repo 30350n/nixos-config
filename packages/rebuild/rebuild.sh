@@ -89,13 +89,20 @@ fi
 
 echo
 info "Building NixOS configuration ..."
-nixos-rebuild switch --flake path:. |& tee rebuild.log |& nom || {
-    error "Building NixOS failed with:"
-    grep --color error -A 10 < rebuild.log || error "unknown error"
-    hint "(check /etc/nixos/rebuild.log for the full build log)"
-    popd &> /dev/null
-    exit 1
-}
+nixos-rebuild switch --flake path:. --log-format internal-json -v |&
+    tee >(
+        grep --line-buffered "@nix " |
+            stdbuf -oL cut -c 6- |
+            jq --unbuffered --raw-output 'select(.action == "msg").msg' > rebuild.log
+    ) |&
+    nom --json ||
+    {
+        error "Building NixOS failed with:"
+        grep --color error -A 10 < rebuild.log || error "unknown error"
+        hint "(check /etc/nixos/rebuild.log for the full build log)"
+        popd &> /dev/null
+        exit 1
+    }
 
 NIX_SYSTEM="/nix/var/nix/profiles/system"
 generation_number=$(readlink "$NIX_SYSTEM" | awk -F "-" '{print $2}')
