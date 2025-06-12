@@ -1,5 +1,6 @@
 {pkgs, ...}: {
     imports = [
+        ../../modules/nixos/docker.nix
         ../../modules/nixos/udev.nix
     ];
 
