@@ -6,7 +6,6 @@
     imports = [
         ./cpp.nix
         ./flutter.nix
-        ./git.nix
         ./latex.nix
         ./markdown.nix
         ./nix.nix
@@ -56,6 +55,9 @@
                 };
                 "files.insertFinalNewline" = true;
                 "files.trimFinalNewlines" = true;
+
+                "git.enableStatusBarSync" = false;
+                "git.blame.editorDecoration.enabled" = true;
 
                 "keyboard.dispatch" = "keyCode";
 

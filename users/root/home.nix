@@ -16,7 +16,6 @@
     programs.vscode.profiles.default.extensions = with pkgs.unstable.vscode-extensions;
         lib.mkForce [
             jnoortheen.nix-ide
-            eamodio.gitlens
             (import ../../modules/home-manager/vscode/marketplace-extensions/explorer-exclude.nix {inherit pkgs;})
         ];
 
