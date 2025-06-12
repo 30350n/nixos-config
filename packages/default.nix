@@ -1,10 +1,10 @@
 finalPkgs: prevPkgs: {
     custom = rec {
-        alejandra4 = finalPkgs.callPackage ./alejandra4 {};
+        alejandra = finalPkgs.callPackage ./alejandra.nix {};
         configure = finalPkgs.callPackage ./configure.nix {};
         nix-output-monitor-silent = import ./nix-output-monitor-silent {pkgs = prevPkgs;};
         rebuild = finalPkgs.callPackage ./rebuild {
-            alejandra = alejandra4;
+            alejandra = alejandra;
             nix-output-monitor = nix-output-monitor-silent;
         };
 
