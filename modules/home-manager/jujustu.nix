@@ -1,11 +1,14 @@
-{
+{pkgs, ...}: {
     programs.jujutsu = {
         enable = true;
         settings = {
             aliases = {
                 all = ["log" "-r" "all()"];
-                push = ["git" "push"];
                 wip = ["log" "-r" "wip()"];
+                commit-time-to-author = let
+                    command = "${pkgs.custom.commit-time-to-author}/bin/commit-time-to-author";
+                in ["util" "exec" "--" command];
+                word-diff = ["util" "exec" "--" "${pkgs.git}" "diff" "--word-diff=color"];
             };
 
             revsets.log = "@ | ancestors(immutable_heads().., 17) | trunk()";

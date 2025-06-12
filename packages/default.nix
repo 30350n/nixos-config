@@ -5,6 +5,7 @@ finalPkgs: prevPkgs: {
         nix-output-monitor = import ./nix-output-monitor {pkgs = prevPkgs;};
         rebuild = finalPkgs.callPackage ./rebuild {inherit alejandra nix-output-monitor;};
 
+        commit-time-to-author = finalPkgs.callPackage ./commit-time-to-author {};
         configure-codium = finalPkgs.callPackage ./configure-codium.nix {};
         extra-desktop-items = finalPkgs.callPackage ./extra-desktop-items.nix {};
         fishPlugins.tide = finalPkgs.callPackage ./tide {pkgs = prevPkgs;};
