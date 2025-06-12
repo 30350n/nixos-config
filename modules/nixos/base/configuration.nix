@@ -18,6 +18,13 @@
         Defaults env_keep += "EDITOR"
     '';
 
+    nix.registry.unstable = {
+        from = {
+            type = "indirect";
+            id = "unstable";
+        };
+        flake = inputs.nixpkgs-unstable;
+    };
     nix.nixPath = [
         "nixpkgs=${inputs.nixpkgs.outPath}"
         "unstable=${inputs.nixpkgs-unstable.outPath}"
