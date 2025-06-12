@@ -13,6 +13,7 @@
         firefox
         file-roller
         krusader
+        vlc
         zoxide
 
         (python3.withPackages (pythonPackages: [

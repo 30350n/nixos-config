@@ -13,6 +13,5 @@ with pkgs; [
     prusa-slicer
 
     direnv
-    unfree.gitkraken
     custom.mkshell
 ]
