@@ -8,6 +8,10 @@
 
         userSettings = {
             "dart.checkForSdkUpdates" = false;
+            "dart.enableSdkFormatter" = true;
+            "dart.lineLength" = 100;
+            "dart.closingLabelsPrefix" = " ";
+            "dart.showTodos" = false;
 
             "i18n-ally.theme.annotation" = "#F5AB8E";
             "i18n-ally.theme.annotationBorder" = "#F5AB8E40";

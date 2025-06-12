@@ -68,6 +68,8 @@
                 "terminal.integrated.scrollback" = 10000;
                 "terminal.integrated.shellIntegration.enabled" = false;
 
+                "update.showReleaseNotes" = false;
+
                 "window.titleBarStyle" = "custom";
                 "window.zoomLevel" = 1;
 
