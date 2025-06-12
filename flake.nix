@@ -25,20 +25,19 @@
         impermanence,
         ...
     } @ inputs: let
-        system = "x86_64-linux";
         defaultModules = [
             {
                 nixpkgs.overlays = [
                     (final: prev: {
                         unfree = import nixpkgs {
-                            system = system;
+                            system = prev.system;
                             config.allowUnfree = true;
                         };
                         unstable =
-                            import nixpkgs-unstable {system = system;}
+                            import nixpkgs-unstable {system = prev.system;}
                             // {
                                 unfree = import nixpkgs-unstable {
-                                    system = system;
+                                    system = prev.system;
                                     config.allowUnfree = true;
                                 };
                             };

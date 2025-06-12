@@ -9,8 +9,8 @@
         extraGroups = ["wheel" "networkmanager" "dialout"];
         hashedPasswordFile = "/persist/passwords/bobbe";
         packages = (
-            (import ./packages.nix {pkgs = pkgs;})
-            ++ (import ../work/packages.nix {pkgs = pkgs;})
+            (import ./packages.nix {inherit pkgs;})
+            ++ (import ../work/packages.nix {inherit pkgs;})
         );
     };
 

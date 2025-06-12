@@ -7,7 +7,7 @@ stdenv.mkDerivation rec {
     name = "configure-codium";
     buildCommand = let
         script = writeShellApplication {
-            name = name;
+            inherit name;
             text = ''
                 pkexec \
                     env WAYLAND_DISPLAY="$WAYLAND_DISPLAY" XDG_RUNTIME_DIR="$XDG_RUNTIME_DIR" \
@@ -16,7 +16,7 @@ stdenv.mkDerivation rec {
             '';
         };
         desktopEntry = makeDesktopItem {
-            name = name;
+            inherit name;
             desktopName = "Configure";
             exec = "${script}/bin/${name}";
         };
