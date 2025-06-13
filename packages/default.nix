@@ -19,6 +19,7 @@ finalPkgs: prevPkgs: {
             inherit wallpapers;
         };
         segoe-ui = finalPkgs.callPackage ./segoe-ui.nix {};
+        uvtools = finalPkgs.callPackage ./uvtools {};
         wallpapers = finalPkgs.callPackage ./wallpapers {};
     };
 }

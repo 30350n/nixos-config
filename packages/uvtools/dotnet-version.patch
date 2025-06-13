@@ -1,0 +1,7 @@
+--- a/UVtools.AvaloniaControls/UVtools.AvaloniaControls.csproj
++++ b/UVtools.AvaloniaControls/UVtools.AvaloniaControls.csproj
+@@ -4,3 +4,3 @@
+         <TargetFramework></TargetFramework>
+-        <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
++        <TargetFrameworks>net9.0</TargetFrameworks>
+         <Title>UVtools Avalonia Controls</Title>

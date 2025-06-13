@@ -11,6 +11,7 @@ with pkgs; [
     inkscape
     custom.openpnp
     prusa-slicer
+    custom.uvtools
 
     direnv
     custom.mkshell
