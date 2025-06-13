@@ -17,6 +17,7 @@
         '';
     in {
         PAGER = "less -FrX";
+        SHELL = "${pkgs.fish}/bin/fish";
         NIX_BUILD_SHELL = nix-shell_fake_bash;
         DIRENV_LOG_FORMAT = "";
         DIRENV_WARN_TIMEOUT = 0;
