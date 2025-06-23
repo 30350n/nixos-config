@@ -1,8 +1,9 @@
 {pkgs, ...}: {
     programs.vscode.profiles.default = {
         extensions = with pkgs.unstable.vscode-extensions; [
-            pkgs.unstable.unfree.vscode-extensions.ms-vscode.cpptools
+            llvm-vs-code-extensions.vscode-clangd
             twxs.cmake
+            xaver.clang-format
             platformio.platformio-vscode-ide
             (import ./marketplace-extensions/qml.nix {inherit pkgs;})
         ];
