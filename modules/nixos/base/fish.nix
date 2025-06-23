@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+    config,
+    lib,
+    pkgs,
+    ...
+}:
+lib.mkIf config.custom.fish.enable {
     programs.fish.enable = true;
     programs.bash.interactiveShellInit = ''
         _parent=$(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm)

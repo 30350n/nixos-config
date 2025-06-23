@@ -3,15 +3,13 @@
         ./hardware-configuration.nix
         ./disko.nix
 
-        ../../modules/nixos/base/configuration.nix
-        ../../modules/nixos/bluetooth.nix
-        ../../modules/nixos/gdm.nix
-        ../../modules/nixos/gnome.nix
-        ../../modules/nixos/ssh-server.nix
+        ../../modules/nixos
         ../../users/bobbe
     ];
 
     networking.hostId = import ./host-id.nix;
+
+    custom.isLaptop = true;
 
     home-manager = {
         users.bobbe = import ../../users/bobbe/home.nix;

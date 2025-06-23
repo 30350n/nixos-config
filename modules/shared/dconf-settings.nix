@@ -2,7 +2,6 @@
     lib,
     config,
     nixosConfig ? config,
-    isLaptop ? true,
     useExtensions ? false,
     wallpaper ? null,
     ...
@@ -15,7 +14,7 @@ lib.mkMerge [
             color-scheme = "prefer-dark";
             enable-hot-corners = false;
             font-name = "${font} 12";
-            show-battery-percentage = isLaptop;
+            show-battery-percentage = nixosConfig.custom.isLaptop;
         };
 
         "org/gnome/settings-daemon/plugins/power".power-button-action = "interactive";
@@ -26,7 +25,7 @@ lib.mkMerge [
             night-light-temperature = lib.gvariant.mkInt32 3200;
         };
     }
-    (lib.mkIf isLaptop {
+    (lib.mkIf nixosConfig.custom.isLaptop {
         "org/gnome/desktop/peripherals/touchpad" = {
             click-method = "areas";
             natural-scroll = false;
