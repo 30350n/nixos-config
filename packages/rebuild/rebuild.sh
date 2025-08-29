@@ -98,7 +98,7 @@ nixos-rebuild switch --flake path:. --log-format internal-json -v |&
     nom --json ||
     {
         error "Building NixOS failed with:"
-        grep --color error -A 10 < rebuild.log || error "unknown error"
+        tac < rebuild.log | grep "error:" -m 1 -B 6 | tac || error "unknown error"
         hint "(check /etc/nixos/rebuild.log for the full build log)"
         popd &> /dev/null
         exit 1
