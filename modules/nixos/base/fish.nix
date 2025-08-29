@@ -20,4 +20,6 @@
         SHELL = "${pkgs.fish}/bin/fish";
         NIX_BUILD_SHELL = nix-shell_fake_bash;
     };
+
+    documentation.man.generateCaches = false;
 }
