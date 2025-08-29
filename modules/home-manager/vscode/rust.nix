@@ -6,7 +6,7 @@
     programs.vscode.profiles.default = {
         extensions = with extensions.vscode-marketplace; [
             rust-lang.rust-analyzer
-            serayuzgur.crates
+            barbosshack.crates-io
             pkgs.unstable.vscode-extensions.vadimcn.vscode-lldb
             probe-rs.probe-rs-debugger
         ];
