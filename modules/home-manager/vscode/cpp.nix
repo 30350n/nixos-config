@@ -13,6 +13,9 @@
         ];
 
         userSettings = {
+            "clangd.path" = "${pkgs.clang-tools}/bin/clangd";
+            "clang-format.executable" = "${pkgs.clang-tools}/bin/clang-format";
+
             "platformio-ide.useBuiltinPIOCore" = false;
             "platformio-ide.disablePIOHomeStartup" = true;
             "platformio-ide.useBuiltinPython" = false;
