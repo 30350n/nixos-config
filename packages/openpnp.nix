@@ -1,7 +1,7 @@
 {
     lib,
     fetchFromGitHub,
-    jre,
+    jre8,
     makeWrapper,
     maven,
 }:
@@ -17,7 +17,7 @@ maven.buildMavenPackage rec {
     };
 
     mvnParameters = "-DskipTests";
-    mvnHash = "sha256-G2D96W00TDb6e/hIsyVwl7UopizGccc0DH+cC8UE654=";
+    mvnHash = "sha256-0MnUNxJ7SzpQ5bU5+CRyJQ+UtPTFchriy+X1mvIxiQc=";
 
     nativeBuildInputs = [makeWrapper];
 
@@ -27,7 +27,7 @@ maven.buildMavenPackage rec {
         cp -r target/lib $out/share/openpnp/lib
         install -Dm644 target/${openpnpJar} $out/share/openpnp/${openpnpJar}
 
-        makeWrapper ${jre}/bin/java $out/bin/openpnp \
+        makeWrapper ${jre8}/bin/java $out/bin/openpnp \
             --add-flags "--add-opens=java.base/java.lang=ALL-UNNAMED" \
             --add-flags "--add-opens=java.desktop/java.awt=ALL-UNNAMED" \
             --add-flags "--add-opens=java.desktop/java.awt.color=ALL-UNNAMED" \
