@@ -27,12 +27,16 @@ unexpected_error() {
 }
 trap 'unexpected_error $LINENO $?' ERR
 
+command="switch"
 update=false
 
 while [[ $OPTIND -le $# ]]; do
     if getopts ":-:" OPTCHAR; then
         if [[ $OPTCHAR == "-" ]]; then
             case "$OPTARG" in
+                test)
+                    command="dry-activate"
+                    ;;
                 update)
                     update=true
                     ;;
@@ -46,6 +50,9 @@ while [[ $OPTIND -le $# ]]; do
             esac
         else
             case "$OPTARG" in
+                t)
+                    command="dry-activate"
+                    ;;
                 u)
                     update=true
                     ;;
@@ -89,7 +96,7 @@ fi
 
 echo
 info "Building NixOS configuration ..."
-nixos-rebuild switch --flake path:. --log-format internal-json -v |&
+nixos-rebuild $command --flake path:. --log-format internal-json -v |&
     tee >(
         awk '
             BEGIN { cmd = "jq --unbuffered --raw-output '\''select(.action == \"msg\").msg'\''" }
