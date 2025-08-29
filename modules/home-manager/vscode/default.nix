@@ -33,6 +33,8 @@ in {
                 peterschmalfeldt.explorer-exclude
 
                 tamasfe.even-better-toml
+                editorconfig.editorconfig
+                mkhl.shfmt
             ];
 
             userSettings = let
@@ -87,6 +89,14 @@ in {
                 "evenBetterToml.formatter.arrayTrailingComma" = true;
 
                 "explorerExclude.showPicker" = false;
+
+                "shfmt.executablePath" = "${pkgs.shfmt}/bin/shfmt";
+                "shfmt.executableArgs" = [
+                    "--indent=4"
+                    "--simplify"
+                    "--case-indent"
+                    "--space-redirects"
+                ];
             };
 
             keybindings = [

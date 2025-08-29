@@ -20,6 +20,8 @@
         lib.mkForce [
             jnoortheen.nix-ide
             peterschmalfeldt.explorer-exclude
+            editorconfig.editorconfig
+            mkhl.shfmt
         ];
 
     home.stateVersion = "23.11";
