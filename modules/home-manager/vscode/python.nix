@@ -4,6 +4,7 @@
             ms-python.python
             detachhead.basedpyright
             charliermarsh.ruff
+            njpwerner.autodocstring
             ms-toolsai.jupyter
             jacqueslucke.blender-development
         ];
