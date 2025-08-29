@@ -1,6 +1,6 @@
-{pkgs, ...}: {
+{extensions, ...}: {
     programs.vscode.profiles.default = {
-        extensions = with pkgs.unstable.vscode-extensions; [
+        extensions = with extensions.vscode-marketplace; [
             davidanson.vscode-markdownlint
             bierner.github-markdown-preview
         ];

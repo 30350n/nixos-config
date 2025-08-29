@@ -1,10 +1,14 @@
-{pkgs, ...}: {
+{
+    pkgs,
+    extensions,
+    ...
+}: {
     programs.vscode.profiles.default = {
-        extensions = with pkgs.unstable.vscode-extensions; [
+        extensions = with extensions.vscode-marketplace; [
             rust-lang.rust-analyzer
             serayuzgur.crates
-            vadimcn.vscode-lldb
-            (import ./marketplace-extensions/probe-rs-debugger.nix {inherit pkgs;})
+            pkgs.unstable.vscode-extensions.vadimcn.vscode-lldb
+            probe-rs.probe-rs-debugger
         ];
 
         userSettings = {

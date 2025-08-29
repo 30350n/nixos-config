@@ -1,4 +1,5 @@
 {
+    config,
     pkgs,
     lib,
     ...
@@ -13,10 +14,12 @@
         ../../modules/home-manager/zoxide.nix
     ];
 
-    programs.vscode.profiles.default.extensions = with pkgs.unstable.vscode-extensions;
+    programs.vscode.profiles.default.extensions = with (
+        pkgs.nix-vscode-extensions.forVSCodeVersion config.programs.vscode.package.version
+    ).vscode-marketplace;
         lib.mkForce [
             jnoortheen.nix-ide
-            (import ../../modules/home-manager/vscode/marketplace-extensions/explorer-exclude.nix {inherit pkgs;})
+            peterschmalfeldt.explorer-exclude
         ];
 
     home.stateVersion = "23.11";

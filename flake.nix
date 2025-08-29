@@ -14,6 +14,11 @@
         };
 
         impermanence.url = "github:nix-community/impermanence";
+
+        nix-vscode-extensions = {
+            url = "github:nix-community/nix-vscode-extensions";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs = {
@@ -23,6 +28,7 @@
         home-manager,
         disko,
         impermanence,
+        nix-vscode-extensions,
         ...
     } @ inputs: let
         defaultModules = [
@@ -43,6 +49,7 @@
                             };
                     })
                     (import ./packages)
+                    nix-vscode-extensions.overlays.default
                 ];
             }
             disko.nixosModules.disko

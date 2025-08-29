@@ -1,11 +1,11 @@
-{pkgs, ...}: {
+{extensions, ...}: {
     programs.vscode.profiles.default = {
-        extensions = with pkgs.unstable.vscode-extensions; [
+        extensions = with extensions.vscode-marketplace; [
             ms-python.python
+            detachhead.basedpyright
             charliermarsh.ruff
             ms-toolsai.jupyter
-            (import ./marketplace-extensions/basedpyright.nix {inherit pkgs;})
-            (import ./marketplace-extensions/blender-development.nix {inherit pkgs;})
+            jacqueslucke.blender-development
         ];
 
         userSettings = {

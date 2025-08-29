@@ -1,6 +1,6 @@
-{pkgs, ...}: {
+{extensions, ...}: {
     programs.vscode.profiles.default = {
-        extensions = with pkgs.unstable.vscode-extensions; [
+        extensions = with extensions.vscode-marketplace; [
             dart-code.flutter
             dart-code.dart-code
             lokalise.i18n-ally

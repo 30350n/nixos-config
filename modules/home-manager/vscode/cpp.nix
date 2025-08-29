@@ -1,11 +1,15 @@
-{pkgs, ...}: {
+{
+    pkgs,
+    extensions,
+    ...
+}: {
     programs.vscode.profiles.default = {
-        extensions = with pkgs.unstable.vscode-extensions; [
+        extensions = with extensions.vscode-marketplace; [
             llvm-vs-code-extensions.vscode-clangd
-            twxs.cmake
             xaver.clang-format
-            platformio.platformio-vscode-ide
-            (import ./marketplace-extensions/qml.nix {inherit pkgs;})
+            twxs.cmake
+            platformio.platformio-ide
+            bbenoist.qml
         ];
 
         userSettings = {

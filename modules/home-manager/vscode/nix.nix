@@ -1,5 +1,6 @@
 {
     pkgs,
+    extensions,
     lib,
     config,
     hostName,
@@ -17,7 +18,7 @@
         language-server-package = pkgs.unstable.${language-server};
     in {
         programs.vscode.profiles.default = {
-            extensions = with pkgs.unstable.vscode-extensions; [
+            extensions = with extensions.vscode-marketplace; [
                 jnoortheen.nix-ide
             ];
             userSettings = {

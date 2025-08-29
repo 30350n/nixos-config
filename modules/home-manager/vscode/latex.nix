@@ -1,6 +1,10 @@
-{pkgs, ...}: {
+{
+    pkgs,
+    extensions,
+    ...
+}: {
     programs.vscode.profiles.default = {
-        extensions = with pkgs.unstable.vscode-extensions; [
+        extensions = with extensions.vscode-marketplace; [
             james-yu.latex-workshop
             tecosaur.latex-utilities
         ];

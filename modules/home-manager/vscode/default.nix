@@ -1,9 +1,13 @@
 {
+    config,
     nixosConfig,
     pkgs,
     ...
-}: {
-    imports = [
+} @ args: let
+    extensions =
+        pkgs.nix-vscode-extensions.forVSCodeVersion config.programs.vscode.package.version;
+in {
+    imports = map (file: import file (args // {inherit extensions;})) [
         ./cpp.nix
         ./flutter.nix
         ./latex.nix
@@ -23,10 +27,10 @@
             enableUpdateCheck = false;
             enableExtensionUpdateCheck = false;
 
-            extensions = with pkgs.unstable.vscode-extensions; [
+            extensions = with extensions.vscode-marketplace; [
                 mkhl.direnv
                 tomoki1207.pdf
-                (import ./marketplace-extensions/explorer-exclude.nix {inherit pkgs;})
+                peterschmalfeldt.explorer-exclude
 
                 tamasfe.even-better-toml
             ];
