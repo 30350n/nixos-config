@@ -91,14 +91,22 @@ echo
 info "Building NixOS configuration ..."
 nixos-rebuild switch --flake path:. --log-format internal-json -v |&
     tee >(
-        grep --line-buffered "@nix " |
-            stdbuf -oL cut -c 6- |
-            jq --unbuffered --raw-output 'select(.action == "msg").msg' > rebuild.log
+        awk '
+            BEGIN { cmd = "jq --unbuffered --raw-output '\''select(.action == \"msg\").msg'\''" }
+            /^@nix / {
+                gsub(/^@nix /, "")
+                print | cmd
+                next
+            }
+            {
+                gsub(/\x1b\[[0-9;]*m/, "")
+                print
+            }
+            END { close(cmd) }
+        ' > rebuild.log
     ) |&
     nom --json ||
     {
-        error "Building NixOS failed with:"
-        tac < rebuild.log | grep "error:" -m 1 -B 6 | tac || error "unknown error"
         hint "(check /etc/nixos/rebuild.log for the full build log)"
         popd &> /dev/null
         exit 1
@@ -117,7 +125,7 @@ commit_message=$(
         grep -v "^$generation_prefix" | grep -v '^(no description set)$' || true
 )
 generation="$generation_number $generation_date $generation_nixos_version"
-echo -e "$commit_message\n\n$generation_prefix$generation" | jj describe --stdin &> /dev/null
+echo -e "$commit_message\n\n$generation_prefix$generation" | jj describe --stdin --quiet
 
 success "Successfully built NixOS configuration!"
 hint "($generation_prefix$generation)"
