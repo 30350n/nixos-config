@@ -107,6 +107,17 @@ nixos-rebuild switch --flake path:. --log-format internal-json -v |&
     ) |&
     nom --json ||
     {
+        failed_service=$(
+            grep "the following units failed: " rebuild.log | grep -oP 'home-manager-[^ ]+\.service'
+        )
+        if [[ -n $failed_service ]]; then
+            error "Activating home-manager failed with:"
+            line=$(
+                journalctl --unit "$failed_service" | grep -n "Starting Home Manager environment" |
+                    tail -n1 | cut -d: -f1
+            )
+            SYSTEMD_COLORS=true journalctl --unit "$failed_service" | tail -n "+$line"
+        fi
         hint "(check /etc/nixos/rebuild.log for the full build log)"
         popd &> /dev/null
         exit 1
