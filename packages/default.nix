@@ -10,6 +10,7 @@ finalPkgs: prevPkgs: {
         extra-desktop-items = finalPkgs.callPackage ./extra-desktop-items.nix {};
         fishPlugins.tide = finalPkgs.callPackage ./tide {pkgs = prevPkgs;};
         ibm-plex = finalPkgs.callPackage ./ibm-plex {pkgs = prevPkgs;};
+        nerd-fonts.blex-mono = finalPkgs.callPackage ./ibm-plex/nerdfont.nix {pkgs = prevPkgs;};
         mate.mate-polkit = finalPkgs.callPackage ./mate-polkit {pkgs = prevPkgs;};
         mkshell = finalPkgs.callPackage ./mkshell {};
         nemo = finalPkgs.callPackage ./nemo {pkgs = prevPkgs;};
