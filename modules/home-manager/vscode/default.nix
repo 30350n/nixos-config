@@ -97,6 +97,10 @@ in {
                     "--case-indent"
                     "--space-redirects"
                 ];
+
+                "[shellscript]" = {
+                    "editor.detectIndentation" = true;
+                };
             };
 
             keybindings = [
