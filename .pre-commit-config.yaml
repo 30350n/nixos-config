@@ -16,14 +16,15 @@ repos:
     hooks:
       - id: shfmt
         args: [--write, --simplify, --indent=4, --case-indent, --space-redirects]
-  - repo: https://github.com/hhatto/autopep8
-    rev: v2.0.4
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.12.11
     hooks:
-      - id: autopep8
-  - repo: https://github.com/pycqa/isort
-    rev: 5.12.0
-    hooks:
-      - id: isort
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-check
+        args: [--select, I, --fix]
+      - id: ruff-format
+        args: [--line-length, "100"]
   - repo: https://github.com/codespell-project/codespell
     rev: v2.2.6
     hooks:

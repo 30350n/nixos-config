@@ -1,11 +1,12 @@
-import shutil, sys
+import shutil
+import sys
 from getpass import getpass
 from hashlib import md5
 from pathlib import Path
 from subprocess import DEVNULL, check_call, check_output
 
 from cutie import prompt_yes_or_no, select
-from error_helper import *
+from error_helper import error, info, prompt, success, warning
 from git import Repo
 
 TEMP_CONFIG_PATH = Path("/tmp/nixos")
@@ -16,6 +17,7 @@ PASSWORDS_PATH = Path("/mnt/persist/passwords")
 
 NIX_WITH_FLAKES = ["nix", "--quiet", "--experimental-features", "nix-command flakes"]
 DISKO_SOURCE = "github:nix-community/disko"
+
 
 def install(config_url):
     info(f"Installing NixOS configuration from {config_url} ...")
@@ -42,9 +44,9 @@ def install(config_url):
     print()
 
     device_file = TEMP_CONFIG_HOSTS_PATH / host / "device.nix"
-    device_file.write_text(f"\"{disk_by_id}\"\n")
-    host_id_file = (TEMP_CONFIG_HOSTS_PATH / host / "hostId.nix")
-    host_id_file.write_text(f"\"{get_host_id(disk)}\"\n")
+    device_file.write_text(f'"{disk_by_id}"\n')
+    host_id_file = TEMP_CONFIG_HOSTS_PATH / host / "hostId.nix"
+    host_id_file.write_text(f'"{get_host_id(disk)}"\n')
     check_call(f"chattr +i {device_file} {host_id_file}".split())
 
     (TARGET_CONFIG_PATH).mkdir(parents=True, exist_ok=True)
@@ -59,6 +61,7 @@ def install(config_url):
 
     success("Successfully installed NixOS!", prefix="")
 
+
 def clone_configuration(url):
     shutil.rmtree(TEMP_CONFIG_PATH, ignore_errors=True)
     TEMP_CONFIG_PATH.mkdir(parents=True, exist_ok=True)
@@ -70,33 +73,43 @@ def clone_configuration(url):
     for command in jj_commands:
         check_call(command.split(), cwd=TEMP_CONFIG_PATH, stdout=DEVNULL, stderr=DEVNULL)
 
+
 def get_block_devices():
     return check_output("lsblk -I 8,259 -ndo NAME".split()).decode().strip().split()
 
+
 def get_disk_by_id(disk):
     command = f"udevadm info -q symlink --name={disk}"
-    disk_symlinks = sorted((
-        symlink for symlink in check_output(command.split()).decode().strip().split()
-        if symlink.startswith("disk/by-id/")
-    ))
+    disk_symlinks = sorted(
+        (
+            symlink
+            for symlink in check_output(command.split()).decode().strip().split()
+            if symlink.startswith("disk/by-id/")
+        )
+    )
     return f"/dev/{disk_symlinks[0]}"
+
 
 def format_disk(host, disk):
     disko_nix_path = TEMP_CONFIG_HOSTS_PATH / host / "disko.nix"
-    command = NIX_WITH_FLAKES + (
-        f"run {DISKO_SOURCE} -- --mode disko {disko_nix_path} --argstr device {disk}"
-    ).split()
+    command = (
+        NIX_WITH_FLAKES
+        + (f"run {DISKO_SOURCE} -- --mode disko {disko_nix_path} --argstr device {disk}").split()
+    )
     check_call(command)
+
 
 def get_host_id(disk):
     disk_serial_bytes = check_output(f"lsblk -ndo serial /dev/{disk}".split()).strip()
     return md5(disk_serial_bytes).hexdigest()[:8]
+
 
 def install_nix_os(host):
     command = (
         f"nixos-install --root /mnt/ --flake path:{TARGET_CONFIG_PATH}#{host} --no-root-passwd"
     ).split()
     check_call(command)
+
 
 def setup_user_passwords():
     PASSWORDS_PATH.mkdir(parents=True, exist_ok=True)
@@ -116,9 +129,10 @@ def setup_user_passwords():
         (PASSWORDS_PATH / user).write_text(hashed_password)
         print()
 
+
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        error(f"python install.py <nixos-configuration-git-url>", prefix="")
+        error("python install.py <nixos-configuration-git-url>", prefix="")
         sys.exit(1)
 
     try:
