@@ -9,6 +9,7 @@
             gnome-console
         ]
         ++ (with gnomeExtensions; [
+            syncthing-indicator
             workspaces-indicator-by-open-apps
         ]);
     environment.gnome.excludePackages = with pkgs; [

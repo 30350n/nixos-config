@@ -13,6 +13,8 @@
         ../../modules/home-manager/zoxide.nix
     ];
 
+    services.syncthing.enable = true;
+
     home.file.".face.icon" = {source = ./icon.jpg;};
 
     programs.tofi.settings.font = ''

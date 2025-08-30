@@ -10,6 +10,7 @@
             "org/gnome/shell" = {
                 disable-user-extensions = false;
                 enabled-extensions = with pkgs.gnomeExtensions; [
+                    syncthing-indicator.extensionUuid
                     workspaces-indicator-by-open-apps.extensionUuid
                 ];
             };
