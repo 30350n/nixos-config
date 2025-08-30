@@ -27,8 +27,8 @@
         };
     };
 
-    #programs.steam = {
-    #    enable = true;
-    #    package = pkgs.unfree.steam;
-    #};
+    programs.steam = {
+        enable = true;
+        package = pkgs.unfree.steam;
+    };
 }
