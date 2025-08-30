@@ -102,20 +102,19 @@ nixos-rebuild $command --flake path:. --log-format internal-json -v |&
             BEGIN { cmd = "jq --unbuffered --raw-output '\''select(.action == \"msg\").msg'\''" }
             /^@nix / {
                 gsub(/^@nix /, "")
+                gsub(/\\u001b\[[0-9;]*m/, "")
                 print | cmd
                 next
             }
-            {
-                gsub(/\x1b\[[0-9;]*m/, "")
-                print
-            }
+            { print }
             END { close(cmd) }
         ' > rebuild.log
     ) |&
     nom --json ||
     {
         failed_service=$(
-            grep "the following units failed: " rebuild.log | grep -oP 'home-manager-[^ ]+\.service'
+            grep "the following units failed: " rebuild.log |
+                grep -oP 'home-manager-[^ ]+\.service' || true
         )
         if [[ -n $failed_service ]]; then
             error "Activating home-manager failed with:"
