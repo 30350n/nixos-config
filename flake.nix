@@ -36,14 +36,14 @@
                 nixpkgs.overlays = [
                     (final: prev: {
                         unfree = import nixpkgs {
-                            system = prev.system;
+                            system = final.system;
                             config.allowUnfree = true;
                         };
                         unstable =
-                            import nixpkgs-unstable {system = prev.system;}
+                            import nixpkgs-unstable {system = final.system;}
                             // {
                                 unfree = import nixpkgs-unstable {
-                                    system = prev.system;
+                                    system = final.system;
                                     config.allowUnfree = true;
                                 };
                             };
