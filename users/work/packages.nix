@@ -15,4 +15,5 @@ with pkgs; [
 
     direnv
     custom.mkshell
+    nix-output-monitor
 ]
