@@ -2,7 +2,6 @@
     programs.home-manager.enable = true;
 
     imports = [
-        ../../modules/home-manager/hyprland
         ../../modules/home-manager/alacritty.nix
         ../../modules/home-manager/direnv.nix
         ../../modules/home-manager/fish.nix

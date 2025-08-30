@@ -6,7 +6,6 @@
 
         alacritty
         bat
-        custom.extra-desktop-items
         eza
         kdePackages.gwenview
         htop
