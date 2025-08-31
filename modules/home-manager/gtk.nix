@@ -42,6 +42,12 @@
                 move-to-workspace-right = ["<Control><Super>Right"];
             };
 
+            "org/gnome/Console" = let
+                fonts = nixosConfig.fonts.fontconfig.defaultFonts.monospace;
+            in {
+                "custom-font" = "${builtins.elemAt fonts (builtins.length fonts - 1)} 12";
+                "use-system-font" = false;
+            };
         };
     };
 
