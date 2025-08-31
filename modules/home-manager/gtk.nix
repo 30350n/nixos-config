@@ -12,7 +12,10 @@
                 enable-hot-corners = false;
                 show-battery-percentage = true;
             };
-            "org/gnome/desktop/peripherals/touchpad".natural-scroll = false;
+            "org/gnome/desktop/peripherals/touchpad" = {
+                click-method = "areas";
+                natural-scroll = false;
+            };
             "org/gnome/gnome-session".logout-prompt = false;
 
             "org/gnome/settings-daemon/plugins/color" = {
