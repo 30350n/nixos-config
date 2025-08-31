@@ -35,6 +35,7 @@
 
             "org/gnome/shell/extensions/just-perfection" = {
                 quick-settings-airplane-mode = false;
+                quick-settings-dark-mode = false;
                 startup-status = 0;
                 support-notifier-type = 0;
                 top-panel-position = 1;
@@ -77,10 +78,8 @@
     gtk = {
         enable = true;
 
-        font = let
-            fonts = nixosConfig.fonts.fontconfig.defaultFonts.sansSerif;
-        in {
-            name = lib.lists.findFirst (_: true) "" fonts;
+        font = {
+            name = builtins.elemAt nixosConfig.fonts.fontconfig.defaultFonts.sansSerif 0;
             size = 12;
         };
 
