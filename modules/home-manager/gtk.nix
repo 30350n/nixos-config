@@ -73,6 +73,7 @@
                 workspace-right = ["<Shift><Alt>Right"];
             };
             "org/gnome/desktop/wm/keybindings" = {
+                close = ["<Alt>F4" "<Control><Alt>BackSpace"];
                 move-to-workspace-left = ["<Control><Super>Left"];
                 move-to-workspace-right = ["<Control><Super>Right"];
             };
