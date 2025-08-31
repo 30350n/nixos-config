@@ -6,6 +6,7 @@
             gnome-calculator
             gnome-tweaks
             simple-scan
+            nautilus
         ]
         ++ (with gnomeExtensions; [
             appindicator

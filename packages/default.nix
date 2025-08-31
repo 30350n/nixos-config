@@ -12,7 +12,6 @@ finalPkgs: prevPkgs: {
         nerd-fonts.blex-mono = finalPkgs.callPackage ./ibm-plex/nerdfont.nix {pkgs = prevPkgs;};
         mate.mate-polkit = finalPkgs.callPackage ./mate-polkit {pkgs = prevPkgs;};
         mkshell = finalPkgs.callPackage ./mkshell {};
-        nemo = finalPkgs.callPackage ./nemo {pkgs = prevPkgs;};
         openpnp = finalPkgs.callPackage ./openpnp.nix {};
         sddm-theme = finalPkgs.callPackage ./sddm-theme {
             pkgs = prevPkgs;

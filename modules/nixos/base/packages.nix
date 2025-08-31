@@ -19,15 +19,6 @@
             pythonPackages.numpy
             pythonPackages.bpython
         ]))
-
-        (nemo-with-extensions.override {
-            nemo = custom.nemo;
-            extensions = [
-                nemo-emblems
-                nemo-fileroller
-                folder-color-switcher
-            ];
-        })
     ];
 
     programs = {

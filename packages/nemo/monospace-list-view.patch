@@ -1,7 +1,0 @@
---- a/src/nemo-list-view.c
-+++ b/src/nemo-list-view.c
-@@ -2477,3 +2477,3 @@
-             g_object_set (GTK_CELL_RENDERER_TEXT (cell),
--                          "font", font_name,
-+                          "font", date_name,
-                           NULL);
