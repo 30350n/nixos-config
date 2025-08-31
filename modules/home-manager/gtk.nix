@@ -26,10 +26,22 @@
                 disable-user-extensions = false;
                 enabled-extensions = with pkgs.gnomeExtensions; [
                     appindicator.extensionUuid
+                    just-perfection.extensionUuid
                     new-workspace-shortcut.extensionUuid
                     syncthing-indicator.extensionUuid
                     workspaces-indicator-by-open-apps.extensionUuid
                 ];
+            };
+
+            "org/gnome/shell/extensions/just-perfection" = {
+                quick-settings-airplane-mode = false;
+                startup-status = 0;
+                support-notifier-type = 0;
+                top-panel-position = 1;
+                window-preview-caption = false;
+                workspace-peek = true;
+                workspace-popup = false;
+                workspace-wrap-around = true;
             };
 
             "org/gnome/shell/extensions/newworkspaceshortcut" = {

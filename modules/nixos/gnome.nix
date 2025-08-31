@@ -10,6 +10,7 @@
         ]
         ++ (with gnomeExtensions; [
             appindicator
+            just-perfection
             new-workspace-shortcut
             syncthing-indicator
             workspaces-indicator-by-open-apps
