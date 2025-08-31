@@ -2,7 +2,7 @@
     time.timeZone = "Europe/Berlin";
 
     i18n.defaultLocale = "en_US.UTF-8";
-    i18n.extraLocales = ["de_DE.UTF-8/UTF-8"];
+    i18n.extraLocales = ["de_DE.UTF-8/UTF-8" "en_DK.UTF-8/UTF-8"];
     i18n.extraLocaleSettings = {
         LC_CTYPE = "en_US.UTF-8";
         LC_ADDRESS = "de_DE.UTF-8";
@@ -13,7 +13,7 @@
         LC_NUMERIC = "en_US.UTF-8";
         LC_PAPER = "de_DE.UTF-8";
         LC_TELEPHONE = "de_DE.UTF-8";
-        LC_TIME = "de_DE.UTF-8";
+        LC_TIME = "en_DK.UTF-8";
         LC_COLLATE = "en_US.UTF-8";
     };
 
