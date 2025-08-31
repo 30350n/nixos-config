@@ -10,10 +10,22 @@
             "org/gnome/shell" = {
                 disable-user-extensions = false;
                 enabled-extensions = with pkgs.gnomeExtensions; [
+                    new-workspace-shortcut.extensionUuid
                     syncthing-indicator.extensionUuid
                     workspaces-indicator-by-open-apps.extensionUuid
                 ];
             };
+
+            "org/gnome/shell/extensions/newworkspaceshortcut" = {
+                move-workspace-triggers-overview = false;
+                workspace-left = ["<Shift><Alt>Left"];
+                workspace-right = ["<Shift><Alt>Right"];
+            };
+            "org/gnome/desktop/wm/keybindings" = {
+                move-to-workspace-left = ["<Control><Super>Left"];
+                move-to-workspace-right = ["<Control><Super>Right"];
+            };
+
             "org/gnome/desktop/interface".color-scheme = "prefer-dark";
             "org/gnome/gnome-session".logout-prompt = false;
         };

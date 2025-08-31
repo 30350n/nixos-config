@@ -9,6 +9,7 @@
             gnome-console
         ]
         ++ (with gnomeExtensions; [
+            new-workspace-shortcut
             syncthing-indicator
             workspaces-indicator-by-open-apps
         ]);
