@@ -26,11 +26,33 @@
                 disable-user-extensions = false;
                 enabled-extensions = with pkgs.gnomeExtensions; [
                     appindicator.extensionUuid
+                    ddterm.extensionUuid
                     just-perfection.extensionUuid
                     new-workspace-shortcut.extensionUuid
                     syncthing-indicator.extensionUuid
                     workspaces-indicator-by-open-apps.extensionUuid
                 ];
+            };
+
+            "com/github/amezin/ddterm" = {
+                ddterm-toggle-hotkey = ["<Control><Alt>minus"];
+                shortcut-focus-other-pane = ["<Alt>Left" "<Alt>Right"];
+                hide-window-on-esc = true;
+
+                use-system-font = false;
+                custom-font = let
+                    fonts = nixosConfig.fonts.fontconfig.defaultFonts.monospace;
+                in "${lib.lists.last fonts} 12";
+
+                window-position = "top";
+                tab-position = "top";
+                tab-show-shortcuts = false;
+                tab-switcher-popup = false;
+                background-opacity = 0.85;
+                cursor-blink-mode = "off";
+                hide-animation-duration = 0.1;
+                show-animation-duration = 0.1;
+                panel-icon-type = "none";
             };
 
             "org/gnome/shell/extensions/just-perfection" = {
@@ -56,6 +78,7 @@
             };
 
             "org/gnome/shell/extensions/workspaces-indicator-by-open-apps" = {
+                icons-ignored = ["com.github.amezin.ddterm"];
                 indicator-hide-empty = true;
                 indicator-round-borders = false;
                 indicator-show-focused-app = false;
@@ -64,13 +87,6 @@
                 spacing-app-right = 3;
                 spacing-label-left = 3;
                 spacing-label-right = 3;
-            };
-
-            "org/gnome/Console" = let
-                fonts = nixosConfig.fonts.fontconfig.defaultFonts.monospace;
-            in {
-                "custom-font" = "${builtins.elemAt fonts (builtins.length fonts - 1)} 12";
-                "use-system-font" = false;
             };
         };
     };

@@ -6,10 +6,10 @@
             gnome-calculator
             gnome-tweaks
             simple-scan
-            gnome-console
         ]
         ++ (with gnomeExtensions; [
             appindicator
+            ddterm
             just-perfection
             new-workspace-shortcut
             syncthing-indicator
