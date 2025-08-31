@@ -7,6 +7,7 @@ finalPkgs: prevPkgs: {
 
         commit-time-to-author = finalPkgs.callPackage ./commit-time-to-author {};
         configure-codium = finalPkgs.callPackage ./configure-codium.nix {};
+        extra-desktop-items = finalPkgs.callPackage ./extra-desktop-items.nix {};
         fishPlugins.tide = finalPkgs.callPackage ./tide {pkgs = prevPkgs;};
         ibm-plex = finalPkgs.callPackage ./ibm-plex {pkgs = prevPkgs;};
         nerd-fonts.blex-mono = finalPkgs.callPackage ./ibm-plex/nerdfont.nix {pkgs = prevPkgs;};
