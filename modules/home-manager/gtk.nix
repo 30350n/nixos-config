@@ -42,6 +42,17 @@
                 move-to-workspace-right = ["<Control><Super>Right"];
             };
 
+            "org/gnome/shell/extensions/workspaces-indicator-by-open-apps" = {
+                indicator-hide-empty = true;
+                indicator-round-borders = false;
+                indicator-show-focused-app = false;
+                size-app-icon = 22;
+                spacing-app-left = 3;
+                spacing-app-right = 3;
+                spacing-label-left = 3;
+                spacing-label-right = 3;
+            };
+
             "org/gnome/Console" = let
                 fonts = nixosConfig.fonts.fontconfig.defaultFonts.monospace;
             in {
