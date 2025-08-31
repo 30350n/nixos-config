@@ -7,6 +7,21 @@
     dconf = {
         enable = true;
         settings = {
+            "org/gnome/desktop/interface" = {
+                color-scheme = "prefer-dark";
+                enable-hot-corners = false;
+                show-battery-percentage = true;
+            };
+            "org/gnome/desktop/peripherals/touchpad".natural-scroll = false;
+            "org/gnome/gnome-session".logout-prompt = false;
+
+            "org/gnome/settings-daemon/plugins/color" = {
+                night-light-enabled = true;
+                night-light-temperature = 3200;
+            };
+
+            "org/gnome/settings-daemon/plugins/power".power-button-action = "interactive";
+
             "org/gnome/shell" = {
                 disable-user-extensions = false;
                 enabled-extensions = with pkgs.gnomeExtensions; [
@@ -27,8 +42,6 @@
                 move-to-workspace-right = ["<Control><Super>Right"];
             };
 
-            "org/gnome/desktop/interface".color-scheme = "prefer-dark";
-            "org/gnome/gnome-session".logout-prompt = false;
         };
     };
 

@@ -16,6 +16,7 @@
         ]);
     environment.gnome.excludePackages = with pkgs; [
         gnome-shell-extensions
+        gnome-tour
     ];
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
