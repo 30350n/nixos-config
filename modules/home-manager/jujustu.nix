@@ -14,7 +14,7 @@
             revsets.log = "@ | ancestors(immutable_heads().., 17) | trunk()";
 
             revset-aliases = {
-                "wip()" = "::visible_heads() ~ ::branches() ~ empty()";
+                "wip()" = "::visible_heads() ~ ::bookmarks() ~ empty()";
             };
 
             templates.draft_commit_description = let
