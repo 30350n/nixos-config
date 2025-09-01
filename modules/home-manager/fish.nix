@@ -26,7 +26,7 @@
                     return 0
                 end
 
-                set conflict (${jj_log} 'conflict')
+                set conflict (${jj_log} 'stringify(conflict)')
                 set change_id (${jj_log} 'format_short_id(change_id)')
                 set bookmarks_tags (${jj_log} 'bookmarks ++ tags' -r @-::@)
                 set modified (${jj_log} 'diff.files().filter(|f| f.status() == "modified").len()')
