@@ -31,6 +31,7 @@ in {
                 mkhl.direnv
                 tomoki1207.pdf
                 peterschmalfeldt.explorer-exclude
+                fabiospampinato.vscode-open-in-application
 
                 tamasfe.even-better-toml
                 editorconfig.editorconfig
