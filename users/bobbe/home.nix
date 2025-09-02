@@ -17,6 +17,11 @@
 
     home.file.".face.icon" = {source = ./icon.jpg;};
 
+    home.sessionVariables = {
+        XDG_PROGRAMMING_DIR = "$HOME/programming";
+        XDG_PROJECTS_DIR = "$HOME/projects";
+    };
+
     programs.tofi.settings.font = ''
         ${pkgs.custom.ibm-plex}/share/fonts/opentype/IBMPlexMono-Regular.otf
     '';

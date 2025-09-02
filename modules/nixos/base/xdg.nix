@@ -9,9 +9,6 @@
         XDG_VIDEOS_DIR = "$HOME/videos";
         XDG_TEMPLATES_DIR = "$HOME/.config/templates";
 
-        XDG_PROGRAMMING_DIR = "$HOME/programming";
-        XDG_PROJECTS_DIR = "$HOME/projects";
-
         XDG_CACHE_HOME = "$HOME/.cache";
         XDG_CONFIG_HOME = "$HOME/.config";
         XDG_DATA_HOME = "$HOME/.local/share";
