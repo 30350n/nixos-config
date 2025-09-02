@@ -51,7 +51,7 @@
                 tab-position = "top";
                 tab-show-shortcuts = false;
                 tab-switcher-popup = false;
-                background-opacity = 0.85;
+                background-opacity = 0.95;
                 cursor-blink-mode = "off";
                 hide-animation-duration = 0.1;
                 show-animation-duration = 0.1;
