@@ -20,6 +20,7 @@
                 jj_log = "jj log --no-graph --color=always -r @ -T";
                 bold = "set_color --bold";
                 dim = "set_color --dim";
+                normal = "set_color normal";
             in ''
                 if not command -sq jj; or not jj root --quiet &> /dev/null
                     _tide_item_git
@@ -40,7 +41,7 @@
                         and echo (set_color red --bold)"!"; or echo (set_color green --bold)"@"
                     echo -ns $change_id
                     test -n $bookmarks_tags;
-                        and echo -ns (${dim})" ("(set_color normal)$bookmarks_tags(${dim})")"
+                        and echo -ns (${dim})" ("(${normal})$bookmarks_tags(${dim})")"(${normal})
                     ${bold} $tide_jj_color_modified; test $modified != 0; and echo -ns " ~"$modified
                     ${bold} $tide_jj_color_added; test $added != 0; and echo -ns " +"$added
                     ${bold} $tide_jj_color_removed; test $removed != 0; and echo -ns " -"$removed
