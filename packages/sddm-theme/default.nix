@@ -4,7 +4,7 @@
 }: (
     (pkgs.sddm-chili-theme.override {
         themeConfig = {
-            background = "${wallpapers}/share/backgrounds/debashis_kolkata_1920x1080.png";
+            background = "${wallpapers."1080p"}/share/wallpapers/nixos-wallpaper.png";
             ScreenWidth = 1920;
             ScreenHeight = 1080;
         };

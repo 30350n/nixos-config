@@ -6,7 +6,14 @@
 }: {
     dconf = {
         enable = true;
-        settings = {
+        settings = let
+            wallpaper = "${pkgs.custom.wallpapers."1080p"}/share/wallpapers/nixos-wallpaper.png";
+        in {
+            "org/gnome/desktop/background" = {
+                picture-uri = wallpaper;
+                picture-uri-dark = wallpaper;
+            };
+            "org/gnome/desktop/screensaver".picture-uri = wallpaper;
             "org/gnome/desktop/interface" = {
                 color-scheme = "prefer-dark";
                 enable-hot-corners = false;
@@ -16,13 +23,13 @@
                 click-method = "areas";
                 natural-scroll = false;
             };
+
             "org/gnome/gnome-session".logout-prompt = false;
 
             "org/gnome/settings-daemon/plugins/color" = {
                 night-light-enabled = true;
                 night-light-temperature = 3200;
             };
-
             "org/gnome/settings-daemon/plugins/power".power-button-action = "interactive";
 
             "org/gnome/shell" = {

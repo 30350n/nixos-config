@@ -19,6 +19,12 @@
             url = "github:nix-community/nix-vscode-extensions";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+
+        nix-wallpaper = {
+            url = "github:lunik1/nix-wallpaper";
+            inputs.nixpkgs.follows = "nixpkgs";
+            inputs.flake-utils.follows = "nix-vscode-extensions/flake-utils";
+        };
     };
 
     outputs = {
@@ -29,6 +35,7 @@
         disko,
         impermanence,
         nix-vscode-extensions,
+        nix-wallpaper,
         ...
     } @ inputs: let
         defaultModules = [
@@ -48,6 +55,7 @@
                                 };
                             };
                     })
+                    (final: prev: {nix-wallpaper = nix-wallpaper.packages.${final.system}.default;})
                     (import ./packages)
                     nix-vscode-extensions.overlays.default
                 ];
