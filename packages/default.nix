@@ -10,7 +10,6 @@ finalPkgs: prevPkgs: {
         fishPlugins.tide = import ./tide {pkgs = prevPkgs;};
         ibm-plex = import ./ibm-plex {pkgs = prevPkgs;};
         nerd-fonts.blex-mono = import ./ibm-plex/nerdfont.nix {pkgs = prevPkgs;};
-        mate.mate-polkit = import ./mate-polkit {pkgs = prevPkgs;};
         mkshell = finalPkgs.callPackage ./mkshell {};
         openpnp = finalPkgs.callPackage ./openpnp.nix {};
         sddm-theme = import ./sddm-theme {
