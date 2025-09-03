@@ -3,10 +3,11 @@
     services.gnome.core-apps.enable = false;
     environment.systemPackages = with pkgs;
         [
+            eyedropper
             gnome-calculator
             gnome-tweaks
-            simple-scan
             nautilus
+            simple-scan
         ]
         ++ (with gnomeExtensions; [
             appindicator
