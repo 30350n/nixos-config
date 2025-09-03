@@ -7,13 +7,13 @@ finalPkgs: prevPkgs: {
 
         commit-time-to-author = finalPkgs.callPackage ./commit-time-to-author {};
         configure-codium = finalPkgs.callPackage ./configure-codium.nix {};
-        fishPlugins.tide = finalPkgs.callPackage ./tide {pkgs = prevPkgs;};
-        ibm-plex = finalPkgs.callPackage ./ibm-plex {pkgs = prevPkgs;};
-        nerd-fonts.blex-mono = finalPkgs.callPackage ./ibm-plex/nerdfont.nix {pkgs = prevPkgs;};
-        mate.mate-polkit = finalPkgs.callPackage ./mate-polkit {pkgs = prevPkgs;};
+        fishPlugins.tide = import ./tide {pkgs = prevPkgs;};
+        ibm-plex = import ./ibm-plex {pkgs = prevPkgs;};
+        nerd-fonts.blex-mono = import ./ibm-plex/nerdfont.nix {pkgs = prevPkgs;};
+        mate.mate-polkit = import ./mate-polkit {pkgs = prevPkgs;};
         mkshell = finalPkgs.callPackage ./mkshell {};
         openpnp = finalPkgs.callPackage ./openpnp.nix {};
-        sddm-theme = finalPkgs.callPackage ./sddm-theme {
+        sddm-theme = import ./sddm-theme {
             pkgs = prevPkgs;
             inherit wallpapers;
         };
