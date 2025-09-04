@@ -3,6 +3,7 @@
     services.gnome.core-apps.enable = false;
     environment.systemPackages = with pkgs;
         [
+            baobab
             eyedropper
             gnome-calculator
             gnome-tweaks
