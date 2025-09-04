@@ -40,6 +40,7 @@
                     just-perfection.extensionUuid
                     new-workspace-shortcut.extensionUuid
                     syncthing-indicator.extensionUuid
+                    vscode-search-provider.extensionUuid
                     workspaces-indicator-by-open-apps.extensionUuid
                 ];
             };
