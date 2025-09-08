@@ -11,7 +11,7 @@
             enable = true;
             theme = "breeze";
             logo = "${nixos-icons}/share/icons/hicolor/64x64/apps/nix-snowflake-white.png";
-            font = "${custom.segoe-ui}/share/fonts/truetype/SegoeUI-VF.ttf";
+            font = "${custom.segoe-ui}/share/fonts/truetype/segoeui.ttf";
         };
 
         consoleLogLevel = 0;

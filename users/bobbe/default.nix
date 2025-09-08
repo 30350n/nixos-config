@@ -22,7 +22,7 @@
         ];
         fontconfig.defaultFonts = {
             serif = ["IBM Plex Serif"];
-            sansSerif = ["Segoe UI Variable"];
+            sansSerif = ["Segoe UI"];
             monospace = ["IBM Plex Mono" "BlexMono Nerd Font"];
         };
     };
