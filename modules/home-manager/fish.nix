@@ -17,7 +17,7 @@
 
         functions = {
             _tide_item_jj = let
-                jj_log = "jj log --no-graph --color=always -r @ -T";
+                jj_log = args: "jj log --no-graph --color=always -r @ -T ${args} 2> /dev/null";
                 bold = "set_color --bold";
                 dim = "set_color --dim";
                 normal = "set_color normal";
@@ -27,14 +27,14 @@
                     return 0
                 end
 
-                set conflict (${jj_log} 'stringify(conflict)')
-                set change_id (${jj_log} 'format_short_id(change_id)')
-                set bookmarks_tags (${jj_log} 'bookmarks ++ tags' -r @-::@)
-                set modified (${jj_log} 'diff.files().filter(|f| f.status() == "modified").len()')
-                set added (${jj_log} 'diff.files().filter(|f| f.status() == "added").len()')
-                set removed (${jj_log} 'diff.files().filter(|f| f.status() == "removed").len()')
-                set copied (${jj_log} 'diff.files().filter(|f| f.status() == "copied").len()')
-                set renamed (${jj_log} 'diff.files().filter(|f| f.status() == "renamed").len()')
+                set conflict (${jj_log "'stringify(conflict)'"})
+                set change_id (${jj_log "'format_short_id(change_id)'"})
+                set bookmarks_tags (${jj_log "-r @-::@ 'bookmarks ++ tags'"})
+                set modded (${jj_log "'diff.files().filter(|f| f.status() == \"modified\").len()'"})
+                set added (${jj_log "'diff.files().filter(|f| f.status() == \"added\").len()'"})
+                set removed (${jj_log "'diff.files().filter(|f| f.status() == \"removed\").len()'"})
+                set copied (${jj_log "'diff.files().filter(|f| f.status() == \"copied\").len()'"})
+                set renamed (${jj_log "'diff.files().filter(|f| f.status() == \"renamed\").len()'"})
 
                 _tide_print_item jj $tide_jj_icon' ' (
                     test $conflict = "true"
@@ -42,7 +42,7 @@
                     echo -ns $change_id
                     test -n $bookmarks_tags;
                         and echo -ns (${dim})" ("(${normal})$bookmarks_tags(${dim})")"(${normal})
-                    ${bold} $tide_jj_color_modified; test $modified != 0; and echo -ns " ~"$modified
+                    ${bold} $tide_jj_color_modified; test $modded != 0; and echo -ns " ~"$modded
                     ${bold} $tide_jj_color_added; test $added != 0; and echo -ns " +"$added
                     ${bold} $tide_jj_color_removed; test $removed != 0; and echo -ns " -"$removed
                     ${bold} $tide_jj_color_copied; test $copied != 0; and echo -ns "  "$copied

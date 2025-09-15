@@ -87,9 +87,9 @@ pre-commit run --all-files | (grep -v "Passed" || true)
 
 echo
 info "Configuration changes:"
-changed_files=$(jj diff --summary --color always)
+changed_files=$(jj diff --summary --color always 2> /dev/null)
 if [[ $(wc -l <<< "$changed_files") -le 5 ]]; then
-    jj diff --no-pager
+    jj diff --no-pager 2> /dev/null
 else
     echo "$changed_files"
 fi
@@ -138,11 +138,11 @@ generation_nixos_version=$(cat $NIX_SYSTEM/nixos-version)
 
 generation_prefix="Generation "
 commit_message=$(
-    jj show --summary | grep -e "^    " -e '^$' | tail -n +2 | head -n -1 | cut -c 5- |
+    jj show --summary 2> /dev/null | grep -e "^    " -e '^$' | tail -n +2 | head -n -1 | cut -c 5- |
         grep -v "^$generation_prefix" | grep -v '^(no description set)$' || true
 )
 generation="$generation_number $generation_date $generation_nixos_version"
-echo -e "$commit_message\n\n$generation_prefix$generation" | jj describe --stdin --quiet
+echo -e "$commit_message\n\n$generation_prefix$generation" | jj describe --stdin &> /dev/null
 
 success "Successfully built NixOS configuration!"
 hint "($generation_prefix$generation)"
