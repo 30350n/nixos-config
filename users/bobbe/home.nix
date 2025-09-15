@@ -15,7 +15,7 @@
 
     services.syncthing.enable = true;
 
-    home.file.".face.icon" = {source = ./icon.jpg;};
+    home.file.".face" = {source = ./face.jpg;};
 
     home.sessionVariables = {
         XDG_PROGRAMMING_DIR = "$HOME/programming";
