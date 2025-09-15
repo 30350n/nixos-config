@@ -1,0 +1,24 @@
+--- a/js/ui/layout.js
++++ b/js/ui/layout.js
+@@ -558,8 +558,9 @@ export const LayoutManager = GObject.registerClass({
+         if (!this.primaryMonitor)
+             return;
+ 
+-        this.panelBox.set_position(this.primaryMonitor.x, this.primaryMonitor.y);
+-        this.panelBox.set_size(this.primaryMonitor.width, -1);
++        let monitor = this.primaryMonitor;
++        this.panelBox.set_position(monitor.x, monitor.y + monitor.height - this.panelBox.height);
++        this.panelBox.set_size(monitor.width, -1);
+ 
+         this.keyboardIndex = this.primaryIndex;
+     }
+@@ -572,6 +573,9 @@ export const LayoutManager = GObject.registerClass({
+             if (corner)
+                 corner.setBarrierSize(size);
+         });
++
++        let monitor = this.primaryMonitor;
++        this.panelBox.set_position(monitor.x, monitor.y + monitor.height - this.panelBox.height);
+     }
+ 
+     _destroyPanelBarrier() {
