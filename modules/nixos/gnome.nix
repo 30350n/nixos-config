@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+    lib,
+    pkgs,
+    ...
+}: {
     services.xserver.desktopManager.gnome.enable = true;
     services.gnome.core-apps.enable = false;
     environment.systemPackages =
@@ -28,4 +32,6 @@
     services.udev.packages = with pkgs; [
         gnome-settings-daemon
     ];
+
+    security.wrappers.pkexec.source = lib.mkForce "${pkgs.custom.polkit.bin}/bin/pkexec";
 }

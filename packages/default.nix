@@ -12,6 +12,7 @@ finalPkgs: prevPkgs: {
         nerd-fonts.blex-mono = import ./ibm-plex/nerdfont.nix {pkgs = prevPkgs;};
         mkshell = finalPkgs.callPackage ./mkshell {};
         openpnp = finalPkgs.callPackage ./openpnp.nix {};
+        polkit = import ./polkit {pkgs = prevPkgs;};
         sddm-theme = import ./sddm-theme {
             pkgs = prevPkgs;
             inherit wallpapers;
