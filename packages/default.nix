@@ -1,24 +1,44 @@
-finalPkgs: prevPkgs: {
-    custom = rec {
-        alejandra = finalPkgs.callPackage ./alejandra.nix {};
-        configure = finalPkgs.callPackage ./configure.nix {};
-        nix-output-monitor = import ./nix-output-monitor {pkgs = prevPkgs;};
-        rebuild = finalPkgs.callPackage ./rebuild {inherit alejandra nix-output-monitor;};
+{inputs, ...}: {
+    nixpkgs.overlays = [
+        inputs.nix-vscode-extensions.overlays.default
+        (final: prev: {
+            unfree = import inputs.nixpkgs {
+                system = final.system;
+                config.allowUnfree = true;
+            };
+            unstable =
+                import inputs.nixpkgs-unstable {system = final.system;}
+                // {
+                    unfree = import inputs.nixpkgs-unstable {
+                        system = final.system;
+                        config.allowUnfree = true;
+                    };
+                };
 
-        commit-time-to-author = finalPkgs.callPackage ./commit-time-to-author {};
-        configure-codium = finalPkgs.callPackage ./configure-codium.nix {};
-        fishPlugins.tide = import ./tide {pkgs = prevPkgs;};
-        ibm-plex = import ./ibm-plex {pkgs = prevPkgs;};
-        nerd-fonts.blex-mono = import ./ibm-plex/nerdfont.nix {pkgs = prevPkgs;};
-        mkshell = finalPkgs.callPackage ./mkshell {};
-        openpnp = finalPkgs.callPackage ./openpnp.nix {};
-        polkit = import ./polkit {pkgs = prevPkgs;};
-        sddm-theme = import ./sddm-theme {
-            pkgs = prevPkgs;
-            inherit wallpapers;
-        };
-        segoe-ui = finalPkgs.callPackage ./segoe-ui {};
-        uvtools = finalPkgs.callPackage ./uvtools {};
-        wallpapers = import ./wallpapers.nix {pkgs = prevPkgs;};
-    };
+            custom = rec {
+                alejandra = final.callPackage ./alejandra.nix {};
+                configure = final.callPackage ./configure.nix {};
+                nix-output-monitor = import ./nix-output-monitor {pkgs = prev;};
+                rebuild = final.callPackage ./rebuild {inherit alejandra nix-output-monitor;};
+
+                commit-time-to-author = final.callPackage ./commit-time-to-author {};
+                configure-codium = final.callPackage ./configure-codium.nix {};
+                fishPlugins.tide = import ./tide {pkgs = prev;};
+                ibm-plex = import ./ibm-plex {pkgs = prev;};
+                nerd-fonts.blex-mono = import ./ibm-plex/nerdfont.nix {pkgs = prev;};
+                mkshell = final.callPackage ./mkshell {};
+                openpnp = final.callPackage ./openpnp.nix {};
+                polkit = import ./polkit {pkgs = prev;};
+                sddm-theme = import ./sddm-theme {
+                    pkgs = prev;
+                    inherit wallpapers;
+                };
+                segoe-ui = final.callPackage ./segoe-ui {};
+                uvtools = final.callPackage ./uvtools {};
+                wallpapers = import ./wallpapers.nix {
+                    nix-wallpaper = inputs.nix-wallpaper.packages.${final.system}.default;
+                };
+            };
+        })
+    ];
 }

@@ -1,6 +1,7 @@
-{
+{hostName, ...}: {
     networking = {
         networkmanager.enable = true;
+        inherit hostName;
         enableIPv6 = false;
     };
 

@@ -39,52 +39,19 @@
         ...
     } @ inputs: let
         defaultModules = [
-            {
-                nixpkgs.overlays = [
-                    (final: prev: {
-                        unfree = import nixpkgs {
-                            system = final.system;
-                            config.allowUnfree = true;
-                        };
-                        unstable =
-                            import nixpkgs-unstable {system = final.system;}
-                            // {
-                                unfree = import nixpkgs-unstable {
-                                    system = final.system;
-                                    config.allowUnfree = true;
-                                };
-                            };
-                    })
-                    (final: prev: {nix-wallpaper = nix-wallpaper.packages.${final.system}.default;})
-                    (import ./packages)
-                    nix-vscode-extensions.overlays.default
-                ];
-            }
+            ./packages
             disko.nixosModules.disko
+            home-manager.nixosModules.home-manager
             impermanence.nixosModules.impermanence
         ];
     in {
         nixosConfigurations = {
-            thinkpad = nixpkgs.lib.nixosSystem rec {
+            thinkpad = nixpkgs.lib.nixosSystem {
                 specialArgs = {
                     hostName = "thinkpad";
                     inherit inputs;
                 };
-                modules =
-                    defaultModules
-                    ++ [
-                        ./hosts/thinkpad/configuration.nix
-                        home-manager.nixosModules.home-manager
-                        {
-                            home-manager = {
-                                users.bobbe = import ./users/bobbe/home.nix;
-                                users.root = import ./users/root/home.nix;
-                                useGlobalPkgs = true;
-                                useUserPackages = true;
-                                extraSpecialArgs = specialArgs;
-                            };
-                        }
-                    ];
+                modules = defaultModules ++ [./hosts/thinkpad/configuration.nix];
             };
         };
     };

@@ -1,4 +1,4 @@
-{hostName, ...}: {
+{
     imports = [
         ./hardware-configuration.nix
         (import ./disko.nix {device = import ./device.nix;})
@@ -11,8 +11,10 @@
         ../../users/bobbe
     ];
 
-    networking = {
-        inherit hostName;
-        hostId = import ./hostId.nix;
+    networking.hostId = import ./hostId.nix;
+
+    home-manager = {
+        users.bobbe = import ../../users/bobbe/home.nix;
+        users.root = import ../../users/root/home.nix;
     };
 }
