@@ -37,7 +37,7 @@
         nix-vscode-extensions,
         nix-wallpaper,
         ...
-    } @ inputs: let
+    } @ flake-inputs: let
         defaultModules = [
             ./packages
             disko.nixosModules.disko
@@ -49,7 +49,7 @@
             thinkpad = nixpkgs.lib.nixosSystem {
                 specialArgs = {
                     hostName = "thinkpad";
-                    inherit inputs;
+                    inherit flake-inputs;
                 };
                 modules = defaultModules ++ [./hosts/thinkpad/configuration.nix];
             };

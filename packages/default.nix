@@ -1,15 +1,15 @@
-{inputs, ...}: {
+{flake-inputs, ...}: {
     nixpkgs.overlays = [
-        inputs.nix-vscode-extensions.overlays.default
+        flake-inputs.nix-vscode-extensions.overlays.default
         (final: prev: {
-            unfree = import inputs.nixpkgs {
+            unfree = import flake-inputs.nixpkgs {
                 system = final.system;
                 config.allowUnfree = true;
             };
             unstable =
-                import inputs.nixpkgs-unstable {system = final.system;}
+                import flake-inputs.nixpkgs-unstable {system = final.system;}
                 // {
-                    unfree = import inputs.nixpkgs-unstable {
+                    unfree = import flake-inputs.nixpkgs-unstable {
                         system = final.system;
                         config.allowUnfree = true;
                     };
@@ -36,7 +36,7 @@
                 segoe-ui = final.callPackage ./segoe-ui {};
                 uvtools = final.callPackage ./uvtools {};
                 wallpapers = import ./wallpapers.nix {
-                    nix-wallpaper = inputs.nix-wallpaper.packages.${final.system}.default;
+                    nix-wallpaper = flake-inputs.nix-wallpaper.packages.${final.system}.default;
                 };
             };
         })

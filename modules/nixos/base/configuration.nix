@@ -1,4 +1,4 @@
-{inputs, ...}: {
+{flake-inputs, ...}: {
     imports = [
         ./audio.nix
         ./boot.nix
@@ -23,11 +23,11 @@
             type = "indirect";
             id = "unstable";
         };
-        flake = inputs.nixpkgs-unstable;
+        flake = flake-inputs.nixpkgs-unstable;
     };
     nix.nixPath = [
-        "nixpkgs=${inputs.nixpkgs.outPath}"
-        "unstable=${inputs.nixpkgs-unstable.outPath}"
+        "nixpkgs=${flake-inputs.nixpkgs.outPath}"
+        "unstable=${flake-inputs.nixpkgs-unstable.outPath}"
     ];
     nix.settings.experimental-features = ["nix-command" "flakes"];
 
