@@ -2,7 +2,7 @@
     lib,
     pkgs,
     ...
-}: {
+} @ inputs: {
     services.xserver.desktopManager.gnome.enable = true;
     services.gnome.core-apps.enable = false;
     environment.systemPackages =
@@ -14,15 +14,7 @@
             nautilus
             simple-scan
         ])
-        ++ (with pkgs.gnomeExtensions; [
-            appindicator
-            ddterm
-            just-perfection
-            new-workspace-shortcut
-            syncthing-indicator
-            vscode-search-provider
-            workspaces-indicator-by-open-apps
-        ]);
+        ++ (import ../shared/gnome-shell-extensions.nix inputs).extensions;
     environment.gnome.excludePackages = with pkgs; [
         gnome-shell-extensions
         gnome-tour
