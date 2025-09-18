@@ -1,7 +1,7 @@
-{device, ...}: {
+{
     disko.devices = {
         disk.main = {
-            inherit device;
+            device = ./device.nix;
             type = "disk";
             content = {
                 type = "gpt";
