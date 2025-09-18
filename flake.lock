@@ -158,6 +158,26 @@
         "type": "github"
       }
     },
+    "nixos-core": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1758295001,
+        "narHash": "sha256-/kpNhg7l+OFqUODcNoGabEc5Vdf6CKkJPnH1fNqUeCo=",
+        "owner": "30350n",
+        "repo": "nixos-core",
+        "rev": "c8122e9d41bebf06ed053df88a3d7438aa49d3f5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "30350n",
+        "repo": "nixos-core",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1756346337,
@@ -220,6 +240,7 @@
         "impermanence": "impermanence",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nix-wallpaper": "nix-wallpaper",
+        "nixos-core": "nixos-core",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }

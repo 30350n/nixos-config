@@ -3,6 +3,11 @@
         nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
         nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
+        nixos-core = {
+            url = "github:30350n/nixos-core";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
         home-manager = {
             url = "github:nix-community/home-manager/release-25.05";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -31,6 +36,7 @@
         self,
         nixpkgs,
         nixpkgs-unstable,
+        nixos-core,
         home-manager,
         disko,
         impermanence,
@@ -39,10 +45,11 @@
         ...
     } @ flake-inputs: let
         defaultModules = [
-            ./packages
+            nixos-core.nixosModules.nixos-core
             disko.nixosModules.disko
             home-manager.nixosModules.home-manager
             impermanence.nixosModules.impermanence
+            ./packages
         ];
     in {
         nixosConfigurations = {

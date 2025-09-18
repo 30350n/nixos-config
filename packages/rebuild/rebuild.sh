@@ -29,6 +29,7 @@ trap 'unexpected_error $LINENO $?' ERR
 
 command="switch"
 update=false
+override_inputs=()
 
 while [[ $OPTIND -le $# ]]; do
     if getopts ":-:" OPTCHAR; then
@@ -76,9 +77,15 @@ if [[ $(id -u) != 0 ]]; then
     exit 0
 fi
 
+if [[ -d ./nixos-core ]]; then
+    override_inputs=(--override-input nixos-core path:./nixos-core)
+fi
+
 if $update; then
     info "Updating NixOS configuration ..."
     nix flake update
+else
+    nix flake update nixos-core &> /dev/null
 fi
 
 info "Autoformatting NixOS configuration ..."
@@ -96,7 +103,7 @@ fi
 
 echo
 info "Building NixOS configuration ..."
-nixos-rebuild $command --flake path:. --log-format internal-json -v |&
+nixos-rebuild $command --flake path:. "${override_inputs[@]}" --log-format internal-json -v |&
     tee >(
         awk '
             BEGIN { cmd = "jq --unbuffered --raw-output '\''select(.action == \"msg\").msg'\''" }
