@@ -15,6 +15,7 @@ lib.mkMerge [
             color-scheme = "prefer-dark";
             enable-hot-corners = false;
             font-name = "${font} 12";
+            show-battery-percentage = isLaptop;
         };
 
         "org/gnome/settings-daemon/plugins/power".power-button-action = "interactive";
@@ -26,7 +27,6 @@ lib.mkMerge [
         };
     }
     (lib.mkIf isLaptop {
-        "org/gnome/desktop/interface".show-battery-percentage = true;
         "org/gnome/desktop/peripherals/touchpad" = {
             click-method = "areas";
             natural-scroll = false;
