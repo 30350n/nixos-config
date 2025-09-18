@@ -24,10 +24,4 @@
         enable = true;
         profiles.gdm.databases = [{settings = import ../shared/dconf-settings.nix inputs;}];
     };
-
-    nixpkgs.overlays = [
-        (finalPkgs: prevPkgs: {
-            gnome-shell = import ../../packages/gnome-shell {pkgs = prevPkgs;};
-        })
-    ];
 }

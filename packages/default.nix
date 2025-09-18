@@ -39,6 +39,9 @@
                     nix-wallpaper = flake-inputs.nix-wallpaper.packages.${final.system}.default;
                 };
             };
+
+            gnome-desktop = import ./gnome-desktop {pkgs = prev;};
+            gnome-shell = import ./gnome-shell {pkgs = prev;};
         })
     ];
 }

@@ -1,0 +1,50 @@
+--- a/js/misc/dateUtils.js
++++ b/js/misc/dateUtils.js
+@@ -170,13 +170,13 @@ export function formatTime(time, params) {
+              followed by a time string in 24h format.
+              i.e. "May 25, 14:30" */
+             // xgettext:no-c-format
+-            format = N_('%B %-d, %H\u2236%M');
++            format = '%d/%m/%Y, %H\u2236%M';
+         else
+             /* Translators: this is the month name, day number, year
+              number followed by a time string in 24h format.
+              i.e. "May 25 2012, 14:30" */
+             // xgettext:no-c-format
+-            format = N_('%B %-d %Y, %H\u2236%M');
++            format = '%d/%m/%Y, %H\u2236%M';
+     } else {
+         // Show only the time if date is on today
+         if (daysAgo < 1 || params.timeOnly) // eslint-disable-line no-lonely-if
+--- a/js/ui/dateMenu.js
++++ b/js/ui/dateMenu.js
+@@ -96,14 +96,14 @@ class TodayButton extends St.Button {
+          * "Tue 9:29 AM").  The string itself should become a full date, e.g.,
+          * "February 17 2015".
+          */
+-        const dateFormat = Shell.util_translate_time_string(N_('%B %-d %Y'));
++        const dateFormat = '%d/%m/%Y';
+         this._dateLabel.set_text(formatDateWithCFormatString(date, dateFormat));
+ 
+         /* Translators: This is the accessible name of the date button shown
+          * below the time in the shell; it should combine the weekday and the
+          * date, e.g. "Tuesday February 17 2015".
+          */
+-        const dateAccessibleNameFormat = Shell.util_translate_time_string(N_('%A %B %e %Y'));
++        const dateAccessibleNameFormat = '%d/%m/%Y';
+         this.accessible_name = formatDateWithCFormatString(date, dateAccessibleNameFormat);
+     }
+ });
+@@ -170,10 +170,10 @@ class EventsSection extends St.Button {
+ 
+     _updateTitle() {
+         /* Translators: Shown on calendar heading when selected day occurs on current year */
+-        const sameYearFormat = T_(NC_('calendar heading', '%B %-d'));
++        const sameYearFormat = '%d/%m/%Y';
+ 
+         /* Translators: Shown on calendar heading when selected day occurs on different year */
+-        const otherYearFormat = T_(NC_('calendar heading', '%B %-d %Y'));
++        const otherYearFormat = '%d/%m/%Y';
+ 
+         const timeSpanDay = GLib.TIME_SPAN_DAY / 1000;
+         const now = new Date();
