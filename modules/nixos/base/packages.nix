@@ -25,9 +25,9 @@
         bash.promptInit = ''
             PROMPT_COMMAND='GIT_PS1_CMD=$(__git_ps1 " (%s)")'
             if [[ $(id -u) == 0 ]]; then
-                PS1='\n\w\[\e[33;1m\]''${GIT_PS1_CMD}\n\[\e[31;1m\]в\[\e[0m\] '
+                PS1='\n\w\[\e[33;1m\]''${GIT_PS1_CMD}\n\[\e[31;1m\]$\[\e[0m\] '
             else
-                PS1='\n\w\[\e[33;1m\]''${GIT_PS1_CMD}\n\[\e[32;1m\]в\[\e[0m\] '
+                PS1='\n\w\[\e[33;1m\]''${GIT_PS1_CMD}\n\[\e[32;1m\]$\[\e[0m\] '
             fi
         '';
 
@@ -51,6 +51,4 @@
 
         nix-ld.enable = true;
     };
-
-    services.gvfs.enable = true;
 }
