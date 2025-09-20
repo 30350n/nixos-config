@@ -32,7 +32,6 @@
         lib.mkForce [
             jnoortheen.nix-ide
             peterschmalfeldt.explorer-exclude
-            editorconfig.editorconfig
             mkhl.shfmt
         ];
 

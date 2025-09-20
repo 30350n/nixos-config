@@ -34,7 +34,6 @@ in {
                 fabiospampinato.vscode-open-in-application
 
                 tamasfe.even-better-toml
-                editorconfig.editorconfig
                 mkhl.shfmt
             ];
 
