@@ -4,14 +4,8 @@
         flake-inputs.nix-vscode-extensions.overlays.default
         (final: prev: {
             custom = rec {
-                alejandra = final.callPackage ./alejandra.nix {};
-                configure = final.callPackage ./configure.nix {};
-                nix-output-monitor = import ./nix-output-monitor {pkgs = prev;};
-                rebuild = final.callPackage ./rebuild {inherit alejandra nix-output-monitor;};
-
                 commit-time-to-author = final.callPackage ./commit-time-to-author {};
                 configure-codium = final.callPackage ./configure-codium.nix {};
-                fishPlugins.tide = import ./tide {pkgs = prev;};
                 ibm-plex = import ./ibm-plex {pkgs = prev;};
                 nerd-fonts.blex-mono = import ./ibm-plex/nerdfont.nix {pkgs = prev;};
                 mkshell = final.callPackage ./mkshell {};

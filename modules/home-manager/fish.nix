@@ -4,7 +4,7 @@
         plugins = [
             {
                 name = "tide";
-                src = pkgs.custom.fishPlugins.tide;
+                src = pkgs.fishPlugins.tide;
             }
         ];
 
@@ -160,7 +160,7 @@
     };
 
     home.packages = with pkgs; [
-        custom.fishPlugins.tide
+        fishPlugins.tide
     ];
 
     xdg.desktopEntries.fish = {

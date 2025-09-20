@@ -28,7 +28,7 @@
                     "${language-server}" = lib.mkMerge [
                         {
                             formatting = {
-                                command = ["${pkgs.custom.alejandra}/bin/alejandra" "-qq"];
+                                command = ["${pkgs.alejandra}/bin/alejandra" "-qq"];
                             };
                         }
                         (lib.mkIf (language-server == "nixd") {
@@ -53,9 +53,8 @@
             };
         };
 
-        home.packages = with pkgs; [
+        home.packages = [
             language-server-package
-            custom.alejandra
         ];
     };
 }
