@@ -17,7 +17,8 @@ stdenv.mkDerivation rec {
         };
         desktopEntry = makeDesktopItem {
             inherit name;
-            desktopName = "Configure";
+            desktopName = "Configure NixOS";
+            icon = "distributor-logo-nixos";
             exec = "${script}/bin/${name}";
         };
     in ''
