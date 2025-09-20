@@ -1,20 +1,8 @@
 {flake-inputs, ...}: {
     nixpkgs.overlays = [
+        flake-inputs.nixos-core.overlays.default
         flake-inputs.nix-vscode-extensions.overlays.default
         (final: prev: {
-            unfree = import flake-inputs.nixpkgs {
-                system = final.system;
-                config.allowUnfree = true;
-            };
-            unstable =
-                import flake-inputs.nixpkgs-unstable {system = final.system;}
-                // {
-                    unfree = import flake-inputs.nixpkgs-unstable {
-                        system = final.system;
-                        config.allowUnfree = true;
-                    };
-                };
-
             custom = rec {
                 alejandra = final.callPackage ./alejandra.nix {};
                 configure = final.callPackage ./configure.nix {};

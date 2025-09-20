@@ -6,6 +6,7 @@
         nixos-core = {
             url = "github:30350n/nixos-core";
             inputs.nixpkgs.follows = "nixpkgs";
+            inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
         };
 
         home-manager = {
