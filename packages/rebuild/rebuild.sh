@@ -85,7 +85,8 @@ if $update; then
     info "Updating NixOS configuration ..."
     nix flake update
 else
-    nix flake update nixos-core &> /dev/null
+    info "Updating 'nixos-core' flake input ..."
+    nix flake update nixos-core
 fi
 
 info "Autoformatting NixOS configuration ..."
