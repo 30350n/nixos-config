@@ -6,7 +6,7 @@
         ../../modules/home-manager/direnv.nix
         ../../modules/home-manager/fish.nix
         ../../modules/home-manager/git.nix
-        ../../modules/home-manager/gtk.nix
+        ../../modules/home-manager/gnome.nix
         ../../modules/home-manager/jujustu.nix
         ../../modules/home-manager/prusa-slicer.nix
         ../../modules/home-manager/vscode
