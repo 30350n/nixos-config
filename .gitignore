@@ -1,6 +1,6 @@
 .venv/
 
-device.nix
+devices.nix
 hostId.nix
 
 rebuild.log

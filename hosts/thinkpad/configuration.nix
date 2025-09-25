@@ -1,7 +1,7 @@
 {
     imports = [
         ./hardware-configuration.nix
-        (import ./disko.nix {device = import ./device.nix;})
+        (import ./disko.nix {devices = import ./devices.nix;})
 
         ../../modules/nixos/base/configuration.nix
         ../../modules/nixos/bluetooth.nix
