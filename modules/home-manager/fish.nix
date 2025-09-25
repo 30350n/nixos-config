@@ -22,7 +22,7 @@
                 dim = "set_color --dim";
                 normal = "set_color normal";
             in ''
-                if not command -sq jj; or not jj root --quiet &> /dev/null
+                if not command -sq jj; or not jj st &> /dev/null
                     _tide_item_git
                     return 0
                 end
