@@ -14,6 +14,8 @@
                 "**/.venv/" = true;
             };
 
+            "python.terminal.shellIntegration.enabled" = false;
+
             "basedpyright.analysis.diagnosticMode" = "workspace";
             "basedpyright.analysis.typeCheckingMode" = "standard";
 
