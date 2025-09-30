@@ -2,6 +2,6 @@
 
 ## Installation
 
-```sh
-$ sh <(curl -fsSL https://raw.github.com/30350n/nixos-config/master/installer/install.sh)
+```shell
+$ nix --experimental-features "nix-command flakes" run github:30350n/nixos-core#install -- https://github.com/30350n/nixos-config
 ```
