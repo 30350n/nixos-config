@@ -1,4 +1,4 @@
-{devices, ...}: {
+{devices ? import ./devices.nix, ...}: {
     disko.devices = {
         disk.main = {
             device = devices.main;

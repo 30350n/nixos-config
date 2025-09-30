@@ -1,7 +1,7 @@
 {
     imports = [
         ./hardware-configuration.nix
-        (import ./disko.nix {devices = import ./devices.nix;})
+        ./disko.nix
 
         ../../modules/nixos/base/configuration.nix
         ../../modules/nixos/bluetooth.nix
@@ -11,7 +11,7 @@
         ../../users/bobbe
     ];
 
-    networking.hostId = import ./hostId.nix;
+    networking.hostId = import ./host-id.nix;
 
     home-manager = {
         users.bobbe = import ../../users/bobbe/home.nix;
