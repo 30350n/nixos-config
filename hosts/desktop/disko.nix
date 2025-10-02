@@ -8,12 +8,19 @@
                 partitions = {
                     ESP = {
                         type = "EF00";
-                        size = "500M";
+                        size = "1G";
                         content = {
                             type = "filesystem";
                             format = "vfat";
                             mountpoint = "/boot";
                             mountOptions = ["umask=0077"];
+                        };
+                    };
+                    SWAP = {
+                        type = "8200";
+                        size = "16G";
+                        content = {
+                            type = "swap";
                         };
                     };
                     ZFS = {
