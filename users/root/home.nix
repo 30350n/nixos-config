@@ -33,6 +33,9 @@
             jnoortheen.nix-ide
             peterschmalfeldt.explorer-exclude
             mkhl.shfmt
+            ms-python.python
+            detachhead.basedpyright
+            charliermarsh.ruff
         ];
 
     home.stateVersion = "23.11";
