@@ -5,7 +5,6 @@
         ./fish.nix
         ./impermanence.nix
         ./networking.nix
-        ./locale.nix
         ./packages.nix
         ./xdg.nix
     ];
