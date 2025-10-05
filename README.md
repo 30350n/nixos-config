@@ -11,5 +11,5 @@ $ sudo nix --experimental-features "nix-command flakes" run github:30350n/nixos-
 ### Using [custom nixos-core#nixos-iso image](https://github.com/30350n/nixos-core#building-custom-nixos-corenixos-iso-image)
 
 ```shell
-$ sudo install https://github.com/30350n/nixos-config
+$ sudo nixos-core-install https://github.com/30350n/nixos-config
 ```
