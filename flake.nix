@@ -54,6 +54,13 @@
         ];
     in {
         nixosConfigurations = {
+            desktop = nixpkgs.lib.nixosSystem {
+                specialArgs = {
+                    hostName = "desktop";
+                    inherit flake-inputs;
+                };
+                modules = defaultModules ++ [./hosts/desktop/configuration.nix];
+            };
             thinkpad = nixpkgs.lib.nixosSystem {
                 specialArgs = {
                     hostName = "thinkpad";
