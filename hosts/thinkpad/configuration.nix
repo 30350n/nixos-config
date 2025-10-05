@@ -5,8 +5,8 @@
 
         ../../modules/nixos/base/configuration.nix
         ../../modules/nixos/bluetooth.nix
+        ../../modules/nixos/gdm.nix
         ../../modules/nixos/gnome.nix
-        ../../modules/nixos/sddm.nix
         ../../modules/nixos/ssh-server.nix
         ../../users/bobbe
     ];
