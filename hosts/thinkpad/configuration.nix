@@ -4,7 +4,7 @@
         ./disko.nix
 
         ../../modules/nixos
-        ../../users/bobbe
+        ../../users/max
     ];
 
     networking.hostId = import ./host-id.nix;
@@ -12,7 +12,7 @@
     custom.isLaptop = true;
 
     home-manager = {
-        users.bobbe = import ../../users/bobbe/home.nix;
+        users.max = import ../../users/max/home.nix;
         users.root = import ../../users/root/home.nix;
     };
 }

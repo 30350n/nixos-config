@@ -4,10 +4,10 @@
         ../../modules/nixos/udev.nix
     ];
 
-    users.users.bobbe = {
+    users.users.max = {
         isNormalUser = true;
         extraGroups = ["wheel" "networkmanager" "dialout"];
-        hashedPasswordFile = "/persist/passwords/bobbe";
+        hashedPasswordFile = "/persist/passwords/max";
         packages = (
             (import ./packages.nix {inherit pkgs;})
             ++ (import ../work/packages.nix {inherit pkgs;})
