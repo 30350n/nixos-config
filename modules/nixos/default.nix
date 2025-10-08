@@ -21,5 +21,6 @@
         bluetooth = lib.mkEnableOption "bluetooth" // {default = self.isLaptop;};
         boot.silent = lib.mkEnableOption "silentboot" // {default = true;};
         fish.enable = lib.mkEnableOption "fish" // {default = true;};
+        nvidia.enable = lib.mkEnableOption "nvidia";
     };
 }
