@@ -7,5 +7,6 @@ with pkgs; [
     #unfree.modrinth-app
 
     audacity
+    musescore
     unfree.reaper
 ]
