@@ -43,12 +43,13 @@
         };
 
         "org/gnome/shell/extensions/just-perfection" = {
+            animation = 4;
             panel-notification-icon = false;
             quick-settings-airplane-mode = false;
             quick-settings-dark-mode = false;
             startup-status = 0;
             support-notifier-type = 0;
-            # top-panel-position = 1;
+            window-demands-attention-focus = true;
             window-preview-caption = false;
             workspace-peek = true;
             workspace-popup = false;
