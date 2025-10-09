@@ -15,7 +15,22 @@
         workspaces-indicator-by-open-apps
     ];
 
-    dconf-settings = {
+    dconf-settings = let
+        panel =
+            if nixosConfig.custom.isLaptop
+            then {
+                icon-size = 16;
+                size = 35;
+                workspace-spacing = 3;
+                workspace-labels = 12;
+            }
+            else {
+                icon-size = 20;
+                size = 40;
+                workspace-spacing = 4;
+                workspace-labels = 14;
+            };
+    in {
         "org/gnome/shell" = {
             disable-user-extensions = false;
             enabled-extensions = map (extension: extension.extensionUuid) extensions;
@@ -42,8 +57,16 @@
             panel-icon-type = "none";
         };
 
+        "org/gnome/shell/extensions/appindicator" = {
+            icon-size = panel.icon-size + 2;
+        };
+
         "org/gnome/shell/extensions/just-perfection" = {
             animation = 4;
+            panel-size = panel.size;
+            panel-button-padding-size = 7;
+            panel-icon-size = panel.icon-size;
+            panel-indicator-padding-size = 7;
             panel-notification-icon = false;
             quick-settings-airplane-mode = false;
             quick-settings-dark-mode = false;
@@ -72,11 +95,12 @@
             indicator-hide-empty = true;
             indicator-round-borders = false;
             indicator-show-focused-app = false;
-            size-app-icon = 22;
-            spacing-app-left = 3;
-            spacing-app-right = 3;
-            spacing-label-left = 3;
-            spacing-label-right = 3;
+            size-app-icon = panel.icon-size + 6;
+            size-labels = panel.workspace-labels;
+            spacing-app-left = panel.workspace-spacing;
+            spacing-app-right = panel.workspace-spacing;
+            spacing-label-left = panel.workspace-spacing;
+            spacing-label-right = panel.workspace-spacing;
         };
     };
 }
