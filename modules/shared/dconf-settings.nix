@@ -19,10 +19,20 @@ lib.mkMerge [
 
         "org/gnome/desktop/notifications".show-banners = false;
 
-        "org/gnome/desktop/session".idle-delay =
+        "org/gnome/desktop/peripherals/touchpad" = {
+            click-method = "areas";
+            natural-scroll = false;
+        };
+        "org/gnome/desktop/peripherals/mouse" = {
+            accel-profile = "flat";
+            speed = -0.1;
+        };
+
+        "org/gnome/desktop/session".idle-delay = lib.gvariant.mkInt32 (
             if nixosConfig.custom.isLaptop
             then 15 * 60
-            else 60 * 60;
+            else 60 * 60
+        );
 
         "org/gnome/settings-daemon/plugins/power".power-button-action = "interactive";
         "org/gnome/gnome-session".logout-prompt = false;
@@ -32,12 +42,6 @@ lib.mkMerge [
             night-light-temperature = lib.gvariant.mkInt32 3200;
         };
     }
-    (lib.mkIf nixosConfig.custom.isLaptop {
-        "org/gnome/desktop/peripherals/touchpad" = {
-            click-method = "areas";
-            natural-scroll = false;
-        };
-    })
     (lib.mkIf useExtensions (import ./gnome-shell-extensions.nix inputs).dconf-settings)
     (lib.mkIf (wallpaper != null) {
         "org/gnome/desktop/background" = {
