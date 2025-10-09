@@ -28,7 +28,7 @@ lib.mkMerge [
             speed = -0.1;
         };
 
-        "org/gnome/desktop/session".idle-delay = lib.gvariant.mkInt32 (
+        "org/gnome/desktop/session".idle-delay = lib.gvariant.mkUint32 (
             if nixosConfig.custom.isLaptop
             then 15 * 60
             else 60 * 60
@@ -39,7 +39,7 @@ lib.mkMerge [
 
         "org/gnome/settings-daemon/plugins/color" = {
             night-light-enabled = true;
-            night-light-temperature = lib.gvariant.mkInt32 3200;
+            night-light-temperature = lib.gvariant.mkUint32 3200;
         };
     }
     (lib.mkIf useExtensions (import ./gnome-shell-extensions.nix inputs).dconf-settings)
