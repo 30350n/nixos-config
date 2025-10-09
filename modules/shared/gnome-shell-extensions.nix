@@ -43,6 +43,7 @@
         };
 
         "org/gnome/shell/extensions/just-perfection" = {
+            panel-notification-icon = false;
             quick-settings-airplane-mode = false;
             quick-settings-dark-mode = false;
             startup-status = 0;

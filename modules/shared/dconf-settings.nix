@@ -17,6 +17,13 @@ lib.mkMerge [
             show-battery-percentage = nixosConfig.custom.isLaptop;
         };
 
+        "org/gnome/desktop/notifications".show-banners = false;
+
+        "org/gnome/desktop/session".idle-delay =
+            if nixosConfig.custom.isLaptop
+            then 15 * 60
+            else 60 * 60;
+
         "org/gnome/settings-daemon/plugins/power".power-button-action = "interactive";
         "org/gnome/gnome-session".logout-prompt = false;
 
