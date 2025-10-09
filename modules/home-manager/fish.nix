@@ -29,7 +29,7 @@
 
                 set conflict (${jj_log "'stringify(conflict)'"})
                 set change_id (${jj_log "'format_short_id(change_id)'"})
-                set bookmarks_tags (${jj_log "-r @-::@ 'bookmarks ++ tags'"})
+                set bookmarks_tags (${jj_log "'bookmarks ++ tags' -r @-::@"})
                 set modded (${jj_log "'diff.files().filter(|f| f.status() == \"modified\").len()'"})
                 set added (${jj_log "'diff.files().filter(|f| f.status() == \"added\").len()'"})
                 set removed (${jj_log "'diff.files().filter(|f| f.status() == \"removed\").len()'"})
