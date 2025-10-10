@@ -3,7 +3,7 @@
         flake-inputs.nixos-core.overlays.default
         flake-inputs.nix-vscode-extensions.overlays.default
         (final: prev: {
-            custom = rec {
+            custom = {
                 commit-time-to-author = final.callPackage ./commit-time-to-author {};
                 configure-codium = final.callPackage ./configure-codium.nix {};
                 ibm-plex = import ./ibm-plex {pkgs = prev;};
@@ -11,10 +11,6 @@
                 mkshell = final.callPackage ./mkshell {};
                 openpnp = final.callPackage ./openpnp.nix {};
                 polkit = import ./polkit {pkgs = prev;};
-                sddm-theme = import ./sddm-theme {
-                    pkgs = prev;
-                    inherit wallpapers;
-                };
                 segoe-ui = final.callPackage ./segoe-ui {};
                 uvtools = final.callPackage ./uvtools {};
                 wallpapers = import ./wallpapers.nix {
