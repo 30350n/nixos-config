@@ -10,6 +10,7 @@
     networking.hostId = import ./host-id.nix;
 
     custom.nvidia.enable = true;
+    custom.steam.enable = true;
 
     home-manager = {
         users.max = import ../../users/max/home.nix;

@@ -22,5 +22,6 @@
         boot.silent = lib.mkEnableOption "silentboot" // {default = true;};
         fish.enable = lib.mkEnableOption "fish" // {default = true;};
         nvidia.enable = lib.mkEnableOption "nvidia";
+        steam.enable = lib.mkEnableOption "steam";
     };
 }

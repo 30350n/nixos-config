@@ -26,9 +26,4 @@
             monospace = ["IBM Plex Mono" "BlexMono Nerd Font"];
         };
     };
-
-    programs.steam = {
-        enable = true;
-        package = pkgs.unfree.steam;
-    };
 }
