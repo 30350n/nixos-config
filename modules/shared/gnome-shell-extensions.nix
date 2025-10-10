@@ -8,6 +8,7 @@
     extensions = with pkgs.gnomeExtensions; [
         appindicator
         ddterm
+        gamemode-shell-extension
         just-perfection
         new-workspace-shortcut
         syncthing-indicator
@@ -59,6 +60,11 @@
 
         "org/gnome/shell/extensions/appindicator" = {
             icon-size = panel.icon-size + 2;
+        };
+
+        "org/gnome/shell/extensions/gamemodeshellextension" = {
+            show-icon-only-when-active = true;
+            show-launch-notification = false;
         };
 
         "org/gnome/shell/extensions/just-perfection" = {
