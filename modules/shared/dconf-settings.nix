@@ -34,7 +34,16 @@ lib.mkMerge [
             else 60 * 60
         );
 
-        "org/gnome/settings-daemon/plugins/power".power-button-action = "interactive";
+        "org/gnome/settings-daemon/plugins/power" = {
+            power-button-action = "interactive";
+            sleep-inactive-ac-timeout = lib.gvariant.mkInt32 0;
+            sleep-inactive-battery-timeout = lib.gvariant.mkInt32 (
+                if nixosConfig.custom.isLaptop
+                then 60 * 60
+                else 0
+            );
+        };
+
         "org/gnome/gnome-session".logout-prompt = false;
 
         "org/gnome/settings-daemon/plugins/color" = {

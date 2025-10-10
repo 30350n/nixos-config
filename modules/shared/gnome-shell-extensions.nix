@@ -12,6 +12,7 @@
         just-perfection
         new-workspace-shortcut
         syncthing-indicator
+        unblank
         vscode-search-provider
         workspaces-indicator-by-open-apps
     ];
