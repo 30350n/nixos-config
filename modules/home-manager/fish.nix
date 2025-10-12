@@ -9,7 +9,7 @@
         ];
 
         shellAliases = {
-            cat = "bat -pp";
+            cat = "bat";
             ls = "eza -l";
             la = "eza -la";
             laa = "eza -laa";
