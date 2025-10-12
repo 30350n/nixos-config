@@ -13,9 +13,6 @@
                 polkit = import ./polkit {pkgs = prev;};
                 segoe-ui = final.callPackage ./segoe-ui {};
                 uvtools = final.callPackage ./uvtools {};
-                wallpapers = import ./wallpapers.nix {
-                    nix-wallpaper = flake-inputs.nix-wallpaper.packages.${final.system}.default;
-                };
             };
 
             gnome-desktop = import ./gnome-desktop {pkgs = prev;};

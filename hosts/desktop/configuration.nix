@@ -11,6 +11,10 @@
 
     custom.nvidia.enable = true;
     custom.steam.enable = true;
+    custom.wallpaper = {
+        width = 2560;
+        height = 1440;
+    };
 
     home-manager = {
         users.max = import ../../users/max/home.nix;

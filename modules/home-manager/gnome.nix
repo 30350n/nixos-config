@@ -1,14 +1,15 @@
-{pkgs, ...} @ inputs: {
+{
+    nixosConfig,
+    pkgs,
+    ...
+} @ inputs: {
     dconf = {
         enable = true;
-        settings = let
-            wallpaper = "${pkgs.custom.wallpapers."1080p"}/share/wallpapers/nixos-wallpaper.png";
-        in
-            import ../shared/dconf-settings.nix (inputs
-            // {
-                useExtensions = true;
-                inherit wallpaper;
-            });
+        settings = import ../shared/dconf-settings.nix (inputs
+        // {
+            useExtensions = true;
+            wallpaper = nixosConfig.custom.wallpaper.file;
+        });
     };
 
     gtk = {
