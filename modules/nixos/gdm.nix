@@ -16,8 +16,8 @@
         '');
     in
         lib.lists.flatten (map (user: [
-            "C ${accountsServiceDir}/icons/${user.name} 0644 root root - ${userIcon user.name}"
-            "f ${accountsServiceDir}/users/${user.name} 0644 root root - - ${userFile user.name}"
+            "L+ ${accountsServiceDir}/icons/${user.name} - - - - ${userIcon user.name}"
+            "f+ ${accountsServiceDir}/users/${user.name} 0644 root root - ${userFile user.name}"
         ]) (builtins.filter (user: user.isNormalUser) (builtins.attrValues config.users.users)));
 
     programs.dconf = {
