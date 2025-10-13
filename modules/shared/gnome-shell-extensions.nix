@@ -22,13 +22,11 @@
             if nixosConfig.custom.isLaptop
             then {
                 icon-size = 16;
-                size = 35;
                 workspace-spacing = 3;
                 workspace-labels = 12;
             }
             else {
                 icon-size = 20;
-                size = 40;
                 workspace-spacing = 4;
                 workspace-labels = 14;
             };
@@ -70,7 +68,6 @@
 
         "org/gnome/shell/extensions/just-perfection" = {
             animation = 4;
-            panel-size = panel.size;
             panel-button-padding-size = 7;
             panel-icon-size = panel.icon-size;
             panel-indicator-padding-size = 7;

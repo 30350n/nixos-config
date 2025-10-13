@@ -1,0 +1,10 @@
+--- a/js/ui/panel.js
++++ b/js/ui/panel.js
+@@ -433,6 +433,7 @@ class Panel extends St.Widget {
+         super._init({
+             name: 'panel',
+             reactive: true,
++            height: @height@,
+         });
+ 
+         this.set_offscreen_redirect(Clutter.OffscreenRedirect.ALWAYS);

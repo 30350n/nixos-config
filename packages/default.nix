@@ -1,4 +1,8 @@
-{flake-inputs, ...}: {
+{
+    config,
+    flake-inputs,
+    ...
+}: {
     nixpkgs.overlays = [
         flake-inputs.nixos-core.overlays.default
         flake-inputs.nix-vscode-extensions.overlays.default
@@ -25,7 +29,13 @@
             fish = import ./fish.nix {pkgs = prev;};
 
             gnome-desktop = import ./gnome-desktop {pkgs = prev;};
-            gnome-shell = import ./gnome-shell {pkgs = prev;};
+            gnome-shell = import ./gnome-shell {
+                pkgs = prev;
+                panelHeight =
+                    if config.custom.isLaptop
+                    then 40
+                    else null;
+            };
         })
     ];
 }
