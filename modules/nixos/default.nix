@@ -18,6 +18,10 @@
 
         audio = {
             enable = lib.mkEnableOption "audio" // {default = true;};
+            defaultVolume = lib.mkOption {
+                type = lib.types.nullOr lib.types.float;
+                default = null;
+            };
             realtime = lib.mkEnableOption "realtime" // {default = true;};
         };
         bluetooth = lib.mkEnableOption "bluetooth" // {default = self.isLaptop;};

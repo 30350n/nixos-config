@@ -9,6 +9,7 @@
 
     networking.hostId = import ./host-id.nix;
 
+    custom.audio.defaultVolume = 0.5;
     custom.nvidia.enable = true;
     custom.steam.enable = true;
     custom.wallpaper = {
