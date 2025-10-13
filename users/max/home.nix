@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+    config,
+    pkgs,
+    ...
+}: {
     programs.home-manager.enable = true;
 
     imports = [
@@ -10,6 +14,7 @@
         ../../modules/home-manager/jujustu.nix
         ../../modules/home-manager/prusa-slicer.nix
         ../../modules/home-manager/vscode
+        ../../modules/home-manager/xdg.nix
         ../../modules/home-manager/zoxide.nix
     ];
 
@@ -17,9 +22,9 @@
 
     home.file.".face" = {source = ./face.png;};
 
-    home.sessionVariables = {
-        XDG_PROGRAMMING_DIR = "$HOME/programming";
-        XDG_PROJECTS_DIR = "$HOME/projects";
+    xdg.userDirs.extraConfig = {
+        XDG_PROGRAMMING_DIR = "${config.home.homeDirectory}/programming";
+        XDG_PROJECTS_DIR = "${config.home.homeDirectory}/projects";
     };
 
     programs.tofi.settings.font = ''
