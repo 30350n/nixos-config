@@ -42,18 +42,19 @@
                 type = lib.types.float;
                 default = 10.0;
             };
-            file = let
-                package = flake-inputs.nix-wallpaper.packages.${pkgs.system}.default.override {
-                    preset = "gruvbox-dark-rainbow";
-                    inherit (self.wallpaper) logoSize;
-                    inherit (self.wallpaper) width;
-                    inherit (self.wallpaper) height;
-                };
-            in
-                lib.mkOption {
-                    type = lib.types.string;
-                    default = "${package}/share/wallpapers/nixos-wallpaper.png";
-                };
+            file = lib.mkOption {
+                type = lib.types.string;
+                internal = true;
+                readOnly = true;
+                default = let
+                    package = flake-inputs.nix-wallpaper.packages.${pkgs.system}.default.override {
+                        preset = "gruvbox-dark-rainbow";
+                        inherit (self.wallpaper) logoSize;
+                        inherit (self.wallpaper) width;
+                        inherit (self.wallpaper) height;
+                    };
+                in "${package}/share/wallpapers/nixos-wallpaper.png";
+            };
         };
     };
 }
