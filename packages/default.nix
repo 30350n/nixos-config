@@ -9,6 +9,7 @@
                 extra-desktop-items = final.callPackage ./extra-desktop-items.nix {};
                 ibm-plex = import ./ibm-plex {pkgs = prev;};
                 nerd-fonts.blex-mono = import ./ibm-plex/nerdfont.nix {pkgs = prev;};
+                mate.mate-polkit = import ./mate-polkit {pkgs = prev;};
                 mkshell = final.callPackage ./mkshell {};
                 openpnp = final.callPackage ./openpnp.nix {};
                 polkit = import ./polkit {pkgs = prev;};
