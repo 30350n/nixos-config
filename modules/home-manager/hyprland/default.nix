@@ -37,6 +37,8 @@
                 repeat_rate = 30;
                 repeat_delay = 250;
                 follow_mouse = 2;
+                sensitivity = -0.1;
+                accel_profile = "flat";
             };
 
             bind = [
