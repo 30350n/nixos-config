@@ -1,5 +1,6 @@
 {nixosConfig, ...}: {
     imports = [
+        ./games.nix
         ./hyprpaper.nix
         ./monitors.nix
         ./scratchpads.nix
