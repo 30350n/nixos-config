@@ -7,6 +7,9 @@
         file-roller
         krusader
         loupe
+        localsend
+        papers
+        scrcpy
         simple-scan
         vlc
 
@@ -15,4 +18,6 @@
             pythonPackages.bpython
         ]))
     ];
+
+    services.printing.enable = true;
 }
