@@ -10,6 +10,9 @@
     networking.hostId = import ./host-id.nix;
 
     custom.audio.defaultVolume = 0.5;
+    custom.hyprland = {
+        enable = true;
+    };
     custom.nvidia.enable = true;
     custom.steam.enable = true;
     custom.wallpaper = {
