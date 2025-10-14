@@ -1,6 +1,7 @@
 {nixosConfig, ...}: {
     imports = [
         ./hyprpaper.nix
+        ./monitors.nix
         ./scratchpads.nix
         ./tofi.nix
         ./zoom.nix
@@ -24,8 +25,6 @@
             decoration = {
                 rounding = 4;
             };
-
-            monitor = ",highres,auto,1";
 
             xwayland.force_zero_scaling = true;
 

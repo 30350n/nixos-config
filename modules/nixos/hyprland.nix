@@ -6,6 +6,10 @@
 }: {
     options.custom.hyprland = {
         enable = lib.mkEnableOption "hyprland";
+        monitors = lib.mkOption {
+            type = lib.types.listOf lib.types.string;
+            default = [];
+        };
     };
 
     config = lib.mkIf config.custom.hyprland.enable {
