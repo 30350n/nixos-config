@@ -22,7 +22,7 @@
             "CTRL SUPER, right, exec, ${script_pkg}/bin/${script_name}"
         ];
 
-        windowrulev2 = [
+        windowrule = [
             "float, class:(^zoom$), initialTitle:(^(?!.*^zoom$).*$)"
         ];
     };
