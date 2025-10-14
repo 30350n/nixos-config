@@ -20,11 +20,11 @@
         };
 
         extraConfig = ''
-            bind=CTRL ALT, T, togglespecialworkspace, scratchpad_terminal
-            bind=CTRL ALT, T, submap, scratchpad_terminal
+            bind=CTRL ALT, minus, togglespecialworkspace, scratchpad_terminal
+            bind=CTRL ALT, minus, submap, scratchpad_terminal
             submap=scratchpad_terminal
-            bind=CTRL ALT, T, togglespecialworkspace, scratchpad_terminal
-            bind=CTRL ALT, T, submap, reset
+            bind=CTRL ALT, minus, togglespecialworkspace, scratchpad_terminal
+            bind=CTRL ALT, minus, submap, reset
             bind=, escape, togglespecialworkspace, scratchpad_terminal
             bind=, escape, submap, reset
             submap=reset

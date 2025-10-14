@@ -52,7 +52,7 @@
                 "SHIFT SUPER, up,    movefocus, u"
                 "SHIFT SUPER, down,  movefocus, d"
 
-                "ALT, F4, killactive"
+                "CTRL ALT, backspace, killactive"
                 ", F11, fullscreen, 1"
 
                 "CTRL ALT, left,  workspace, -1"
