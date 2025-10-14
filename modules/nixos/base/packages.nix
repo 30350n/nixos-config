@@ -1,10 +1,13 @@
 {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
         alacritty
-        kdePackages.gwenview
+        baobab
+        eyedropper
         firefox
         file-roller
         krusader
+        loupe
+        simple-scan
         vlc
 
         (python3.withPackages (pythonPackages: [
