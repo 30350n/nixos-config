@@ -4,17 +4,26 @@
 }:
 stdenv.mkDerivation {
     name = "extra-desktop-items";
+    dontValidateDesktopFiles = true;
     buildCommand = let
         desktopItems = [
             (makeDesktopItem {
                 name = "shutdown";
                 desktopName = "Shutdown";
+                notShowIn = ["GNOME"];
                 exec = "shutdown now";
             })
             (makeDesktopItem {
                 name = "reboot";
                 desktopName = "Reboot";
+                notShowIn = ["GNOME"];
                 exec = "reboot";
+            })
+            (makeDesktopItem {
+                name = "logout";
+                desktopName = "Logout";
+                notShowIn = ["GNOME"];
+                exec = "hyprctl dispatch exit";
             })
         ];
     in
