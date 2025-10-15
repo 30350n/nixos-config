@@ -15,6 +15,7 @@
                 polkit = import ./polkit {pkgs = prev;};
                 segoe-ui = final.callPackage ./segoe-ui {};
                 uvtools = final.callPackage ./uvtools {};
+                yt-dlp-music = final.callPackage ./yt-dlp-music {};
             };
 
             gnome-desktop = import ./gnome-desktop {pkgs = prev;};

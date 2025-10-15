@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/usr/bin/env bash
 
 help() {
     printf "Set commit timestamp to author timestamp\n\n"

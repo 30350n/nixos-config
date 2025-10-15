@@ -9,4 +9,8 @@ with pkgs; [
     audacity
     musescore
     unfree.reaper
+
+    yt-dlp
+    custom.yt-dlp-music
+    picard
 ]
