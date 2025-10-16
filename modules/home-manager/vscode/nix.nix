@@ -1,9 +1,9 @@
 {
-    pkgs,
+    config,
     extensions,
     lib,
-    config,
-    hostName,
+    nixosConfig,
+    pkgs,
     ...
 }: {
     options = {
@@ -34,8 +34,8 @@
                         (lib.mkIf (language-server == "nixd") {
                             options = rec {
                                 nixos.expr =
-                                    "(builtins.getFlake \"/etc/nixos/\")"
-                                    + ".nixosConfigurations.${hostName}.options";
+                                    "(builtins.getFlake \"/etc/nixos/\").nixosConfigurations"
+                                    + ".${nixosConfig.networking.hostName}.options";
                                 home-manager.expr =
                                     nixos.expr + ".home-manager.users.type.getSubOptions []";
                             };
@@ -52,9 +52,5 @@
                 };
             };
         };
-
-        home.packages = [
-            language-server-package
-        ];
     };
 }
