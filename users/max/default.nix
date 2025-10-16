@@ -1,9 +1,4 @@
 {pkgs, ...}: {
-    imports = [
-        ../../modules/nixos/docker.nix
-        ../../modules/nixos/udev.nix
-    ];
-
     users.users.max = {
         isNormalUser = true;
         extraGroups = ["wheel" "networkmanager" "dialout"];
@@ -12,18 +7,5 @@
             (import ./packages.nix {inherit pkgs;})
             ++ (import ../work/packages.nix {inherit pkgs;})
         );
-    };
-
-    fonts = {
-        packages = with pkgs; [
-            custom.segoe-ui
-            custom.ibm-plex
-            custom.nerd-fonts.blex-mono
-        ];
-        fontconfig.defaultFonts = {
-            serif = ["IBM Plex Serif"];
-            sansSerif = ["Segoe UI"];
-            monospace = ["IBM Plex Mono" "BlexMono Nerd Font"];
-        };
     };
 }
