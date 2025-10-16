@@ -1,5 +1,6 @@
 {
     config,
+    hostName,
     lib,
     ...
 }: {
@@ -17,6 +18,12 @@
 
     config = {
         hardware.bluetooth.enable = lib.mkOverride 999 config.custom.isLaptop;
+
+        networking = {
+            networkmanager.enable = true;
+            inherit hostName;
+            enableIPv6 = false;
+        };
 
         users.mutableUsers = false;
         users.users.root.hashedPasswordFile = "/persist/passwords/root";
