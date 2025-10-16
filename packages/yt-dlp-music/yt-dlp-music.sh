@@ -47,7 +47,7 @@ yt-dlp \
     --parse-metadata "%(playlist_index)02d :%(filename_prefix)s" \
     --replace-in-metadata "filename_prefix" "^NA $" "" \
     --add-metadata \
-    -o "$TEMP/%(meta_artist|Other)s/%(album_folder|)s%(filename_prefix|)s%(meta_title)s.%(ext)s" \
+    -o "$TEMP/%(meta_artist|Other)s/%(album_folder|)s/%(filename_prefix|)s%(meta_title)s.%(ext)s" \
     "$@"
 
 find "$TEMP" -type f -name '*.opus' | while read -r file; do
