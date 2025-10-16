@@ -49,6 +49,12 @@
             nixos-core.nixosModules.nixos-core
             disko.nixosModules.disko
             home-manager.nixosModules.home-manager
+            {
+                home-manager = {
+                    useGlobalPkgs = true;
+                    useUserPackages = true;
+                };
+            }
             impermanence.nixosModules.impermanence
             ./packages
         ];
