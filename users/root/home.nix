@@ -11,7 +11,6 @@
         ../../modules/home-manager/git.nix
         ../../modules/home-manager/jujustu.nix
         ../../modules/home-manager/vscode
-        ../../modules/home-manager/zoxide.nix
     ];
 
     gtk = {
