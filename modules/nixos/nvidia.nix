@@ -2,11 +2,14 @@
     config,
     lib,
     ...
-}:
-lib.mkIf config.custom.nvidia.enable {
-    hardware.graphics.enable = true;
-    services.xserver.videoDrivers = ["nvidia"];
-    hardware.nvidia.open = true;
+}: {
+    options.custom.nvidia.enable = lib.mkEnableOption "nvidia";
 
-    nixos-core.allowUnfree = ["nvidia-x11" "nvidia-settings"];
+    config = lib.mkIf config.custom.nvidia.enable {
+        hardware.graphics.enable = true;
+        services.xserver.videoDrivers = ["nvidia"];
+        hardware.nvidia.open = true;
+
+        nixos-core.allowUnfree = ["nvidia-x11" "nvidia-settings"];
+    };
 }

@@ -4,21 +4,25 @@
     pkgs,
     ...
 }: {
-    boot = lib.mkMerge [
+    options.custom.boot.silent = lib.mkEnableOption "silentboot" // {default = true;};
+
+    config.boot = lib.mkMerge [
         {
             loader = {
-                systemd-boot.enable = true;
-                systemd-boot.configurationLimit = 10;
-                efi.canTouchEfiVariables = true;
                 timeout = 0;
+                systemd-boot = {
+                    enable = true;
+                    configurationLimit = 10;
+                };
+                efi.canTouchEfiVariables = true;
             };
         }
         (lib.mkIf config.custom.boot.silent {
-            plymouth = with pkgs; {
+            plymouth = {
                 enable = true;
                 theme = "breeze";
-                logo = "${nixos-icons}/share/icons/hicolor/64x64/apps/nix-snowflake-white.png";
-                font = "${custom.segoe-ui}/share/fonts/truetype/segoeui.ttf";
+                logo = "${pkgs.nixos-icons}/share/icons/hicolor/64x64/apps/nix-snowflake-white.png";
+                font = "${pkgs.custom.segoe-ui}/share/fonts/truetype/segoeui.ttf";
             };
 
             consoleLogLevel = 0;
