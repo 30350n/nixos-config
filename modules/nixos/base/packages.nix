@@ -18,6 +18,4 @@
             pythonPackages.bpython
         ]))
     ];
-
-    services.printing.enable = true;
 }

@@ -25,6 +25,11 @@
             enableIPv6 = false;
         };
 
+        services = {
+            openssh.enable = true;
+            printing.enable = true;
+        };
+
         users.mutableUsers = false;
         users.users.root.hashedPasswordFile = "/persist/passwords/root";
 
