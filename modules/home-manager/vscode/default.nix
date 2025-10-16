@@ -35,6 +35,7 @@ in {
 
                 tamasfe.even-better-toml
                 mkhl.shfmt
+                timonwong.shellcheck
             ];
 
             userSettings = let
@@ -98,8 +99,13 @@ in {
                     "--space-redirects"
                 ];
 
+                "shellcheck.executablePath" = "${pkgs.shellcheck}/bin/shellcheck";
+
                 "[shellscript]" = {
                     "editor.detectIndentation" = true;
+                    "editor.codeActionsOnSave" = {
+                        "source.fixAll.shellcheck" = "explicit";
+                    };
                 };
             };
 

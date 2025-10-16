@@ -33,6 +33,7 @@
             jnoortheen.nix-ide
             peterschmalfeldt.explorer-exclude
             mkhl.shfmt
+            timonwong.shellcheck
             ms-python.python
             detachhead.basedpyright
             charliermarsh.ruff
