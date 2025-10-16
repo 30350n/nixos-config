@@ -4,7 +4,6 @@
 }:
 stdenv.mkDerivation {
     name = "extra-desktop-items";
-    dontValidateDesktopFiles = true;
     buildCommand = let
         desktopItems = [
             (makeDesktopItem {
