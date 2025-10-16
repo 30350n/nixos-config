@@ -1,6 +1,7 @@
 {lib, ...}: {
-    boot.initrd.postDeviceCommands = lib.mkAfter ''
-        zfs rollback -r zroot/root@blank
+    boot.initrd.postMountCommands = lib.mkAfter ''
+        echo "running boot.initrd.postMountCommands" > /dev/kmsg
+        zfs rollback -r zroot/root@blank > /dev/kmsg 2>&1
     '';
 
     fileSystems."/persist".neededForBoot = true;
