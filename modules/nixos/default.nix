@@ -9,12 +9,13 @@
         (lib.filesystem.listFilesRecursive ./.)
     );
 
-    options.custom = let
-        self = config.custom;
-    in {
+    options.custom = {
         isLaptop = lib.mkEnableOption "isLaptop";
 
-        bluetooth = lib.mkEnableOption "bluetooth" // {default = self.isLaptop;};
         fish.enable = lib.mkEnableOption "fish" // {default = true;};
+    };
+
+    config = {
+        hardware.bluetooth.enable = lib.mkOverride 999 config.custom.isLaptop;
     };
 }
