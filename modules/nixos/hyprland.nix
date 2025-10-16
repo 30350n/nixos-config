@@ -35,6 +35,7 @@
             wantedBy = ["graphical-session.target"];
             wants = ["graphical-session.target"];
             after = ["graphical-session.target"];
+            unitConfig.ConditionEnvironment = "XDG_CURRENT_DESKTOP=Hyprland";
             serviceConfig = {
                 Type = "simple";
                 ExecStart = ''
