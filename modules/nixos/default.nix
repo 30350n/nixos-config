@@ -2,6 +2,7 @@
     config,
     hostName,
     lib,
+    pkgs,
     ...
 }: {
     imports = (
@@ -17,6 +18,26 @@
     };
 
     config = {
+        environment.systemPackages = with pkgs; [
+            alacritty
+            baobab
+            eyedropper
+            firefox
+            file-roller
+            krusader
+            loupe
+            localsend
+            papers
+            scrcpy
+            simple-scan
+            vlc
+
+            (python3.withPackages (pythonPackages: [
+                pythonPackages.numpy
+                pythonPackages.bpython
+            ]))
+        ];
+
         hardware.bluetooth.enable = lib.mkOverride 999 config.custom.isLaptop;
 
         networking = {
