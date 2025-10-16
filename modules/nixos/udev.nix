@@ -5,4 +5,9 @@
         platformio-core.udev
         stlink
     ];
+
+    users.groups = {
+        adbusers = {};
+        plugdev = {};
+    };
 }
