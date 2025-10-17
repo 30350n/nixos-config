@@ -5,11 +5,7 @@
     pkgs,
     ...
 }: {
-    imports = (
-        lib.filter
-        (file: lib.strings.hasSuffix ".nix" file && file != ./default.nix)
-        (lib.filesystem.listFilesRecursive ./.)
-    );
+    imports = lib.nixos-core.autoImport ./.;
 
     options.custom = {
         isLaptop = lib.mkEnableOption "isLaptop";

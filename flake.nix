@@ -58,19 +58,20 @@
             impermanence.nixosModules.impermanence
             ./packages
         ];
+        lib = nixos-core.lib;
     in {
         nixosConfigurations = {
             desktop = nixpkgs.lib.nixosSystem {
                 specialArgs = {
                     hostName = "desktop";
-                    inherit flake-inputs;
+                    inherit flake-inputs lib;
                 };
                 modules = defaultModules ++ [./hosts/desktop/configuration.nix];
             };
             thinkpad = nixpkgs.lib.nixosSystem {
                 specialArgs = {
                     hostName = "thinkpad";
-                    inherit flake-inputs;
+                    inherit flake-inputs lib;
                 };
                 modules = defaultModules ++ [./hosts/thinkpad/configuration.nix];
             };
