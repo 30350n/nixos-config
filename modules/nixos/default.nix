@@ -13,8 +13,6 @@
 
     options.custom = {
         isLaptop = lib.mkEnableOption "isLaptop";
-
-        fish.enable = lib.mkEnableOption "fish" // {default = true;};
     };
 
     config = {

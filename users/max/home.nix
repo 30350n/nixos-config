@@ -8,7 +8,6 @@
     imports = [
         ../../modules/home-manager/alacritty.nix
         ../../modules/home-manager/direnv.nix
-        ../../modules/home-manager/fish.nix
         ../../modules/home-manager/hyprland
         ../../modules/home-manager/git.nix
         ../../modules/home-manager/gnome.nix

@@ -18,6 +18,8 @@
                 yt-dlp-music = final.callPackage ./yt-dlp-music {};
             };
 
+            fish = import ./fish.nix {pkgs = prev;};
+
             gnome-desktop = import ./gnome-desktop {pkgs = prev;};
             gnome-shell = import ./gnome-shell {pkgs = prev;};
         })
