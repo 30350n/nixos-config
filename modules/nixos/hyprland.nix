@@ -17,17 +17,15 @@
 
         environment.sessionVariables.NIXOS_OZONE_WL = "1";
         environment.systemPackages = with pkgs;
-            [
-                tofi
-                hyprpaper
-                custom.extra-desktop-items
-                custom.mate.mate-polkit
-            ]
-            ++ (
-                if config.hardware.bluetooth.enable
-                then [blueberry]
-                else []
-            );
+            lib.mkMerge [
+                [
+                    tofi
+                    hyprpaper
+                    custom.extra-desktop-items
+                    custom.mate.mate-polkit
+                ]
+                (lib.mkIf config.hardware.bluetooth.enable [blueberry])
+            ];
 
         security.polkit.enable = true;
         systemd.user.services.polkit-mate-authentication-agent-1 = {
