@@ -20,9 +20,4 @@
         width = 2560;
         height = 1440;
     };
-
-    home-manager = {
-        users.max = import ../../users/max/home.nix;
-        users.root = import ../../users/root/home.nix;
-    };
 }

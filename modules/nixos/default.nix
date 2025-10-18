@@ -61,6 +61,7 @@
 
         users.mutableUsers = false;
         users.users.root.hashedPasswordFile = "/persist/passwords/root";
+        home-manager.users.root = ../../users/root/home.nix;
 
         system.stateVersion = "23.11";
     };
