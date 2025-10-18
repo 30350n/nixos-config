@@ -29,7 +29,6 @@
         nix-wallpaper = {
             url = "github:lunik1/nix-wallpaper";
             inputs.nixpkgs.follows = "nixpkgs";
-            inputs.flake-utils.follows = "nix-vscode-extensions/flake-utils";
         };
     };
 

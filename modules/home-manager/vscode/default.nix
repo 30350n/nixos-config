@@ -41,6 +41,9 @@ in {
             userSettings = let
                 fonts = nixosConfig.fonts.fontconfig.defaultFonts.monospace;
             in {
+                "chat.agent.enabled" = false;
+                "chat.disableAIFeatures" = true;
+
                 "editor.fontFamily" = ''
                     ${builtins.concatStringsSep ", " (builtins.map (s: "'${s}'") fonts)}
                 '';
@@ -81,6 +84,7 @@ in {
                 "window.zoomLevel" = 1;
 
                 "workbench.editor.empty.hint" = "hidden";
+                "workbench.secondarySideBar.defaultVisibility" = "hidden";
                 "workbench.startupEditor" = "none";
 
                 "direnv.restart.automatic" = true;
