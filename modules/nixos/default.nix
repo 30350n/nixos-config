@@ -13,6 +13,8 @@
 
     config = {
         environment.systemPackages = with pkgs; [
+            custom.configure-codium
+
             alacritty
             baobab
             eyedropper
