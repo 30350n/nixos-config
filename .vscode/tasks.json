@@ -11,9 +11,9 @@
             }
         },
         {
-            "label": "rebuild (test)",
+            "label": "rebuild (dry)",
             "type": "shell",
-            "command": "rebuild --test",
+            "command": "rebuild --dry",
             "group": {
                 "kind": "test",
                 "isDefault": true

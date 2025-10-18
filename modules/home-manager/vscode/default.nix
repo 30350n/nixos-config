@@ -41,6 +41,9 @@ in {
             userSettings = let
                 fonts = nixosConfig.fonts.fontconfig.defaultFonts.monospace;
             in {
+                "chat.agent.enabled" = false;
+                "chat.disableAIFeatures" = true;
+
                 "editor.fontFamily" = ''
                     ${builtins.concatStringsSep ", " (builtins.map (s: "'${s}'") fonts)}
                 '';
