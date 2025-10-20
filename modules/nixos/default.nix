@@ -58,7 +58,10 @@
 
         services = {
             openssh.enable = true;
-            printing.enable = true;
+            printing = {
+                enable = true;
+                drivers = with pkgs; [unfree.cnijfilter2];
+            };
         };
 
         users.mutableUsers = false;
