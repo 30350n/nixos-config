@@ -35,6 +35,8 @@
                 )
             '';
 
+            ui.default-command = "log";
+
             user = {
                 name = "Bobbe";
                 email = "maxschlecht@web.de";

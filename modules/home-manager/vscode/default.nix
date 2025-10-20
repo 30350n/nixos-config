@@ -75,6 +75,13 @@ in {
 
                 "terminal.integrated.allowChords" = false;
                 "terminal.integrated.defaultProfile.linux" = "fish";
+                "terminal.integrated.profiles.linux" = {
+                    "JavaScript Debug Terminal" = null;
+                    "watch jj log" = with pkgs; {
+                        path = "${procps}/bin/watch";
+                        args = ["-n" "1" "-t" "--color" "${jujutsu}/bin/jj" "log" "--color=always"];
+                    };
+                };
                 "terminal.integrated.scrollback" = 10000;
                 "terminal.integrated.shellIntegration.enabled" = false;
 
