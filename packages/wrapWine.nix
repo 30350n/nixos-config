@@ -1,13 +1,12 @@
 # modified version of https://github.com/lucasew/nixcfg/blob/ebcac9/nix/pkgs/wrapWine.nix
 {pkgs, ...}: {
     name,
-    executable,
+    script,
     is64bit ? false,
     wine ?
         if is64bit
         then pkgs.wineWow64Packages.stable
         else pkgs.wineWowPackages.stable,
-    wineFlags ? "",
     tricks ? [],
     installScript ? "",
     desktopName ? null,
@@ -15,17 +14,7 @@
     extraScripts ? [],
 }: let
     wineNix = "$XDG_STATE_HOME/wine-nix";
-    wineBin = "${wine}/bin/wine${
-        if is64bit
-        then "64"
-        else ""
-    }";
-    wineArch =
-        if is64bit
-        then "win64"
-        else "win32";
     wineNixInit = ''
-        export WINEARCH=${wineArch}
         export WINEPREFIX="${wineNix}/${name}"
         export WINEDLLOVERRIDES=winemenubuilder.exe=d
 
@@ -46,7 +35,7 @@
                 ${tricksHook}
                 ${installScript}
             fi
-            ${wineBin} ${wineFlags} "${executable}" "$@"
+            ${script}
             wineserver -w
         '';
     };

@@ -9,7 +9,6 @@ wrapWine {
     name = "native-access";
     desktopName = "Native Access";
     desktopIcon = ./icon.png;
-    is64bit = true;
     wine = pkgs.wineWowPackages.yabridge;
     tricks = ["ucrtbase2019"];
 
@@ -23,7 +22,7 @@ wrapWine {
         wine64 "${src}/Native Access 1.14.1 Setup PC.exe" || true
     '';
 
-    executable = "$WINEPREFIX/drive_c/Program Files/Native Instruments/Native Access/Native Access.exe";
+    script = "wine C:/Program Files/Native Instruments/Native Access/Native Access.exe";
 
     extraScripts = [
         rec {

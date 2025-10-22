@@ -19,7 +19,6 @@ in
         name = "ableton-live-${majorVersion}-${edition}";
         desktopName = "Ableton ${editionName}";
         desktopIcon = ./icon.png;
-        is64bit = true;
         wine = pkgs.wineWowPackages.yabridge;
         tricks = ["quicktime72"];
 
@@ -27,5 +26,9 @@ in
             wine64 "${src}/Ableton ${editionName} Installer.exe" || true
         '';
 
-        executable = "$WINEPREFIX/drive_c/ProgramData/Ableton/${editionName}/Program/Ableton ${editionName}.exe";
+        script = let
+            pw-jack = "${pkgs.pipewire.jack}/bin/pw-jack";
+        in ''
+            ${pw-jack} wine "C:/ProgramData/Ableton/${editionName}/Program/Ableton ${editionName}.exe"
+        '';
     }
