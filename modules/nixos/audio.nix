@@ -22,6 +22,38 @@
                     alsa.support32Bit = true;
                     pulse.enable = true;
                     jack.enable = true;
+                    extraConfig = let
+                        bufferSize = 256;
+                        sampleRate = 48000;
+                        combined = "${toString bufferSize}/${toString sampleRate}";
+                    in {
+                        jack."10-low-latency"."jack.properties" = {
+                            "node.latency" = combined;
+                            "node.rate" = "1/${toString sampleRate}";
+                            "node.lock-quantum" = true;
+                        };
+                        pipewire."10-low-latency"."context.properties" = {
+                            "default.clock.rate" = sampleRate;
+                            "default.clock.allowed-rates" = [
+                                44100
+                                48000
+                            ];
+
+                            "default.clock.quantum" = bufferSize;
+                            "default.clock.min-quantum" = 16;
+                            "default.clock.max-quantum" = 1024;
+                        };
+                        pipewire-pulse."10-low-latency" = {
+                            "pulse.properties" = {
+                                "pulse.min.req" = combined;
+                                "pulse.default.req" = combined;
+                                "pulse.max.req" = combined;
+                                "pulse.min.quantum" = combined;
+                                "pulse.max.quantum" = combined;
+                            };
+                            "stream.properties"."node.latency" = combined;
+                        };
+                    };
                 };
             }
             (lib.mkIf config.custom.audio.realtime {
