@@ -60,7 +60,7 @@
             openssh.enable = true;
             printing = {
                 enable = true;
-                drivers = with pkgs; [unfree.cnijfilter2];
+                drivers = with pkgs; [gutenprint gutenprintBin];
             };
         };
 
