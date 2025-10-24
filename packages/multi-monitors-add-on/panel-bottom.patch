@@ -1,0 +1,33 @@
+--- a/multi-monitors-add-on@spin83/mmlayout.js
++++ b/multi-monitors-add-on@spin83/mmlayout.js
+@@ -18,7 +18,6 @@ export const MultiMonitorsPanelBox = class MultiMonitorsPanelBox {
+ 	constructor(monitor) {
+ 		this.panelBox = new St.BoxLayout({ name: 'panelBox', vertical: true, clip_to_allocation: true });
+ 		Main.layoutManager.addChrome(this.panelBox, { affectsStruts: true, trackFullscreen: true });
+-		this.panelBox.set_position(monitor.x, monitor.y);
+ 		this.panelBox.set_size(monitor.width, -1);
+ 		Main.uiGroup.set_child_below_sibling(this.panelBox, Main.layoutManager.panelBox);
+ 	}
+@@ -28,9 +27,13 @@ export const MultiMonitorsPanelBox = class MultiMonitorsPanelBox {
+ 	}
+ 
+ 	updatePanel(monitor) {
+-		this.panelBox.set_position(monitor.x, monitor.y);
++		this.panelBox.set_position(monitor.x, monitor.y + monitor.height - this.getPanelHeight());
+ 		this.panelBox.set_size(monitor.width, -1);
+ 	}
++
++	getPanelHeight() {
++		return this.panelBox.get_children().find(child => child.height != null)?.height;
++	}
+ };
+ 
+ export var MultiMonitorsLayoutManager = class MultiMonitorsLayoutManager {
+@@ -159,6 +162,7 @@ export var MultiMonitorsLayoutManager = class MultiMonitorsLayoutManager {
+ 	_pushPanel(i, monitor) {
+ 		let mmPanelBox = new MultiMonitorsPanelBox(monitor);
+ 		let panel = new MMPanel.MultiMonitorsPanel(i, mmPanelBox);
++		mmPanelBox.updatePanel(monitor);
+ 
+ 		mmPanel.push(panel);
+ 		this.mmPanelBox.push(mmPanelBox);

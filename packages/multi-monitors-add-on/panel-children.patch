@@ -1,0 +1,11 @@
+--- a/multi-monitors-add-on@spin83/mmpanel.js
++++ b/multi-monitors-add-on@spin83/mmpanel.js
+@@ -39,6 +39,8 @@ export var MultiMonitorsPanel = (() => {
+ 			this.monitorIndex = monitorIndex;
+ 			this.connect('destroy', this._onDestroy.bind(this));
+ 			// this._syncIndicators()
++			this.remove_child(this._leftBox);
++			this.remove_child(this._rightBox);
+ 		}
+ 
+ 		_syncIndicators() {

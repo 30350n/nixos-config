@@ -9,6 +9,8 @@
                 ableton-live = final.callPackage ./ableton-live {inherit wrapWine;};
                 commit-time-to-author = final.callPackage ./commit-time-to-author {};
                 configure-codium = final.callPackage ./configure-codium.nix {};
+                gnomeExtensions.multi-monitors-add-on =
+                    final.callPackage ./multi-monitors-add-on {};
                 ibm-plex = import ./ibm-plex {pkgs = prev;};
                 native-access = final.callPackage ./native-access {inherit wrapWine;};
                 nerd-fonts.blex-mono = import ./ibm-plex/nerdfont.nix {pkgs = prev;};
