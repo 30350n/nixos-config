@@ -68,9 +68,9 @@
 
         "org/gnome/shell/extensions/just-perfection" = {
             animation = 4;
-            panel-button-padding-size = 7;
+            panel-button-padding-size = 8;
             panel-icon-size = panel.icon-size;
-            panel-indicator-padding-size = 7;
+            panel-indicator-padding-size = 6;
             panel-notification-icon = false;
             quick-settings-airplane-mode = false;
             quick-settings-dark-mode = false;
