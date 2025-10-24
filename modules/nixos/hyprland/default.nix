@@ -19,10 +19,10 @@
         environment.systemPackages = with pkgs;
             lib.mkMerge [
                 [
-                    tofi
+                    (callPackage ./extra-desktop-items.nix {})
                     hyprpaper
-                    custom.extra-desktop-items
                     custom.mate.mate-polkit
+                    tofi
                 ]
                 (lib.mkIf config.hardware.bluetooth.enable [blueberry])
             ];
