@@ -7,7 +7,7 @@ pkgs.gnome-shell.overrideAttrs (prevAttrs: {
         (prevAttrs.patches or [])
         ++ [./panel-bottom.patch ./date-time-format.patch]
         ++ (
-            if panelHeight
+            if panelHeight != null
             then [(pkgs.replaceVars ./panel-height.patch {height = panelHeight;})]
             else []
         );

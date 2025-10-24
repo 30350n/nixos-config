@@ -1,4 +1,5 @@
 {
+    config,
     lib,
     pkgs,
     ...
@@ -13,7 +14,7 @@
             gnome-tweaks
             nautilus
         ])
-        ++ (import ../shared/gnome-shell-extensions.nix inputs).extensions;
+        ++ (import ../../shared/gnome-shell-extensions.nix inputs).extensions;
 
     environment.gnome.excludePackages = with pkgs; [
         gnome-shell-extensions
@@ -21,6 +22,19 @@
     ];
 
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+    nixpkgs.overlays = [
+        (final: prev: {
+            gnome-desktop = import ./gnome-desktop {pkgs = prev;};
+            gnome-shell = import ./gnome-shell {
+                pkgs = prev;
+                panelHeight =
+                    if !config.custom.isLaptop
+                    then 40
+                    else null;
+            };
+        })
+    ];
 
     services.udev.packages = with pkgs; [
         gnome-settings-daemon
