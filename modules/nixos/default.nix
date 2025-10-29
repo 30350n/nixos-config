@@ -65,6 +65,7 @@
         };
 
         users.mutableUsers = false;
+        nixos-core.normalUserGroups = ["networkmanager" "wheel"];
         users.users.root.hashedPasswordFile = "/persist/passwords/root";
         home-manager.users.root = ../../users/root/home.nix;
 
