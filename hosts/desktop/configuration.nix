@@ -9,6 +9,13 @@
 
     networking.hostId = import ./host-id.nix;
 
+    boot.loader.systemd-boot.windows = {
+        "10" = {
+            efiDeviceHandle = "HD2c";
+            sortKey = "z_windows";
+        };
+    };
+
     custom.audio.defaultVolume = 0.5;
     custom.hyprland = {
         enable = true;
