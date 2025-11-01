@@ -16,6 +16,11 @@
         };
     };
 
+    services.displayManager.autoLogin = {
+        enable = true;
+        user = "max";
+    };
+
     custom.audio.defaultVolume = 0.5;
     custom.hyprland = {
         enable = true;
