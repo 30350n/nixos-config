@@ -50,6 +50,13 @@ lib.mkMerge [
             night-light-enabled = true;
             night-light-temperature = lib.gvariant.mkUint32 3200;
         };
+
+        "org/gnome/Console" = let
+            font = builtins.elemAt nixosConfig.fonts.fontconfig.defaultFonts.monospace 0;
+        in {
+            use-system-font = false;
+            custom-font = "${font} 12";
+        };
     }
     (lib.mkIf useExtensions (import ./gnome-shell-extensions.nix inputs).dconf-settings)
     (lib.mkIf (wallpaper != null) {

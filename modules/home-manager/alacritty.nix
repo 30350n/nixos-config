@@ -1,15 +1,11 @@
-{
-    lib,
-    nixosConfig,
-    ...
-}: {
+{nixosConfig, ...}: {
     programs.alacritty = {
         enable = true;
         settings = {
             font = let
-                fonts = nixosConfig.fonts.fontconfig.defaultFonts.monospace;
+                font = builtins.elemAt nixosConfig.fonts.fontconfig.defaultFonts.monospace 0;
             in {
-                normal.family = lib.lists.findFirst (_: true) "" fonts;
+                normal.family = font;
                 size = 12.5;
             };
             window.padding = {

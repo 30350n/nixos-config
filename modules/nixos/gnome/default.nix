@@ -11,6 +11,7 @@
         (with pkgs; [
             dconf-editor
             gnome-calculator
+            gnome-console
             gnome-tweaks
             nautilus
         ])

@@ -37,15 +37,15 @@
             enabled-extensions = map (extension: extension.extensionUuid) extensions;
         };
 
-        "com/github/amezin/ddterm" = {
+        "com/github/amezin/ddterm" = let
+            font = builtins.elemAt nixosConfig.fonts.fontconfig.defaultFonts.monospace 0;
+        in {
             ddterm-toggle-hotkey = ["<Control><Alt>minus"];
             shortcut-focus-other-pane = ["<Alt>Left" "<Alt>Right"];
             hide-window-on-esc = true;
 
             use-system-font = false;
-            custom-font = let
-                fonts = nixosConfig.fonts.fontconfig.defaultFonts.monospace;
-            in "${lib.lists.last fonts} 12";
+            custom-font = "${font} 12";
 
             window-position = "top";
             tab-position = "top";
