@@ -10,7 +10,7 @@ with pkgs; [
     kicad
     inkscape
     custom.openpnp
-    prusa-slicer
+    custom.prusa-slicer
     custom.uvtools
 
     direnv

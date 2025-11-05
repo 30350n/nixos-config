@@ -1,0 +1,11 @@
+--- a/src/slic3r/GUI/MainFrame.cpp
++++ b/src/slic3r/GUI/MainFrame.cpp
+@@ -806,7 +806,7 @@ void MainFrame::create_preset_tabs()
+     add_created_tab(new TabPrinter(m_tabpanel), wxGetApp().preset_bundle->printers.get_edited_preset().printer_technology() == ptFFF ? "printer" : "sla_printer");
+     
+     m_printables_webview = new PrintablesWebViewPanel(m_tabpanel);
+-    add_printables_webview_tab();
++    //add_printables_webview_tab();
+    
+     m_connect_webview = new ConnectWebViewPanel(m_tabpanel);
+     m_printer_webview = new PrinterWebViewPanel(m_tabpanel, L"");

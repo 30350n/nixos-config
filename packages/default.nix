@@ -18,6 +18,7 @@
                 mkshell = final.callPackage ./mkshell {};
                 openpnp = final.callPackage ./openpnp.nix {};
                 polkit = import ./polkit {pkgs = prev;};
+                prusa-slicer = import ./prusa-slicer {pkgs = prev;};
                 segoe-ui = final.callPackage ./segoe-ui {};
                 uvtools = final.callPackage ./uvtools {};
                 yt-dlp-music = final.callPackage ./yt-dlp-music {};
