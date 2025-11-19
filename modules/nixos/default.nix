@@ -21,6 +21,7 @@
             firefox
             file-roller
             krusader
+            lact
             loupe
             localsend
             papers
@@ -63,6 +64,9 @@
                 drivers = with pkgs; [gutenprint gutenprintBin];
             };
         };
+
+        systemd.packages = with pkgs; [lact];
+        systemd.services.lactd.wantedBy = ["multi-user.target"];
 
         users.mutableUsers = false;
         nixos-core.normalUserGroups = ["networkmanager" "wheel"];
