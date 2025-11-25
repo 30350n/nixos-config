@@ -3,7 +3,7 @@
 
     users.users.max = {
         isNormalUser = true;
-        extraGroups = ["dialout"];
+        extraGroups = ["dialout" "gamemode"];
         hashedPasswordFile = "/persist/passwords/max";
         packages = (
             (import ./packages.nix {inherit pkgs;})
