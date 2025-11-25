@@ -12,6 +12,7 @@
             "/var/lib/bluetooth"
             "/var/lib/nixos"
             "/var/lib/systemd/coredump"
+            "/var/lib/systemd/timers"
             "/var/log"
             "/root/.ssh"
             "/root/.cache/pre-commit"
