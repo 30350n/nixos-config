@@ -1,0 +1,36 @@
+--- a/src/kgx-pages.c
++++ b/src/kgx-pages.c
+@@ -420,9 +420,9 @@ close_page (AdwTabView *view,
+   tab = KGX_TAB (adw_tab_page_get_child (page));
+   children = kgx_tab_get_children (tab);
+ 
+-  if (children->len < 1) {
++  // if (children->len < 1) {
+     return GDK_EVENT_PROPAGATE; /* Aka no, I don’t want to block closing */
+-  }
++  // }
+ 
+   dlg = g_object_new (KGX_TYPE_CLOSE_DIALOG,
+                       "context", KGX_CONTEXT_TAB,
+diff --git a/src/kgx-window.c b/src/kgx-window.c
+index 252b13c..c66c140 100644
+--- a/src/kgx-window.c
++++ b/src/kgx-window.c
+@@ -203,7 +203,7 @@ kgx_window_close_request (GtkWindow *window)
+ 
+   children = kgx_pages_get_children (KGX_PAGES (priv->pages));
+ 
+-  if (children->len < 1 || priv->close_anyway) {
++  // if (children->len < 1 || priv->close_anyway) {
+     if (gtk_window_is_active (GTK_WINDOW (self))) {
+       gboolean maximised = gtk_window_is_maximized (GTK_WINDOW (self));
+       int width, height;
+@@ -213,7 +213,7 @@ kgx_window_close_request (GtkWindow *window)
+     }
+ 
+     return FALSE; /* Aka no, I don’t want to block closing */
+-  }
++  // }
+ 
+   kgx_close_dialog_run (g_object_new (KGX_TYPE_CLOSE_DIALOG,
+                                       "context", KGX_CONTEXT_WINDOW,

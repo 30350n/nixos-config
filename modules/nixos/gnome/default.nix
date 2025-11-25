@@ -26,6 +26,7 @@
 
     nixpkgs.overlays = [
         (final: prev: {
+            gnome-console = import ./gnome-console {pkgs = prev;};
             gnome-desktop = import ./gnome-desktop {pkgs = prev;};
             gnome-shell = import ./gnome-shell {
                 pkgs = prev;
