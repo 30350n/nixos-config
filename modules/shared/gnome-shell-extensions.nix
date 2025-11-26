@@ -6,6 +6,7 @@
     ...
 }: rec {
     extensions = with pkgs.gnomeExtensions; [
+        alphabetical-app-grid
         appindicator
         ddterm
         gamemode-shell-extension
