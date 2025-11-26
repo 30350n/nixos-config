@@ -3,7 +3,7 @@
     lib,
     ...
 } @ inputs: {
-    services.xserver.displayManager.gdm.enable = true;
+    services.displayManager.gdm.enable = true;
 
     systemd.tmpfiles.rules = let
         accountsServiceDir = "/var/lib/AccountsService";

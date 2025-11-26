@@ -4,7 +4,9 @@
         ignores = [
             ".direnv/"
         ];
-        userEmail = "maxschlecht@web.de";
-        userName = "Bobbe";
+        settings.user = {
+            name = "Bobbe";
+            email = "maxschlecht@web.de";
+        };
     };
 }

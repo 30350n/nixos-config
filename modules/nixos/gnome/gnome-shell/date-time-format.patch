@@ -4,15 +4,15 @@
               followed by a time string in 24h format.
               i.e. "May 25, 14:30" */
              // xgettext:no-c-format
--            format = N_('%B %-d, %H\u2236%M');
-+            format = '%d/%m/%Y, %H\u2236%M';
+-            format = N_('%B %-d, %H:%M');
++            format = '%d/%m/%Y, %H:%M';
          else
              /* Translators: this is the month name, day number, year
               number followed by a time string in 24h format.
               i.e. "May 25 2012, 14:30" */
              // xgettext:no-c-format
--            format = N_('%B %-d %Y, %H\u2236%M');
-+            format = '%d/%m/%Y, %H\u2236%M';
+-            format = N_('%B %-d %Y, %H:%M');
++            format = '%d/%m/%Y, %H:%M';
      } else {
          // Show only the time if date is on today
          if (daysAgo < 1 || params.timeOnly) // eslint-disable-line no-lonely-if

@@ -23,8 +23,6 @@
                 uvtools = final.callPackage ./uvtools {};
                 yt-dlp-music = final.callPackage ./yt-dlp-music {};
             };
-
-            fish = import ./fish.nix {pkgs = prev;};
         })
     ];
 }

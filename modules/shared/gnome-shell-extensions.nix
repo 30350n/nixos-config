@@ -1,5 +1,4 @@
 {
-    lib,
     config,
     nixosConfig ? config,
     pkgs,
@@ -71,13 +70,14 @@
         "org/gnome/shell/extensions/just-perfection" = {
             animation = 4;
             panel-button-padding-size = 8;
-            panel-icon-size = panel.icon-size;
+            panel-icon-size = panel.icon-size + 2;
             panel-indicator-padding-size = 6;
             panel-notification-icon = false;
             quick-settings-airplane-mode = false;
             quick-settings-dark-mode = false;
             startup-status = 0;
             support-notifier-type = 0;
+            top-panel-position = 1;
             window-demands-attention-focus = true;
             window-preview-caption = false;
             workspace-peek = true;
@@ -97,6 +97,7 @@
         };
 
         "org/gnome/shell/extensions/workspaces-indicator-by-open-apps" = {
+            apps-minimized-effect = "REDUCE OPACITY";
             icons-ignored = ["com.github.amezin.ddterm"];
             indicator-hide-empty = true;
             indicator-round-borders = false;

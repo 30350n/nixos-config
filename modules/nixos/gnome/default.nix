@@ -4,7 +4,7 @@
     pkgs,
     ...
 } @ inputs: {
-    services.xserver.desktopManager.gnome.enable = true;
+    services.desktopManager.gnome.enable = true;
     services.gnome.core-apps.enable = false;
 
     environment.systemPackages =

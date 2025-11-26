@@ -21,11 +21,12 @@
             default = 10.0;
         };
         file = lib.mkOption {
-            type = lib.types.string;
+            type = lib.types.str;
             internal = true;
             readOnly = true;
             default = let
-                package = flake-inputs.nix-wallpaper.packages.${pkgs.system}.default.override {
+                system = pkgs.stdenv.hostPlatform.system;
+                package = flake-inputs.nix-wallpaper.packages.${system}.default.override {
                     preset = "gruvbox-dark-rainbow";
                     inherit (self) logoSize;
                     inherit (self) width;
