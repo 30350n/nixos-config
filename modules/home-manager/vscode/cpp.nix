@@ -23,9 +23,4 @@
             };
         };
     };
-
-    programs.git.ignores = [
-        ".io/"
-        ".platformio/"
-    ];
 }
