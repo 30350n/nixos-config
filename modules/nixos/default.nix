@@ -24,6 +24,7 @@
             lact
             loupe
             localsend
+            mission-center
             papers
             scrcpy
             simple-scan
