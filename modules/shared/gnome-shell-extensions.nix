@@ -42,7 +42,9 @@
         in {
             ddterm-toggle-hotkey = ["<Control><Alt>minus"];
             shortcut-focus-other-pane = ["<Alt>Left" "<Alt>Right"];
+            hide-when-focus-lost = true;
             hide-window-on-esc = true;
+            preserve-working-directory = false;
 
             use-system-font = false;
             custom-font = "${font} 12";
@@ -110,8 +112,8 @@
             indicator-show-focused-app = false;
             size-app-icon = panel.icon-size + 6;
             size-labels = panel.workspace-labels;
-            spacing-app-left = panel.workspace-spacing;
-            spacing-app-right = panel.workspace-spacing;
+            spacing-app-left = panel.workspace-spacing - 1;
+            spacing-app-right = panel.workspace-spacing - 1;
             spacing-label-left = panel.workspace-spacing;
             spacing-label-right = panel.workspace-spacing;
         };
