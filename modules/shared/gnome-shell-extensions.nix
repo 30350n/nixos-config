@@ -96,6 +96,12 @@
             move-to-workspace-right = ["<Control><Super>Right"];
         };
 
+        "org/gnome/shell/extensions/syncthing" = {
+            menu = 1;
+            settings-button = false;
+            use-systemd = false;
+        };
+
         "org/gnome/shell/extensions/workspaces-indicator-by-open-apps" = {
             apps-minimized-effect = "REDUCE OPACITY";
             icons-ignored = ["com.github.amezin.ddterm"];
