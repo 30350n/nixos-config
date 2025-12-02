@@ -35,7 +35,10 @@
                 )
             '';
 
-            ui.default-command = "log";
+            ui = {
+                default-command = "log";
+                diff-editor = ":builtin";
+            };
 
             user = {
                 name = "Bobbe";
