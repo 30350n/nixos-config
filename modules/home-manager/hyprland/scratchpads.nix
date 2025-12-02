@@ -11,7 +11,7 @@
                 on_created_empty = name: "${workspace_name name}, on-created-empty:";
             in [
                 ((on_created_empty "terminal") + (scratchpad "terminal" "alacritty"))
-                ((on_created_empty "python") + (scratchpad "python" "alacritty -e bpython -q"))
+                ((on_created_empty "python") + (scratchpad "python" "alacritty -e python"))
             ];
 
             animations.animation = [

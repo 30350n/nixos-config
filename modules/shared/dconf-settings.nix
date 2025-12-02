@@ -34,6 +34,23 @@ lib.mkMerge [
             else 60 * 60
         );
 
+        "org/gnome/settings-daemon/plugins/media-keys" = {
+            custom-keybindings = [
+                "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+                "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
+            ];
+        };
+        "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+            binding = "<Control><Alt>t";
+            command = "kgx";
+            name = "Launch Console";
+        };
+        "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+            binding = "<Control><Alt>p";
+            command = "kgx -e python";
+            name = "Launch Python Console";
+        };
+
         "org/gnome/settings-daemon/plugins/power" = {
             power-button-action = "interactive";
             sleep-inactive-ac-timeout = lib.gvariant.mkInt32 0;

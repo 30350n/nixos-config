@@ -32,7 +32,6 @@
 
             (python3.withPackages (pythonPackages: [
                 pythonPackages.numpy
-                pythonPackages.bpython
             ]))
         ];
 
