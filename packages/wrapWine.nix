@@ -1,5 +1,9 @@
 # modified version of https://github.com/lucasew/nixcfg/blob/ebcac9/nix/pkgs/wrapWine.nix
-{pkgs, ...}: {
+{
+    lib,
+    pkgs,
+    ...
+}: {
     name,
     script,
     is64bit ? false,
@@ -21,9 +25,8 @@
         mkdir -p "${wineNix}"
     '';
     tricksHook =
-        if (builtins.length tricks) == 0
-        then ""
-        else "${pkgs.winetricks}/bin/winetricks --force ${builtins.concatStringsSep " " tricks}";
+        lib.optionalString (tricks != [])
+        "${pkgs.winetricks}/bin/winetricks --force ${builtins.concatStringsSep " " tricks}";
     application = pkgs.writeShellApplication {
         inherit name;
         runtimeInputs = [wine pkgs.samba];
@@ -63,9 +66,5 @@ in
         paths =
             [application]
             ++ (map wrapScript extraScripts)
-            ++ (
-                if desktopName == null
-                then []
-                else [desktopItem]
-            );
+            ++ lib.optionals (desktopName != null) [desktopItem];
     }
