@@ -24,7 +24,7 @@
     custom.audio.defaultVolume = 0.5;
     custom.hyprland = {
         enable = true;
-        monitors = ["DP-1,2560x1440@75,0x0,1" "HDMI-A-1,2560x1440@75,2560x0,1"];
+        monitors = ["DP-2,2560x1440@75,0x0,1" "HDMI-A-1,2560x1440@75,2560x0,1"];
     };
     custom.steam.enable = true;
     custom.wallpaper = {
