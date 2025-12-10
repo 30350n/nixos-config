@@ -15,4 +15,5 @@ with pkgs; [
     picard
     yt-dlp
     custom.yt-dlp-music
+    youtube-music
 ]
