@@ -31,6 +31,7 @@ in {
                 mkhl.direnv
                 tomoki1207.pdf
                 peterschmalfeldt.explorer-exclude
+                extensions.open-vsx.jeanp413.open-remote-ssh
                 fabiospampinato.vscode-open-in-application
 
                 tamasfe.even-better-toml

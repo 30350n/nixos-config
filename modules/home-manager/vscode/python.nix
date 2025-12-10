@@ -2,6 +2,7 @@
     programs.vscode.profiles.default = {
         extensions = with extensions.vscode-marketplace; [
             ms-python.python
+            ms-python.debugpy
             detachhead.basedpyright
             charliermarsh.ruff
             njpwerner.autodocstring
