@@ -54,6 +54,7 @@
         networking = {
             networkmanager.enable = true;
             inherit hostName;
+            # pip doesn't work with ipv6 (https://github.com/pypi/warehouse/issues/15277)
             enableIPv6 = false;
         };
 
