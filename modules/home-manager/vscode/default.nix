@@ -111,6 +111,7 @@ in {
                 ];
 
                 "shellcheck.executablePath" = "${pkgs.shellcheck}/bin/shellcheck";
+                "shellcheck.ignorePatterns"."**/.envrc" = true;
 
                 "[shellscript]" = {
                     "editor.detectIndentation" = true;
