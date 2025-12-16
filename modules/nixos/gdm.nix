@@ -7,7 +7,7 @@
 
     systemd.tmpfiles.rules = let
         accountsServiceDir = "/var/lib/AccountsService";
-        userIcon = name: builtins.toString ../../users/${name}/face.png;
+        userIcon = name: ../../users/${name}/face.png;
         userFile = name: (builtins.replaceStrings ["\n"] ["\\n"] ''
             [User]
             Session=gnome
