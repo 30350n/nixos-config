@@ -4,6 +4,8 @@ with pkgs; [
 
     #unfree.modrinth-app
 
+    protonvpn-gui
+
     custom.ableton-live
     audacity
     musescore

@@ -1,8 +1,5 @@
 {pkgs}:
 with pkgs; [
-    ungoogled-chromium
-
-    thunderbird
     unfree.zoom-us
 
     blender
@@ -12,11 +9,18 @@ with pkgs; [
     custom.openpnp
     custom.prusa-slicer
     custom.uvtools
-    (pkgs.nixos-core.makeWebApp {
+    (nixos-core.makeWebApp {
         url = "fluiddpi.local";
         name = "fluidd";
         icon = "${fluidd.src}/docs/assets/images/logo.svg";
         icon-scale = 0.8;
+    })
+    (symlinkJoin {
+        name = scrcpy.pname;
+        paths = [scrcpy];
+        postBuild = ''
+            rm $out/share/applications/scrcpy-console.desktop
+        '';
     })
 
     direnv

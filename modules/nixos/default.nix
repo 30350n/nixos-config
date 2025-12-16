@@ -26,8 +26,9 @@
             localsend
             mission-center
             papers
-            scrcpy
             simple-scan
+            ungoogled-chromium
+            thunderbird
             vlc
 
             (python3.withPackages (pythonPackages: [
