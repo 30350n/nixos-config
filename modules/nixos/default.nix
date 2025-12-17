@@ -20,7 +20,9 @@
             eyedropper
             firefox
             file-roller
-            krusader
+            (krusader.overrideAttrs (finalAttrs: prevAttrs: {
+                nativeBuildInputs = prevAttrs.nativeBuildInputs ++ [kdePackages.kate];
+            }))
             lact
             loupe
             localsend
