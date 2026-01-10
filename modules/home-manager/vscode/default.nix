@@ -37,6 +37,7 @@ in {
                 tamasfe.even-better-toml
                 mkhl.shfmt
                 timonwong.shellcheck
+                rpinski.shebang-snippets
             ];
 
             userSettings = let
