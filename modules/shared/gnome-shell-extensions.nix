@@ -10,7 +10,7 @@
         ddterm
         gamemode-shell-extension
         just-perfection
-        pkgs.custom.gnomeExtensions.multi-monitors-add-on
+        pkgs.customGnomeExtensions.multi-monitors-add-on
         new-workspace-shortcut
         syncthing-indicator
         unblank
