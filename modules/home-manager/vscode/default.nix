@@ -46,7 +46,7 @@ in {
                 "chat.disableAIFeatures" = true;
 
                 "editor.fontFamily" = ''
-                    ${builtins.concatStringsSep ", " (builtins.map (s: "'${s}'") fonts)}
+                    ${builtins.concatStringsSep ", " (map (s: "'${s}'") fonts)}
                 '';
                 "editor.fontSize" = 13;
                 "editor.rulers" = [100];

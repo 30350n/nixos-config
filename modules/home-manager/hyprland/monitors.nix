@@ -12,7 +12,7 @@
             else monitors;
 
         workspace =
-            lib.lists.imap1 (i: monitor: "${builtins.toString i},monitor:${monitor}")
+            lib.lists.imap1 (i: monitor: "${toString i},monitor:${monitor}")
             (map (str: builtins.head (lib.strings.split "," str)) (lib.lists.dropEnd 1 monitors));
     };
 }

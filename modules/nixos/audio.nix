@@ -61,7 +61,7 @@
             })
             (lib.mkIf (config.custom.audio.defaultVolume != null) {
                 systemd.user.services.set-default-volume = let
-                    volume = builtins.toString (
+                    volume = toString (
                         builtins.floor (config.custom.audio.defaultVolume * 100)
                     );
                 in {

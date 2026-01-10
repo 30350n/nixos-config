@@ -5,7 +5,7 @@
 }: {
     services.cockpit = {
         enable = true;
-        allowed-origins = ["http://localhost:${builtins.toString config.services.cockpit.port}"];
+        allowed-origins = ["http://localhost:${toString config.services.cockpit.port}"];
     };
 
     environment.systemPackages = [
