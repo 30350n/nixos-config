@@ -7,9 +7,11 @@
     extensions = with pkgs.gnomeExtensions; [
         alphabetical-app-grid
         appindicator
+        clipboard-indicator
         ddterm
         gamemode-shell-extension
         just-perfection
+        pkgs.customGnomeExtensions.mic-indicator-visibility-manager
         pkgs.customGnomeExtensions.multi-monitors-add-on
         new-workspace-shortcut
         syncthing-indicator
@@ -36,6 +38,8 @@
             disable-user-extensions = false;
             enabled-extensions = map (extension: extension.extensionUuid) extensions;
         };
+
+        "org/gnome/shell/extensions/clipboard-indicator".display-mode = 0;
 
         "com/github/amezin/ddterm" = let
             font = builtins.elemAt nixosConfig.fonts.fontconfig.defaultFonts.monospace 0;
