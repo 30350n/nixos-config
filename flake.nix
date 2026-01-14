@@ -37,15 +37,11 @@
     };
 
     outputs = {
-        self,
         nixpkgs,
-        nixpkgs-unstable,
         nixos-core,
         home-manager,
         disko,
         impermanence,
-        nix-vscode-extensions,
-        nix-wallpaper,
         ...
     } @ flake-inputs: let
         defaultModules = [
