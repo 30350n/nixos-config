@@ -65,7 +65,10 @@
             openssh.enable = true;
             printing = {
                 enable = true;
-                drivers = with pkgs; [gutenprint gutenprintBin];
+                drivers = with pkgs; [
+                    unfree.cnijfilter2
+                    ptouch-driver
+                ];
             };
         };
 
