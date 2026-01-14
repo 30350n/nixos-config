@@ -14,6 +14,7 @@
             dconf-editor
             gnome-calculator
             gnome-console
+            gnome-disk-utility
             gnome-tweaks
             nautilus
         ])
