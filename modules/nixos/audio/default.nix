@@ -4,6 +4,8 @@
     pkgs,
     ...
 }: {
+    imports = lib.nixos-core.autoImport ./devices;
+
     options.custom.audio = {
         enable = lib.mkEnableOption "audio" // {default = true;};
         realtime = lib.mkEnableOption "realtime" // {default = true;};
@@ -18,10 +20,12 @@
             {
                 services.pipewire = {
                     enable = true;
+
                     alsa.enable = true;
                     alsa.support32Bit = true;
                     pulse.enable = true;
                     jack.enable = true;
+
                     extraConfig = let
                         bufferSize = 256;
                         sampleRate = 48000;
@@ -55,6 +59,7 @@
                         };
                     };
                 };
+
                 environment.systemPackages = with pkgs; [
                     helvum
                 ];
