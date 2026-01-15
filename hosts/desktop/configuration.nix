@@ -21,14 +21,16 @@
         user = "max";
     };
 
-    custom.audio.defaultVolume = 0.5;
-    custom.hyprland = {
-        enable = true;
-        monitors = ["DP-2,2560x1440@75,0x0,1" "HDMI-A-1,2560x1440@75,2560x0,1"];
-    };
-    custom.steam.enable = true;
-    custom.wallpaper = {
-        width = 2560;
-        height = 1440;
+    custom = {
+        audio.defaultVolume = 0.5;
+        hyprland = {
+            enable = true;
+            monitors = ["DP-2,2560x1440@75,0x0,1" "HDMI-A-1,2560x1440@75,2560x0,1"];
+        };
+        steam.enable = true;
+        wallpaper = {
+            width = 2560;
+            height = 1440;
+        };
     };
 }
