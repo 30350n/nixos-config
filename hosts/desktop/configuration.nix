@@ -28,7 +28,7 @@
     };
 
     custom = {
-        audio.defaultVolume = 0.5;
+        audio.defaultVolume = 0.6;
         hyprland = {
             enable = true;
             monitors = ["DP-2,2560x1440@75,0x0,1" "HDMI-A-1,2560x1440@75,2560x0,1"];

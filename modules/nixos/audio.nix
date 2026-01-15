@@ -69,9 +69,16 @@
                         builtins.floor (config.custom.audio.defaultVolume * 100)
                     );
                 in {
-                    script = "${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_SINK@ ${volume}%";
+                    path = with pkgs; [wireplumber];
+                    script = ''
+                        while ! wpctl inspect @DEFAULT_SINK@ > /dev/null 2>&1; do
+                            sleep 0.25
+                        done
+                        wpctl set-volume @DEFAULT_SINK@ ${volume}%
+                    '';
                     serviceConfig.Type = "oneshot";
-                    wantedBy = ["multi-user.target"];
+                    after = ["graphical-session.target" "pipewire.service" "wireplumber.service"];
+                    wantedBy = ["graphical-session.target"];
                 };
             })
         ]
