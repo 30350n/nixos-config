@@ -15,6 +15,8 @@
         resetCommands = "zfs rollback -r zroot/root@blank";
     };
 
+    services.zfs.autoScrub.enable = true;
+
     boot.loader.systemd-boot.windows = {
         "10" = {
             efiDeviceHandle = "HD2c";
