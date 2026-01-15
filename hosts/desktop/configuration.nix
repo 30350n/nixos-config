@@ -9,6 +9,12 @@
 
     networking.hostId = import ./host-id.nix;
 
+    nixos-core.impermanence = {
+        enable = true;
+        persistFileSystem = "/persist";
+        resetCommands = "zfs rollback -r zroot/root@blank";
+    };
+
     boot.loader.systemd-boot.windows = {
         "10" = {
             efiDeviceHandle = "HD2c";

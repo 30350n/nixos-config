@@ -7,6 +7,7 @@
             url = "github:30350n/nixos-core";
             inputs.nixpkgs.follows = "nixpkgs";
             inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
+            inputs.impermanence.inputs.home-manager.follows = "home-manager";
         };
 
         home-manager = {
@@ -17,12 +18,6 @@
         disko = {
             url = "github:nix-community/disko";
             inputs.nixpkgs.follows = "nixpkgs";
-        };
-
-        impermanence = {
-            url = "github:nix-community/impermanence";
-            inputs.nixpkgs.follows = "nixpkgs";
-            inputs.home-manager.follows = "home-manager";
         };
 
         nix-vscode-extensions = {
@@ -41,7 +36,6 @@
         nixos-core,
         home-manager,
         disko,
-        impermanence,
         ...
     } @ flake-inputs: let
         defaultModules = [
@@ -54,7 +48,6 @@
                     useUserPackages = true;
                 };
             }
-            impermanence.nixosModules.impermanence
             ./packages
         ];
         lib = nixos-core.lib;

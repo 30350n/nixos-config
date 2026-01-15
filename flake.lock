@@ -103,6 +103,7 @@
           "home-manager"
         ],
         "nixpkgs": [
+          "nixos-core",
           "nixpkgs"
         ]
       },
@@ -185,6 +186,7 @@
     },
     "nixos-core": {
       "inputs": {
+        "impermanence": "impermanence",
         "nix-index-database": "nix-index-database",
         "nixpkgs": [
           "nixpkgs"
@@ -194,11 +196,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765866921,
-        "narHash": "sha256-AS9594QjDUE/36V5aKDtyqon2t84/+7+RLrfcekdIBw=",
+        "lastModified": 1768483491,
+        "narHash": "sha256-fgn3snEjk0C1P2KHxuMmVt0V+uwHfcm8L7oDVgkq2do=",
         "owner": "30350n",
         "repo": "nixos-core",
-        "rev": "451ab59e31dbdf65c5129ff61299b699ef4f991b",
+        "rev": "b522b453af10c56a1744bb940f6d673db889c7bb",
         "type": "github"
       },
       "original": {
@@ -266,7 +268,6 @@
       "inputs": {
         "disko": "disko",
         "home-manager": "home-manager",
-        "impermanence": "impermanence",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nix-wallpaper": "nix-wallpaper",
         "nixos-core": "nixos-core",

@@ -38,6 +38,11 @@
             ]))
         ];
 
+        nixos-core.impermanence.persist.directories = [
+            "/root/.cache/pre-commit"
+            "/root/.config/VSCodium"
+        ];
+
         fonts = {
             packages = with pkgs; [
                 custom.ibm-plex
