@@ -61,7 +61,7 @@
             }
             (lib.mkIf config.custom.audio.realtime {
                 security.rtkit.enable = true;
-                users.groups.audio.members = builtins.attrNames config.users.users;
+                nixos-core.normalUserGroups = ["audio"];
             })
             (lib.mkIf (config.custom.audio.defaultVolume != null) {
                 systemd.user.services.set-default-volume = let
