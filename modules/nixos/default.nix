@@ -18,8 +18,10 @@
             alacritty
             baobab
             eyedropper
+            drawing
             firefox
             file-roller
+            gnome-disk-utility
             (krusader.overrideAttrs (finalAttrs: prevAttrs: {
                 nativeBuildInputs = prevAttrs.nativeBuildInputs ++ [kdePackages.kate];
             }))
