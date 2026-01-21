@@ -37,6 +37,14 @@
             };
             defaultVolume = 0.6;
         };
+        graphics = {
+            multigpu = {
+                enable = true;
+                primary = "amd";
+                amdgpu = "0000:0c:00.0";
+                nvidiagpu = "0000:09:00.0";
+            };
+        };
         hyprland = {
             enable = true;
             monitors = ["DP-2,2560x1440@75,0x0,1" "HDMI-A-1,2560x1440@75,2560x0,1"];
