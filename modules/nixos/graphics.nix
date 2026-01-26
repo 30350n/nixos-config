@@ -50,8 +50,6 @@
                         ${udevMatch amdgpu}, ${udevSettings "amd" primary}
                         ${udevMatch nvidiagpu}, ${udevSettings "nvidia" primary}
                     '';
-
-                    environment.variables.AQ_DRM_DEVICES = "/dev/dri/${primary}gpu";
                 }
                 (lib.mkIf (primary == "amd") {
                     hardware.nvidia.prime = {
