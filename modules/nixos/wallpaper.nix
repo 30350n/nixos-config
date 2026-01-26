@@ -5,9 +5,7 @@
     pkgs,
     ...
 }: {
-    options.custom.wallpaper = let
-        self = config.custom.wallpaper;
-    in {
+    options.custom.wallpaper = {
         width = lib.mkOption {
             type = lib.types.int;
             default = 1920;
@@ -28,9 +26,7 @@
                 system = pkgs.stdenv.hostPlatform.system;
                 package = flake-inputs.nix-wallpaper.packages.${system}.default.override {
                     preset = "gruvbox-dark-rainbow";
-                    inherit (self) logoSize;
-                    inherit (self) width;
-                    inherit (self) height;
+                    inherit (config.custom.wallpaper) logoSize width height;
                 };
             in "${package}/share/wallpapers/nixos-wallpaper.png";
         };
