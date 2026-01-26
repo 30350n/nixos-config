@@ -1,6 +1,7 @@
 {
     config,
     lib,
+    pkgs,
     ...
 }: {
     options.custom.graphics = with lib; {
@@ -71,7 +72,10 @@
                 boot.kernelParams = ["nvidia-drm.modeset=1"];
                 boot.initrd.kernelModules = ["nvidia" "nvidia_drm" "nvidia_modeset"];
 
-                nixos-core.allowUnfree.regexes = ["nvidia-x11" "nvidia-settings"];
+                nixos-core.allowUnfree = {
+                    predicates = [pkgs._cuda.lib.allowUnfreeCudaPredicate];
+                    regexes = ["nvidia-x11" "nvidia-settings"];
+                };
             })
         ];
 }

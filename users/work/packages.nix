@@ -2,7 +2,10 @@
 with pkgs; [
     unfree.zoom-us
 
-    blender
+    (blender.override {
+        cudaSupport = true;
+        hipSupport = true;
+    })
     freecad
     kicad
     inkscape
