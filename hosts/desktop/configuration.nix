@@ -37,6 +37,7 @@
             };
             defaultVolume = 0.6;
         };
+
         graphics = {
             multigpu = {
                 enable = true;
@@ -45,11 +46,31 @@
                 nvidiagpu = "0000:09:00.0";
             };
         };
+
         hyprland = {
             enable = true;
             monitors = ["DP-3,2560x1440@75,0x0,1" "HDMI-A-2,2560x1440@75,2560x0,1"];
         };
+
         steam.enable = true;
+
+        virtualisation = {
+            enable = true;
+            cpuVendor = "amd";
+
+            vms.windows-10 = {
+                enable = true;
+                guestOs = "windows";
+                cpuCores = 6;
+                ram = "16G";
+                user = "max";
+                desktopItem = {
+                    desktopName = "Windows 10";
+                    icon = "windows95";
+                };
+            };
+        };
+
         wallpaper = {
             width = 2560;
             height = 1440;
