@@ -26,6 +26,7 @@
                 nativeBuildInputs = prevAttrs.nativeBuildInputs ++ [kdePackages.kate];
             }))
             lact
+            libreoffice
             loupe
             localsend
             mission-center
