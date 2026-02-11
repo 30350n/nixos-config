@@ -3,6 +3,8 @@
         nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
         nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
+        determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
+
         nixos-core = {
             url = "github:30350n/nixos-core";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -33,12 +35,14 @@
 
     outputs = {
         nixpkgs,
+        determinate,
         nixos-core,
         home-manager,
         disko,
         ...
     } @ flake-inputs: let
         defaultModules = [
+            determinate.nixosModules.default
             nixos-core.nixosModules.nixos-core
             disko.nixosModules.disko
             home-manager.nixosModules.home-manager
