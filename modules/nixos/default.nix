@@ -21,6 +21,7 @@
             drawing
             firefox
             file-roller
+            ghostty
             gnome-disk-utility
             (krusader.overrideAttrs (finalAttrs: prevAttrs: {
                 nativeBuildInputs = prevAttrs.nativeBuildInputs ++ [kdePackages.kate];
