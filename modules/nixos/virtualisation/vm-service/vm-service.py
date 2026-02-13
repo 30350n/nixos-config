@@ -38,10 +38,25 @@ class VMService:
         loop.add_signal_handler(signal.SIGTERM, lambda: self.terminate.set())
 
         while True:
+            self.start.clear()
+            task_monitor_start = asyncio.create_task(self.start.wait())
+            task_monitor_terminate = asyncio.create_task(self.terminate.wait())
+
+            done, _pending = await asyncio.wait(
+                [task_monitor_start, task_monitor_terminate],
+                return_when=FIRST_COMPLETED,
+            )
+            task_monitor_start.cancel()
+
+            if self.terminate.is_set():
+                print("service is terminating")
+                return
+
+            print("received SIGUSR1 signal")
+
             task_run = asyncio.create_task(self.run())
 
             task_monitor_spice = asyncio.create_task(self.monitor_spice())
-            task_monitor_terminate = asyncio.create_task(self.terminate.wait())
 
             done, _pending = await asyncio.wait(
                 [task_run, task_monitor_spice, task_monitor_terminate],
@@ -58,25 +73,6 @@ class VMService:
                 await self.sleep()
                 await asyncio.wait([task_run])
                 return
-
-            self.start.clear()
-            task_monitor_start = asyncio.create_task(self.start.wait())
-
-            done, _pending = await asyncio.wait(
-                [task_monitor_start, task_monitor_terminate],
-                return_when=FIRST_COMPLETED,
-            )
-            for task in done:
-                if exception := task.exception():
-                    raise exception
-            task_monitor_start.cancel()
-
-            if self.terminate.is_set():
-                print("service is terminating")
-                await asyncio.wait([task_run])
-                return
-
-            print("received SIGUSR1 signal")
 
     async def run(self):
         process = await asyncio.create_subprocess_exec(self.VM_BOOT)
@@ -98,33 +94,37 @@ class VMService:
             elif does_not_exist_time % 15 == 0:
                 print(f"monitor.sock still does not exist after {does_not_exist_time}s")
 
-        reader, writer = await asyncio.open_unix_connection(socket_file)
+        try:
+            reader, writer = await asyncio.open_unix_connection(socket_file)
 
-        timeout = self.TIMEOUT
-        POLL = 5
-        while timeout > 0:
-            await asyncio.sleep(POLL)
-            timeout -= POLL
+            timeout = self.TIMEOUT
+            POLL = 5
+            while timeout > 0:
+                await asyncio.sleep(POLL)
+                timeout -= POLL
 
-            writer.write(b"info spice\n")
-            await writer.drain()
+                writer.write(b"info spice\n")
+                await writer.drain()
 
-            data = b""
-            while True:
-                try:
-                    data += await asyncio.wait_for(reader.readline(), 0.1)
-                except TimeoutError:
-                    break
+                data = b""
+                while True:
+                    try:
+                        data += await asyncio.wait_for(reader.readline(), 0.1)
+                    except TimeoutError:
+                        break
 
-            if b"Channel:" in data:
-                timeout = self.TIMEOUT
-            elif 0 < (value := timeout % ((self.TIMEOUT - POLL - 1) / 5)) and value < POLL:
-                print(f"sending vm to sleep in {timeout} seconds")
+                if b"Channel:" in data:
+                    timeout = self.TIMEOUT
+                elif 0 < (value := timeout % ((self.TIMEOUT - POLL - 1) / 5)) and value < POLL:
+                    print(f"sending vm to sleep in {timeout} seconds")
 
-        writer.close()
-        await writer.wait_closed()
+            writer.close()
+            await writer.wait_closed()
 
-        await self.sleep()
+            await self.sleep()
+
+        except ConnectionError as e:
+            print(f"error while monitoring spice socket: '{e}'")
 
     async def sleep(self):
         if self.CAN_HIBERNATE is None:
