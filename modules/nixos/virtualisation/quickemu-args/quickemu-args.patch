@@ -57,7 +57,15 @@
          CPU_KVM_UNHALT=",kvm_pv_unhalt"
          GUEST_TWEAKS+=" -global kvm-pit.lost_tick_policy=discard"
          QEMU_ACCEL="kvm"
-@@ -775,20 +778,20 @@ function configure_cpu() {
+@@ -703,6 +706,7 @@ function configure_cpu() {
+             reset_cpu_flags
+             # KVM-specific flags: migratable and Hyper-V enlightenments
+             if [ "${QEMU_ACCEL}" == "kvm" ]; then
++                add_cpu_flag "kvm=off"
+                 if [ "${QEMU_VER_SHORT}" -gt 60 ]; then
+                     add_cpu_flag "migratable=no"
+                     add_cpu_flag "hv_passthrough"
+@@ -775,20 +779,20 @@ function configure_cpu() {
          done
      fi
  
@@ -92,7 +100,7 @@
  
      # Account for Hyperthreading/SMT.
      if [ "${GUEST_CPU_CORES}" -ge 2 ]; then
-@@ -1257,16 +1260,16 @@ function check_cocoa_gl_es_support() {
+@@ -1257,16 +1261,16 @@ function check_cocoa_gl_es_support() {
  function configure_display() {
      # Determine which audio driver to use: PipeWire, PulseAudio, or ALSA
      # Socket detection is more reliable than process detection on headless servers
@@ -116,7 +124,7 @@
  
      # Setup the appropriate audio device based on the display output
      # https://www.kraxel.org/blog/2020/01/qemu-sound-audiodev/
-@@ -1348,21 +1351,21 @@ function configure_display() {
+@@ -1348,21 +1352,21 @@ function configure_display() {
      # https://www.kraxel.org/blog/2021/05/virtio-gpu-qemu-graphics-update/
      # For GL-enabled displays, check if dedicated GL device variants are available.
      # Note: virtio-gpu-pci becomes virtio-gpu-gl-pci (not virtio-gpu-pci-gl)
@@ -153,7 +161,7 @@
  
      # Disable default VGA for SPICE modes to prevent duplicate scanouts
      # SPICE creates its own display output; the default VGA would create a second one
-@@ -1421,17 +1424,17 @@ function configure_audio() {
+@@ -1421,17 +1425,17 @@ function configure_audio() {
  }
  
  function configure_ports() {
@@ -179,7 +187,7 @@
          NET="${NET},hostfwd=tcp::${ssh_port}-:22"
          echo " - ssh:      On host:  ssh user@localhost -p ${ssh_port}"
      else
-@@ -1457,15 +1460,15 @@ function configure_ports() {
+@@ -1457,15 +1461,15 @@ function configure_ports() {
              # spice-app uses QEMU's built-in viewer with GL support
              SPICE+=",gl=${gl}"
              echo " - SPICE:    Enabled"
@@ -200,7 +208,7 @@
                  if [ "${guest_os}" != "macos" ] && [ -n "${PUBLIC}" ]; then
                      echo -n " --spice-shared-dir ${PUBLIC}"
                  fi
-@@ -1490,7 +1493,7 @@ function configure_ports() {
+@@ -1490,7 +1494,7 @@ function configure_ports() {
  
                  SPICE+=",port=${spice_port},addr=${SPICE_ADDR}"
                  echo "spice,${spice_port}" >> "${VMDIR}/${VMNAME}.ports"
@@ -209,7 +217,15 @@
                  echo -n " - SPICE:    On host:  spicy --title \"${VMNAME}\" --port ${spice_port}"
                  if [ "${guest_os}" != "macos" ] && [ -n "${PUBLIC}" ]; then
                      echo -n " --spice-shared-dir ${PUBLIC}"
-@@ -1625,15 +1628,15 @@ function vm_boot() {
+@@ -1618,22 +1622,22 @@ function configure_cpu_pinning() {
+ 
+ function vm_boot() {
+     AUDIO_DEV=""
+-    BALLOON="-device virtio-balloon"
++    BALLOON="${BALLOON:-}"
+     BOOT_STATUS=""
+     CPU=""
+     CORE_MAPPING=""
      DISK_USED=""
      DISPLAY_DEVICE=""
      DISPLAY_RENDER=""
@@ -231,7 +247,7 @@
      GUEST_TWEAKS=""
      KERNEL_NAME="Unknown"
      KERNEL_NODE=""
-@@ -1651,18 +1654,18 @@ function vm_boot() {
+@@ -1651,18 +1655,18 @@ function vm_boot() {
      USB_HOST_PASSTHROUGH_CONTROLLER="qemu-xhci"
      VIDEO=""
  
@@ -261,7 +277,7 @@
  
      echo "Quickemu ${VERSION} using ${QEMU} v${QEMU_VER_LONG}"
      echo " - Host:     ${OS_RELEASE} running ${KERNEL_NAME} ${KERNEL_VER} ${KERNEL_NODE}"
-@@ -1674,20 +1677,20 @@ function vm_boot() {
+@@ -1674,20 +1678,20 @@ function vm_boot() {
      # Set the hostname of the VM
      NET="user,hostname=${VMNAME}"
  
@@ -290,7 +306,7 @@
  
      # Changing process name is not supported on macOS
      if [ "${OS_KERNEL}" == "Linux" ]; then
-@@ -1705,15 +1708,15 @@ function vm_boot() {
+@@ -1705,15 +1709,15 @@ function vm_boot() {
      # - QEMU does not allow both -machine accel= and -accel simultaneously
      # - For KVM/HVF, continue using -machine accel= (simpler, no extra options needed)
      if [ "${QEMU_ACCEL}" == "tcg" ]; then
@@ -313,7 +329,7 @@
              TCG_TB_SIZE=512
          fi
          # shellcheck disable=SC2054,SC2206
-@@ -1725,14 +1728,14 @@ function vm_boot() {
+@@ -1725,31 +1729,31 @@ function vm_boot() {
              args+=(-machine ${MACHINE_TYPE} ${GUEST_TWEAKS}
                  ${CPU} ${SMP}
                  -m ${RAM_VM} ${BALLOON}
@@ -330,8 +346,11 @@
          fi
      else
          # KVM/HVF: use -machine accel= (no extra options needed)
-@@ -1742,14 +1745,14 @@ function vm_boot() {
-             args+=(-machine ${MACHINE_TYPE},accel=${QEMU_ACCEL} ${GUEST_TWEAKS}
+         if [ "${ARCH_VM}" == "aarch64" ]; then
+             # ARM64 uses 'virt' machine type without x86-specific options
+             # shellcheck disable=SC2054,SC2206,SC2140
+-            args+=(-machine ${MACHINE_TYPE},accel=${QEMU_ACCEL} ${GUEST_TWEAKS}
++            args+=(-machine ${MACHINE_TYPE},accel=${QEMU_ACCEL},kernel-irqchip=on ${GUEST_TWEAKS}
                  ${CPU} ${SMP}
                  -m ${RAM_VM} ${BALLOON}
 -                -pidfile "${VMDIR}/${VMNAME}.pid")
@@ -339,7 +358,8 @@
          else
              # x86_64 includes SMM (System Management Mode) and vmport options
              # shellcheck disable=SC2054,SC2206,SC2140
-             args+=(-machine ${MACHINE_TYPE},smm=${SMM},vmport=off,accel=${QEMU_ACCEL} ${GUEST_TWEAKS}
+-            args+=(-machine ${MACHINE_TYPE},smm=${SMM},vmport=off,accel=${QEMU_ACCEL} ${GUEST_TWEAKS}
++            args+=(-machine ${MACHINE_TYPE},smm=${SMM},vmport=off,accel=${QEMU_ACCEL},kernel-irqchip=on ${GUEST_TWEAKS}
                  ${CPU} ${SMP}
                  -m ${RAM_VM} ${BALLOON}
 -                -pidfile "${VMDIR}/${VMNAME}.pid")
@@ -347,7 +367,7 @@
          fi
      fi
  
-@@ -1768,7 +1771,7 @@ function vm_boot() {
+@@ -1768,7 +1772,7 @@ function vm_boot() {
          # shellcheck disable=SC2054
          args+=(-spice "${SPICE}"
              -device virtio-serial-pci
@@ -356,7 +376,7 @@
              -device virtserialport,chardev=agent0,name=org.qemu.guest_agent.0
              -chardev spicevmc,id=vdagent0,name=vdagent
              -device virtserialport,chardev=vdagent0,name=com.redhat.spice.0
-@@ -1792,13 +1795,13 @@ function vm_boot() {
+@@ -1792,13 +1796,13 @@ function vm_boot() {
              -device pci-ohci,id=smartpass
              -device usb-ccid)
  
@@ -377,7 +397,7 @@
      fi
  
      # setup usb-controller
-@@ -2086,15 +2089,15 @@ function vm_boot() {
+@@ -2086,15 +2090,15 @@ function vm_boot() {
          echo " - Monitor:  (off)"
      elif [ "${monitor}" == "telnet" ]; then
          # Find a free port to expose monitor-telnet to the guest
@@ -397,7 +417,7 @@
          fi
      elif [ "${monitor}" == "socket" ]; then
          # shellcheck disable=SC2054,SC2206
-@@ -2115,15 +2118,15 @@ function vm_boot() {
+@@ -2115,15 +2119,15 @@ function vm_boot() {
          # and provides no useful information to the user
      elif [ "${serial}" == "telnet" ]; then
          # Find a free port to expose serial-telnet to the guest
@@ -417,7 +437,7 @@
          fi
      elif [ "${serial}" == "socket" ]; then
          # shellcheck disable=SC2054,SC2206
-@@ -2151,6 +2154,10 @@ function vm_boot() {
+@@ -2151,6 +2155,10 @@ function vm_boot() {
      SHELL_ARGS="${SHELL_ARGS//)/\\)}"
      SHELL_ARGS="${SHELL_ARGS//Quickemu Project/\"Quickemu Project\"}"
  
@@ -428,7 +448,7 @@
      if [ -z "${VM_PID}" ]; then
          echo "${QEMU}" "${SHELL_ARGS}" "2>/dev/null" >> "${VMDIR}/${VMNAME}.sh"
          sed -i -e 's/ -/ \\\n    -/g' "${VMDIR}/${VMNAME}.sh"
-@@ -2529,15 +2536,15 @@ function monitor_send_cmd {
+@@ -2529,15 +2537,15 @@ function monitor_send_cmd {
  
  # Lowercase variables are used in the VM config file only
  boot="efi"
@@ -440,7 +460,7 @@
 +disk_img="${DISK_IMG:-}"
  disk_size="${disk_size:-16G}"
 -display="${display:-gtk}"
-+display="${DISPLAY:-gtk}"
++display="${display:-none}"
  extra_args="${extra_args:-}"
  fixed_iso=""
  floppy=""
@@ -449,7 +469,7 @@
  img=""
  iso=""
  macaddr=""
-@@ -2546,30 +2553,30 @@ network=""
+@@ -2546,30 +2554,30 @@ network=""
  port_forwards=()
  preallocation="off"
  ram=""
@@ -473,12 +493,14 @@
  serial_telnet_host="${serial_telnet_host:-localhost}"
  # options: ehci (USB2.0), xhci (USB3.0)
 -usb_controller="${usb_controller:-ehci}"
-+usb_controller="${USB_CONTROLLER:-ehci}"
- keyboard="${keyboard:-usb}"
+-keyboard="${keyboard:-usb}"
 -keyboard_layout="${keyboard_layout:-en-us}"
-+keyboard_layout="${keyboard_layout:-}"
- mouse="${mouse:-tablet}"
+-mouse="${mouse:-tablet}"
 -sound_card="${sound_card:-intel-hda}"
++usb_controller="${USB_CONTROLLER:-ehci}"
++keyboard="${KEYBOARD:-usb}"
++keyboard_layout="${keyboard_layout:-}"
++mouse="${MOUSE:-tablet}"
 +sound_card="${SOUND_CARD:-intel-hda}"
  sound_duplex="${sound_duplex:-hda-micro}"
  
@@ -487,7 +509,7 @@
  ACTIONS=()
  BRAILLE=""
  IGNORE_TSC_WARNING=""
-@@ -2587,10 +2594,13 @@ SOCKET_SERIAL=""
+@@ -2587,10 +2595,13 @@ SOCKET_SERIAL=""
  STATUS_QUO=""
  USB_PASSTHROUGH=""
  VM=""
@@ -503,7 +525,7 @@
  # CPU flag tracking map for deduplication and conflict detection
  declare -A CPU_FLAG_MAP
  
-@@ -2602,13 +2612,16 @@ readonly VERSION="4.9.9"
+@@ -2602,13 +2613,16 @@ readonly VERSION="4.9.9"
  # Default architecture is x86_64, can be overridden by config file (arch="aarch64")
  arch="${arch:-x86_64}"
  ARCH_VM="${arch}"

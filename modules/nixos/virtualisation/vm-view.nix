@@ -23,12 +23,9 @@
             socket = "${directory}/spice.sock";
         in
             ''
-                if [ ! -S "${socket}" ]; then
-                    service_pid=$(systemctl show vm-${name} --property MainPID --value)
-                    if [ "$service_pid" -eq "0" ]; then
-                        exit 1
-                    fi
-                    kill -s SIGUSR1 "$service_pid"
+                if [ ! -f "${directory}/.pid" ]; then
+                    rm -f "${socket}"
+                    systemctl kill -s SIGUSR1 vm-${name}
                     if ! inotifywait -t 5 -e create --include "spice.sock" "${directory}"; then
                         exit 1
                     fi
@@ -41,7 +38,7 @@
                 ''
                 else if viewer == "looking-glass"
                 then ''
-                    looking-glass-client -F -c ${socket}
+                    looking-glass-client -f /dev/kvmfr0 -F -c ${socket} -p ""
                 ''
                 else assert false; null
             );

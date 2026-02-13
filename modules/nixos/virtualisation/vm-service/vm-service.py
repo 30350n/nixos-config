@@ -88,12 +88,15 @@ class VMService:
 
     async def monitor_spice(self):
         socket_file = self.VM_DIRECTORY / "monitor.sock"
-        for _ in range(5):
+        does_not_exist_time = 0
+        while True:
             await asyncio.sleep(1)
+            does_not_exist_time += 1
+
             if socket_file.exists():
                 break
-        else:
-            raise FileNotFoundError(socket_file)
+            elif does_not_exist_time % 15 == 0:
+                print(f"monitor.sock still does not exist after {does_not_exist_time}s")
 
         reader, writer = await asyncio.open_unix_connection(socket_file)
 

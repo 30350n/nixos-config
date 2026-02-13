@@ -57,12 +57,20 @@
         virtualisation = {
             enable = true;
             cpuVendor = "amd";
+            ivshmem = 64;
 
             vms.windows-10 = {
                 enable = true;
                 guestOs = "windows";
                 cpuCores = 6;
                 ram = "16G";
+                passthrough = [
+                    {
+                        pcieDevices = ["0000:09:00.0" "0000:09:00.1" "0000:09:00.2" "0000:09:00.3"];
+                        romfile = ./rtx2060_8702103C.rom;
+                    }
+                ];
+                viewer = "looking-glass";
                 user = "max";
                 desktopItem = {
                     desktopName = "Windows 10";

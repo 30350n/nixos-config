@@ -46,12 +46,7 @@ stdenvNoCC.mkDerivation {
         if vmConfig.secureBoot
         then "on"
         else "off";
-    DISPLAY =
-        if vmConfig.viewer == "remote-viewer"
-        then "spice"
-        else if vmConfig.viewer == "looking-glass"
-        then "none"
-        else assert false; null;
+    BALLOON = lib.optionalString (vmConfig.viewer != "looking-glass") "-device virtio-balloon";
     ACCESS = "local";
     SSH_PORT = vmConfig.sshPort;
     SERIAL =
@@ -60,6 +55,8 @@ stdenvNoCC.mkDerivation {
         else "socket";
     SOUND_CARD = "usb-audio";
     USB_CONTROLLER = "xhci";
+    KEYBOARD = "virtio";
+    MOUSE = "virtio";
 
     QEMU_VER_SHORT = "${lib.versions.major qemu.version}${lib.versions.minor qemu.version}";
 
