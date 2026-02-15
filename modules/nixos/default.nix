@@ -26,7 +26,6 @@
             (krusader.overrideAttrs (finalAttrs: prevAttrs: {
                 nativeBuildInputs = prevAttrs.nativeBuildInputs ++ [kdePackages.kate];
             }))
-            lact
             libreoffice
             loupe
             localsend
@@ -87,9 +86,6 @@
                 ];
             };
         };
-
-        systemd.packages = with pkgs; [lact];
-        systemd.services.lactd.wantedBy = ["multi-user.target"];
 
         users.mutableUsers = false;
         nixos-core.normalUserGroups = ["networkmanager" "wheel"];
