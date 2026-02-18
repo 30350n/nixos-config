@@ -50,6 +50,20 @@
                         ${udevMatch amdgpu}, ${udevSettings "amd" primary}
                         ${udevMatch nvidiagpu}, ${udevSettings "nvidia" primary}
                     '';
+
+                    environment.sessionVariables.VK_DRIVER_FILES = let
+                        drivers = pkgs.buildEnv {
+                            name = "graphics-drivers";
+                            paths =
+                                [config.hardware.graphics.package]
+                                ++ config.hardware.graphics.extraPackages;
+                        };
+                        icdName =
+                            if primary == "amd"
+                            then "radeon"
+                            else primary;
+                        arch = pkgs.stdenv.hostPlatform.parsed.cpu.name;
+                    in "${drivers}/share/vulkan/icd.d/${icdName}_icd.${arch}.json";
                 }
                 (lib.mkIf (primary == "amd") {
                     hardware.nvidia.prime = {
