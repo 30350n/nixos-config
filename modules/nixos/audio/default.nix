@@ -8,7 +8,10 @@
 
     options.custom.audio = {
         enable = lib.mkEnableOption "audio" // {default = true;};
-        realtime = lib.mkEnableOption "realtime" // {default = true;};
+        musnix = {
+            enable = lib.mkEnableOption "musnix";
+            rtkit = lib.mkEnableOption "rtkit" // {default = true;};
+        };
         defaultVolume = lib.mkOption {
             type = lib.types.nullOr lib.types.float;
             default = null;
@@ -44,8 +47,8 @@
                             ];
 
                             "default.clock.quantum" = bufferSize;
-                            "default.clock.min-quantum" = 16;
-                            "default.clock.max-quantum" = 1024;
+                            "default.clock.min-quantum" = 32;
+                            "default.clock.max-quantum" = 512;
                         };
                         pipewire-pulse."10-low-latency" = {
                             "pulse.properties" = {
@@ -62,11 +65,40 @@
 
                 environment.systemPackages = with pkgs; [
                     helvum
+                    pipewire.jack
                 ];
             }
-            (lib.mkIf config.custom.audio.realtime {
-                security.rtkit.enable = true;
+            (lib.mkIf config.custom.audio.musnix.enable {
+                musnix = {
+                    enable = true;
+                    rtcqs.enable = true;
+                };
+                security.rtkit.enable = config.custom.audio.musnix.rtkit;
+
                 nixos-core.normalUserGroups = ["audio"];
+
+                powerManagement.cpuFreqGovernor = "performance";
+
+                boot.kernelParams = ["threadirqs" "usbcore.usbfs_memory_mb=512"];
+
+                security.pam.loginLimits = [
+                    {
+                        domain = "@audio";
+                        type = "-";
+                        item = "rtprio";
+                        value = "90";
+                    }
+                    {
+                        domain = "@audio";
+                        type = "-";
+                        item = "memlock";
+                        value = "unlimited";
+                    }
+                ];
+
+                services.udev.extraRules = ''
+                    DEVPATH=="/devices/virtual/misc/cpu_dma_latency", GROUP="audio", MODE="0660"
+                '';
             })
             (lib.mkIf (config.custom.audio.defaultVolume != null) {
                 systemd.user.services.set-default-volume = let

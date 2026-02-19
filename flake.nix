@@ -22,6 +22,11 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        musnix = {
+            url = "github:musnix/musnix";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
         nix-vscode-extensions = {
             url = "github:nix-community/nix-vscode-extensions";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -39,13 +44,15 @@
         nixos-core,
         home-manager,
         disko,
+        musnix,
         ...
     } @ flake-inputs: let
         defaultModules = [
             determinate.nixosModules.default
             nixos-core.nixosModules.nixos-core
-            disko.nixosModules.disko
             home-manager.nixosModules.home-manager
+            disko.nixosModules.disko
+            musnix.nixosModules.musnix
             {
                 home-manager = {
                     useGlobalPkgs = true;

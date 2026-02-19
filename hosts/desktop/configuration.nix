@@ -31,6 +31,7 @@
 
     custom = {
         audio = {
+            musnix.enable = true;
             devices = {
                 disabled = ["!~.*usb-BEHRINGER_UMC1820.*"];
                 umc1820.serial = "0E063B4D";
